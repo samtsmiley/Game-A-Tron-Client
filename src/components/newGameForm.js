@@ -1,7 +1,6 @@
 import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
-// import validate from './newGameFormValidators'
-
+import validate from './newGameFormValidators'
 
 const renderField = ({ input, label, type, placeholder, meta: { touched, error } }) => (
   <div>
@@ -12,7 +11,6 @@ const renderField = ({ input, label, type, placeholder, meta: { touched, error }
     </div>
   </div>
 )
-
 
 const renderRules = ({ fields, meta: { error, submitFailed } }) => (
   <div>
@@ -89,6 +87,13 @@ const NewGameForm = props => {
         component={renderField}
         label="Game Name"
       />
+       <Field
+        name="gameDescription"
+        type="textarea"
+        component={renderField}
+        label="Game Description"
+        placeholder="Tell people what your game is all about. :)"
+      />
       <FieldArray name="rules" component={renderRules} />
       <FieldArray name="scores" component={renderScores} />
       <Field
@@ -114,5 +119,5 @@ const NewGameForm = props => {
 
 export default reduxForm({
   form: 'newGameForm', // a unique identifier for this form
-//   validate
+  validate
 })(NewGameForm)
