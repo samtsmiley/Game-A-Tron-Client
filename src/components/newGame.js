@@ -10,6 +10,7 @@ import React from "react";
 import {connect} from 'react-redux';
 
 import NewGameForm from "./newGameForm";
+import showResults from "./newGameResults";
 
 export class NewGame extends React.Component {
 
@@ -17,7 +18,9 @@ export class NewGame extends React.Component {
     return (
         <div className="newGame">
             <h2>Make a New Game</h2>
-            <NewGameForm />
+            {/* <NewGameForm  /> */}
+            <NewGameForm onSubmit={showResults} />
+
         </div>
 
     );

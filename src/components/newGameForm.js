@@ -3,18 +3,6 @@ import { Field, FieldArray, reduxForm } from 'redux-form'
 // import validate from './newGameFormValidators'
 
 
-
-
-
-// export class NewGameForm extends React.Component {
-
-
-
-// onSubmit(values) {
-//     console.log(values)
-// }
-
-
 const renderField = ({ input, label, type, placeholder, meta: { touched, error } }) => (
   <div>
     <label>{label}</label>
@@ -94,7 +82,7 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
 const NewGameForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
-    <form onSubmit={handleSubmit}>
+     <form onSubmit={handleSubmit}> 
       <Field
         name="gameName"
         type="text"
