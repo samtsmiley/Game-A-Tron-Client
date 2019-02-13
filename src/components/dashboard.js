@@ -2,11 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requiresLogin';
 import HeaderBar from './headerBar';
+import  NewGame  from './newGame';
 import SideBar from './sideBar';
-// import {fetchProtectedData} from '../actions/protected-data';
-import { NewGame } from './newGame';
 
 export class Dashboard extends React.Component {
+
+
+
     componentDidMount() {
     }
 
@@ -30,6 +32,7 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
               <HeaderBar/>
               <NewGame/>
+
               <div className="dashboard-username">
                 Username: {this.props.username}
               </div>
