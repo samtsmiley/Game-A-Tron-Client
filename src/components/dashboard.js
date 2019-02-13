@@ -47,7 +47,7 @@ export class Dashboard extends React.Component {
                 enable this code when we have the sidebar reducer
                 {this.props.showProfile && <Profile/>}
                 {this.props.showFindGame && <FindGame/>}
-                {this.props.showNewGame <NewGame/>}
+                {this.props.showNewGame && <NewGame/>}
                 {this.props.showOneGame && <Game/>}
                 {this.props.showAllPosts && <AllPosts/>} */}
 
