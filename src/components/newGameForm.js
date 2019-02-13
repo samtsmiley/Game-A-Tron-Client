@@ -19,7 +19,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
       {fields.map((rule, index) => (
         <li key={index}>
            <Field
-          name={`${rule}.ruleName`}
+          name={`${rule}.description`}
           type="text"
           component={renderField}
         />
@@ -47,14 +47,14 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
     {fields.map((score, index) => (
       <li key={index}>
         <Field
-          name={`${score}.scoreName`}
+          name={`${score}.description`}
           type="text"
           component={renderField}
           label="What do you have to do?"
           placeholder="Enter an Action"
         />
         <Field
-          name={`${score}.scoreValue`}
+          name={`${score}.score`}
           type="number"
           component={renderField}
           label="How many points is it worth?"
@@ -82,13 +82,13 @@ const NewGameForm = props => {
   return (
      <form onSubmit={handleSubmit}> 
       <Field
-        name="gameName"
+        name="name"
         type="text"
         component={renderField}
         label="Game Name"
       />
        <Field
-        name="gameDescription"
+        name="description"
         type="textarea"
         component={renderField}
         label="Game Description"
@@ -97,7 +97,7 @@ const NewGameForm = props => {
       <FieldArray name="rules" component={renderRules} />
       <FieldArray name="scores" component={renderScores} />
       <Field
-        name="gameEnd"
+        name="end"
         type="number"
         component={renderField}
         label="Game End Conditions"
