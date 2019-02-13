@@ -8,7 +8,7 @@ export default function SideBarListAllMyGames(props) {
       return(
        
       <li key={index}>
-        <button>{game}</button>
+        <button >{game}</button>
       </li>
 
       );

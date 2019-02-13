@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBarListPlayers from './sideBarList-Players';
+import SideBarListCurrentGame from './sideBarList-CurrentGame';
 import SideBarListMyGames from './sideBarList-MyGames';
 import SideBarListMyGameHistory from './sideBarList-MyGameHistory';
 import SideBarListAllGames from './sideBarList-AllGames';
@@ -12,38 +12,40 @@ export class SideBar extends React.Component {
   constructor(props){
     super(props);
 
+    //Local State used for display properties
     this.state = {
 
-      showPlayers:false,
-      showMyGames:false,
+      selectedGameName:'',
+      selectedGameStyle:'TEST',//for selected text -- styling
+      showSelectedGame:false,
+      showMyGames:true,
       showMyHistory:false,
       showAllPlayers:false,
       showAllGames:false
 
     }
  
+    this.showSelectedGameClicked = this.showSelectedGameClicked.bind(this);
+
   }
 
-  showPlayers(){
 
-    let newMode;
+  showSelectedGameClicked(game){
 
-    if(this.state.showPlayers){ 
-      newMode = false;
-    } else{
-      newMode = true;
-    }
-
+    let newMode = true;
+ 
     this.setState({
-      showPlayers:newMode,
-      showMyGames:false,
+      selectedGameName:game,
+      showSelectedGame:newMode,
+      selectedGameStyle:'SideBar-lists-selected',
+      showMyGames:true,
       showMyHistory:false,
       showAllPlayers:false,
       showAllGames:false
     })
-
+ 
   }
-
+  
   showMyGames(){
 
     let newMode;
@@ -55,8 +57,8 @@ export class SideBar extends React.Component {
     }
 
     this.setState({
-      showPlayers:false,
-      showMyGames:newMode,
+      showSelectedGame:false,
+      showMyGames:true,
       showMyHistory:false,
       showAllPlayers:false,
       showAllGames:false
@@ -75,8 +77,8 @@ export class SideBar extends React.Component {
     }
 
     this.setState({
-      showPlayers:false,
-      showMyGames:false,
+      showSelectedGame:false,
+      showMyGames:true,
       showMyHistory:false,
       showAllPlayers:false,
       showAllGames:newMode
@@ -95,7 +97,7 @@ export class SideBar extends React.Component {
     }
 
     this.setState({
-      showPlayers:false,
+      showSelectedGame:false,
       showMyGames:false,
       showMyHistory:newMode,
       showAllPlayers:false,
@@ -115,8 +117,8 @@ export class SideBar extends React.Component {
     }
 
     this.setState({
-      showPlayers:false, 
-      showMyGames:false,
+      showSelectedGame:false, 
+      showMyGames:true,
       showMyHistory:false,
       showAllPlayers:newMode,
       showAllGames:false
@@ -128,40 +130,41 @@ export class SideBar extends React.Component {
 
   render() {
 
-    let displayPlayers=null;
+    let displaySelectedGame=<p>Select a Game:</p>;
     let displayMyGames=null;
     let displayMyHistory=null;
     let displayAllPlayers=null;
     let displayAllGames=null;
+   
+    // if(this.state.showSelectedGame){displayCurrentGame = <SideBarListCurrentGame gameInfo={this.props.gameInfo}/>};  
+    if(this.state.showSelectedGame){displaySelectedGame = <p>{this.state.selectedGameName}</p>};
+    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames gameInfo={this.props.gameInfo} selectedStyle={this.state.selectedGameStyle} onSelect={this.showSelectedGameClicked}/>};
+    if(this.state.showMyHistory){displayMyHistory = <SideBarListMyGameHistory gameInfo={this.props.gameInfo}/>};
+    if(this.state.showAllPlayers){displayAllPlayers = <SideBarListAllPlayers gameInfo={this.props.gameInfo}/>};
+    if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>};
 
-    if(this.state.showPlayers){displayPlayers = <SideBarListPlayers gameInfo={this.props.gameInfo}/>}
-    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames gameInfo={this.props.gameInfo}/>}
-    if(this.state.showMyHistory){displayMyHistory = <SideBarListMyGameHistory gameInfo={this.props.gameInfo}/>}
-    if(this.state.showAllPlayers){displayAllPlayers = <SideBarListAllPlayers gameInfo={this.props.gameInfo}/>}
-    if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>}
-
+    //commented out below extension options & show-hide list options
     return(
       <div className="SideBar" >
         <h3>Side Bar!</h3>
-        <p>user icon avatar? here...</p>
-        <br/>
-        <p>CURRENT GAME:</p>
-        <button>{this.props.gameInfo.CurrentGame.name}</button><br/>
-        <button onClick={()=>this.showPlayers()}>PLAYERS IN THE CURRENT GAME</button>
-        {displayPlayers}
+        <p>User Avatar</p>
+        <button>USER PROFILE</button>
+        <button>CREATE NEW GAME</button>
+        <button>FIND A GAME</button>
         <hr/>
-        <button onClick={()=>this.showMyGames()}>ALL THE GAMES I AM PLAYING</button>
+        {displaySelectedGame}
+        {/* <button onClick={()=>this.showMyGames()}>MY GAMES</button> */}
         {displayMyGames}
-        <button onClick={()=>this.showGameHistory()}>MY GAME HISTORY</button>
+        {/* <button onClick={()=>this.showGameHistory()}>MY GAME HISTORY</button>
         {displayMyHistory}
         <hr/>
         <button onClick={()=>this.showAllPlayers()}>ALL PLAYERS</button>
         {displayAllPlayers}
         <button onClick={()=>this.showAllGames()}>ALL THE GAMES</button>
-        {displayAllGames}
+        {displayAllGames} */}
         <hr/>
         <br/>
-        <button>CREATE NEW GAME</button>
+        
       </div>
     );
 
