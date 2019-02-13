@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requiresLogin';
 import HeaderBar from './headerBar';
-import { NewGame } from './newGame';
+import  NewGame  from './newGame';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
