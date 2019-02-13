@@ -6,7 +6,7 @@ import { GameScoreOpportunities } from './gameScoreOpportunities';
 import { GameProgressBar } from './gameProgressBar';
 import { GameLeaderboard } from './gameLeaderboard';
 import { GameCreatePost } from './gameCreatePost';
-import { GamePosts } from './gamePosts';
+import { GamePostsList } from './GamePostsList';
 
 
 export class Game extends React.Component {
@@ -24,7 +24,7 @@ export class Game extends React.Component {
         <GameProgressBar/>
         <GameLeaderboard/>
         <GameCreatePost/>
-        <GamePosts/>
+        <GamePostsList/>
         </div>
         );
     }

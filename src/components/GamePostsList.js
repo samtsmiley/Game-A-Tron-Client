@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export class GamePosts extends React.Component {
+export class GamePostsList extends React.Component {
     componentDidMount() {
     }    
 
     render() {
       return (
         <div className="gamePosts">
-      
+        {/* <Post /> */}
         </div>
         );
     }
@@ -19,4 +19,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(GamePosts);
+export default connect(mapStateToProps)(GamePostsList);
