@@ -12,9 +12,8 @@ import {fetchGameById} from '../actions/game'
 
 export class Game extends React.Component {
     componentDidMount() {
-      // console.log('getting this game by id:5c64812ec3ab8125c02c0291')
-      // this.props.dispatch(fetchGameById(this.props.gameId))
-      this.props.dispatch(fetchGameById('5c64812ec3ab8125c02c0291'))
+      // this.props.dispatch(fetchGameById(this.props.gameId)) will add this to sidebar 
+      // this.props.dispatch(fetchGameById('5c64812ec3ab8125c02c0291'))
 
     }    
 
