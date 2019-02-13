@@ -2,6 +2,11 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import store from '../store';
 
+
+//maybe fetchMyGames
+
+
+
 export const FETCH_MYGAMES_REQUEST = 'FETCH_MYGAMES_REQUEST';
 export const fetchMyGamesRequest = (loading) => ({
 
@@ -28,7 +33,6 @@ export const fetchMyGamesError = (error) => ({
   error: error
 
 })
-
 
 export const fetchMyGames = (userId) => (dispatch) => {
 

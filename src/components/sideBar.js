@@ -12,7 +12,10 @@ import '../App.css';
   
 export class SideBar extends React.Component {
 
-  //FETCH MY GAMES
+  //FETCH GAME BY ID
+  //import from Sam's get game by id actions
+   
+  //FETCH MY GAMES -- maybe can use auth current user games array...
   componentDidMount() {
 
     let tester = this.props.currentUser.currentUser.id;
@@ -39,7 +42,24 @@ export class SideBar extends React.Component {
     this.showSelectedGameClicked = this.showSelectedGameClicked.bind(this);
 
   }
+ 
+  profileClicked(){
 
+    console.log('profileClicked');
+    
+  }
+
+  createGameClicked(){
+    
+    console.log('createGameClicked');
+
+  }
+
+  findGameClicked(){
+    
+    console.log('findGameClicked');
+
+  }
 
   showSelectedGameClicked(game){
 
@@ -162,9 +182,9 @@ export class SideBar extends React.Component {
         <h3>Side Bar!</h3>
         <p>User Avatar</p>
         <p> test id = {this.props.currentUser.currentUser.id}</p>
-        <button>USER PROFILE</button>
-        <button>CREATE NEW GAME</button>
-        <button>FIND A GAME</button>
+        <button onClick={this.profileClicked}>USER PROFILE</button>
+        <button onClick={this.createGameClicked}>CREATE NEW GAME</button>
+        <button onClick={this.findGameClicked}>FIND A GAME</button>
         <hr/>
         {displaySelectedGame}
         {/* <button onClick={()=>this.showMyGames()}>MY GAMES</button> */}
