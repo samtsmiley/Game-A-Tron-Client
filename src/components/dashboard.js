@@ -4,6 +4,7 @@ import requiresLogin from './requiresLogin';
 import HeaderBar from './headerBar';
 import  NewGame  from './newGame';
 import SideBar from './sideBar';
+import { Game } from './game';
 
 export class Dashboard extends React.Component {
 
@@ -31,12 +32,30 @@ export class Dashboard extends React.Component {
         return (
             <div className="dashboard">
               <HeaderBar/>
-              <NewGame/>
+              <SideBar gameInfo={tempSideBarState}/>
+
+                {/* show all things for now uncomment as componont gets added*/}
+                <Game/>
+                <NewGame/>
+                {/* <Profile/> */}
+                {/* <FindGame/> */}
+                {/* <AllPosts/> */}
+
+
+
+{/* 
+                enable this code when we have the sidebar reducer
+                {this.props.showProfile && <Profile/>}
+                {this.props.showFindGame && <FindGame/>}
+                {this.props.showNewGame <NewGame/>}
+                {this.props.showOneGame && <Game/>}
+                {this.props.showAllPosts && <AllPosts/>} */}
+
 
               <div className="dashboard-username">
                 Username: {this.props.username}
               </div>
-              <SideBar gameInfo={tempSideBarState}/>
+              
             </div>
         );
     }
@@ -44,7 +63,12 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.auth.currentUser.username,
+        // update when we can
+        // showProfile:state.
+        // showFindGame:state.
+        // showNewGame:state.
+        // showOneGame:state.
+        // showAllPosts:state.
     };
 };
 
