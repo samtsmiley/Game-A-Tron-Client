@@ -4,8 +4,12 @@ import requiresLogin from './requiresLogin';
 import HeaderBar from './headerBar';
 import  NewGame  from './newGame';
 import SideBar from './sideBar';
-import { Game } from './game';
+import  Game  from './game';
+
 import Profile from './Profile';
+
+
+
 
 export class Dashboard extends React.Component {
 
