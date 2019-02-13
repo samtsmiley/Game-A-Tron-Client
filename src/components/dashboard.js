@@ -31,12 +31,13 @@ export class Dashboard extends React.Component {
         return (
             <div className="dashboard">
               <HeaderBar/>
+              <SideBar gameInfo={tempSideBarState}/>
               <NewGame/>
 
               <div className="dashboard-username">
                 Username: {this.props.username}
               </div>
-              <SideBar gameInfo={tempSideBarState}/>
+              
             </div>
         );
     }

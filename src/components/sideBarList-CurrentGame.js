@@ -2,7 +2,7 @@
 import React from 'react';
 import '../App.css';
 
-export default function SideBarListPlayers(props) {
+export default function SideBarListCurrentGame(props) {
  
     let playersList = props.gameInfo.Players.map((player,index) => {
       
@@ -18,6 +18,7 @@ export default function SideBarListPlayers(props) {
   
     return (
       <div>
+        <p>Current Players:</p>
         <ul className="SideBar-lists" id='playersList'>
           {playersList}
         </ul>
