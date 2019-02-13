@@ -5,6 +5,9 @@ import HeaderBar from './headerBar';
 import  NewGame  from './newGame';
 
 export class Dashboard extends React.Component {
+
+
+
     componentDidMount() {
     }
 
@@ -13,6 +16,7 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
               <HeaderBar/>
               <NewGame/>
+
               <div className="dashboard-username">
                 Username: {this.props.username}
               </div>
