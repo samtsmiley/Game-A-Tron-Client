@@ -14,7 +14,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     if (action.type === FETCH_GAME_BY_ID_SUCCESS) {
-        console.log('game is ', action.data)
+        // console.log('game is ', action.data)
         return Object.assign({}, state, {
             data: action.data,
             error: null,

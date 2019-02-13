@@ -62,7 +62,7 @@ export const fetchGameByIdError = error => ({
 });
 
 export const fetchGameById = (id) => (dispatch, getState) => {
-    console.log('FETCHING GAME_BY_ID ACTION');
+    // console.log('FETCHING GAME_BY_ID ACTION');
     const authToken = getState().auth.authToken;
     dispatch(fetchGameByIdRequest())
     return fetch(`${API_BASE_URL}/games/${id}`, {
