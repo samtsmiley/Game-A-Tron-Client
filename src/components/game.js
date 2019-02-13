@@ -7,10 +7,14 @@ import { GameProgressBar } from './gameProgressBar';
 import { GameLeaderboard } from './gameLeaderboard';
 import { GameCreatePost } from './gameCreatePost';
 import { GamePosts } from './gamePosts';
+import {fetchGameById} from '../actions/game'
 
 
 export class Game extends React.Component {
     componentDidMount() {
+      // this.props.dispatch(fetchGameById(this.props.gameId)) will add this to sidebar 
+      // this.props.dispatch(fetchGameById('5c64812ec3ab8125c02c0291'))
+
     }    
 
     render() {
@@ -31,7 +35,10 @@ export class Game extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
     return {
+      // gameId: state.sidebar.gameClickedId will wait for sidebar reducer data
+
     };
 };
 
