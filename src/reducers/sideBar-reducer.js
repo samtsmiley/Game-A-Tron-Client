@@ -5,6 +5,9 @@ import {
 
 } from '../actions/sideBar-actions';
 
+
+//add view modes in here
+//selected game
 const initialState = {
   myGames: [],
   loading: false,
