@@ -27,7 +27,7 @@ export class Dashboard extends React.Component {
  
             CurrentGame: {name: 'potato race'},
             Players:['gamePlayer1','gamePlayer2','gamePlayer3'],
-            MyGames:['game 1','game 2','potato race'],
+            MyGames:['game 1 id','game 2 id','potato race id'],
             AllGames:['game 1','game 2','potato race','game 4','game 5'],
             GameHistory: ['old-game 1','old-game 2','old-game 3'],
             AllPlayers: ['gamePlayer1','gamePlayer2','gamePlayer3','otherUser1','otherUser2','otherUser3']
