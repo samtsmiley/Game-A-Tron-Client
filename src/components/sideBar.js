@@ -9,7 +9,7 @@ import SideBarListMyGameHistory from './sideBarList-MyGameHistory';
 import SideBarListAllGames from './sideBarList-AllGames';
 import SideBarListAllPlayers from './sideBarList-AllPlayers';
  
-import '../App.css';
+
   
 export class SideBar extends React.Component {
 

@@ -8,6 +8,8 @@ import Dashboard from './dashboard';
 import RegistrationPage from './registrationPage';
 import {refreshAuthToken} from '../actions/auth';
 
+import '../App.css';
+
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
         if (!prevProps.loggedIn && this.props.loggedIn) {
