@@ -17,10 +17,11 @@ export default function GameLeaderboardListPlayers(props) {
 
   //Each player name is a button to show that players posts...
 
+//note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
 let playerArrSorted = quickSort(props.players.participants);
 
 ///
-//-->> Quick Sort stuff
+//-->> Quick Sort stuff -->>
    
     let count = 0;
   
@@ -59,6 +60,7 @@ let playerArrSorted = quickSort(props.players.participants);
   
   return j;
     }
+
   //-->> Quick Sort stuff
 ///
 
@@ -83,7 +85,7 @@ let playerArrSorted = quickSort(props.players.participants);
       //first, second, third
       return(
         <li key={index}>
-          <button>{placer} Place: {player.userId} Score: {player.score}</button>
+          <button>{placer} Place: {player.username} &nbsp;&nbsp; Score: {player.score}</button>
           {bar}
         </li>
         
@@ -95,7 +97,7 @@ let playerArrSorted = quickSort(props.players.participants);
       return(
          
         <li key={index}>
-          <button>Rank:{index + 1} {player.userId} Score: {player.score}</button>
+          <button>Rank:{index + 1} {player.username} &nbsp;&nbsp; Score: {player.score}</button>
         </li>
       );
     }
