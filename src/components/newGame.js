@@ -8,7 +8,7 @@ export class NewGame extends React.Component {
    
 
     newGameSubmit (values){
-        console.log('new game values', values)
+        // console.log('new game values', values)
         this.props.dispatch(postGame(values))
     }
 
