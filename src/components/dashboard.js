@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requiresLogin';
 import HeaderBar from './headerBar';
-import  NewGame  from './newGame';
+import NewGame  from './newGame';
 import SideBar from './sideBar';
-import  Game  from './game';
-
+import GameDashboard  from './gameDashboard';
+import FindGame from './findGame';
 import Profile from './profile';
 
 
@@ -36,14 +36,14 @@ export class Dashboard extends React.Component {
 
         return (
             <div className="dashboard">
-              <HeaderBar/>
-							<SideBar gameInfo={tempSideBarState}/>		
+              <HeaderBar />
+							<SideBar gameInfo={tempSideBarState} />		
 							{/* show all things for now uncomment as componont gets added*/}
-							<Game/>
-							<NewGame/>
-							<Profile/>
-							{/* <FindGame/> */}
-							{/* <AllPosts/> */}
+							<GameDashboard />
+							<NewGame />
+							<Profile />
+							<FindGame />
+							{/* <Timeline /> */}
 
 
 
@@ -52,7 +52,7 @@ export class Dashboard extends React.Component {
 							{this.props.showProfile && <Profile/>}
 							{this.props.showFindGame && <FindGame/>}
 							{this.props.showNewGame && <NewGame/>}
-							{this.props.showOneGame && <Game/>}
+							{this.props.showOneGame && <GameDashboard/>}
 							{this.props.showAllPosts && <AllPosts/>} */}
 
 
@@ -68,11 +68,11 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     return {
          // update when we can
-        // showProfile:state.
-        // showFindGame:state.
-        // showNewGame:state.
-        // showOneGame:state.
-				// showAllPosts:state.
+        // showProfile: state.
+        // showFindGame: state.
+        // showNewGame: state.
+        // showOneGame: state.
+		// showAllPosts: state.
 			    };
 };
 
