@@ -55,7 +55,7 @@ export class CreatePostForm extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log('>>>>>',state)
+    // console.log('>>>>>',state)
     return {
         // ddi: state.game.data.scores
     }
