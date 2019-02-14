@@ -44,7 +44,7 @@ export class CreatePostForm extends React.Component {
                     // validate={[nonEmpty]}
                 />
                <div class="dropdown">
-               <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+               <button onClick="myFunction()" class="dropbtn">Dropdown</button>
                <div id="post" class="dropdown-content">
                  {/* {dropdownItems} */}
                  </div>
