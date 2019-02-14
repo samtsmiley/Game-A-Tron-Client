@@ -44,10 +44,10 @@ export class CreatePostForm extends React.Component {
                     // validate={[nonEmpty]}
                 />
                <div className="dropdown">
-               <button onClick="myFunction()" className="dropbtn">Dropdown</button>
-               <div id="post" class="dropdown-content">
+               {/* <button onClick="myFunction()" className="dropbtn">Dropdown</button> */}
+               {/* <div id="post" class="dropdown-content"> */}
                  {/* {dropdownItems} */}
-                 </div>
+                 {/* </div> */}
              </div>
                 
             </form>
