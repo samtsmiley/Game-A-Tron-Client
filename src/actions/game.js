@@ -85,10 +85,8 @@ export const fetchGameById = (id) => (dispatch, getState) => {
 
 
 export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
-export const joinGameSuccess = (bool, individualWordScore) => ({
+export const joinGameSuccess = () => ({
     type: JOIN_GAME_SUCCESS,
-    bool,
-    individualWordScore
 });
 
 export const JOIN_GAME_ERROR = 'JOIN_GAME_ERROR';
@@ -117,7 +115,7 @@ export const joinGame = (id, participants) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            dispatch(joinGameSuccess())
+            dispatch(joinGameSuccess(res))
         })
        
         .catch(err => {
