@@ -15,17 +15,13 @@ import {fetchGameById} from '../actions/game'
 
 
 export class Dashboard extends React.Component {
-
-
-
     componentDidMount() {
-      this.props.dispatch(fetchGameById('5c658988c61a4c4c2c1a31cf'))
+      //this.props.dispatch(fetchGameById())
     }
 
     
 
     render() {
-
         //This is for sidebar testing -- replace with actual state info when available...
         let tempSideBarState = {
  
@@ -40,28 +36,18 @@ export class Dashboard extends React.Component {
 
         return (
             <div className="dashboard">
-              <HeaderBar />
-							<SideBar gameInfo={tempSideBarState} />		
-							{/* show all things for now uncomment as componont gets added*/}
-							{/* <GameDashboard />
-							<NewGame />
-							<Profile />
-							<FindGame /> */}
-							{/* <Timeline /> */}
-
-
-
-							{this.props.showProfile && <Profile/>}
-							{this.props.showFindGame && <FindGame/>}
-							{this.props.showNewGame && <NewGame/>}
-							{this.props.showOneGame && <GameDashboard/>}
-							{/* {this.props.showAllPosts && <AllPosts/>} */}
-
-
-							<div className="dashboard-username">
+                <HeaderBar />
+			    <SideBar gameInfo={tempSideBarState} />	
+                <section className="main-display">
+                    {this.props.showProfile && <Profile/>}
+                    {this.props.showFindGame && <FindGame/>}
+                    {this.props.showNewGame && <NewGame/>}
+                    {this.props.showOneGame && <GameDashboard/>}
+                    {/* {this.props.showAllPosts && <Timeline/>} */}
+                </section>	
+				{/* <div className="dashboard-username">
                 Username: {this.props.username}
-              </div>
-              
+                </div> */}
             </div>
         );
     }
@@ -73,8 +59,8 @@ const mapStateToProps = state => {
         showFindGame: state.sideBar.showFindGame,
         showNewGame: state.sideBar.showNewGame,
         showOneGame: state.sideBar.showOneGame,
-		    showAllPosts: state.sideBar.showAllPosts
-			    };
+		showAllPosts: state.sideBar.showAllPosts
+	};
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
