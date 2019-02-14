@@ -6,7 +6,7 @@ import  NewGame  from './newGame';
 import SideBar from './sideBar';
 import  Game  from './game';
 
-import Profile from './Profile';
+import Profile from './profile';
 
 
 
