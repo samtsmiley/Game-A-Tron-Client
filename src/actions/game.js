@@ -117,8 +117,7 @@ export const joinGame = (id, participants) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('THE INDIV SCORE GOTTEN BACK IS',res.individualWordScore )
-            dispatch(joinGameSuccess(res.answerCorrect, res.individualWordScore))
+            dispatch(joinGameSuccess())
         })
        
         .catch(err => {
