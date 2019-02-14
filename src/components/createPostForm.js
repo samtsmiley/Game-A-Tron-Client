@@ -13,10 +13,10 @@ export class CreatePostForm extends React.Component {
     }
 
     render() {
-        const dropdownItems = this.props.ddi.map(item =>
-            console.log(item)
+        // const dropdownItems = this.props.ddi.map(item =>
+        //     console.log(item)
             // <a>item</a> 
-        );
+        // );
 
         let error;
         if (this.props.error) {
@@ -46,7 +46,7 @@ export class CreatePostForm extends React.Component {
                <div class="dropdown">
                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
                <div id="post" class="dropdown-content">
-                 {dropdownItems}
+                 {/* {dropdownItems} */}
                  </div>
              </div>
                 
@@ -57,7 +57,7 @@ export class CreatePostForm extends React.Component {
 const mapStateToProps = (state) => {
     console.log('>>>>>',state)
     return {
-        ddi: state.game.data.scores
+        // ddi: state.game.data.scores
     }
 };
 

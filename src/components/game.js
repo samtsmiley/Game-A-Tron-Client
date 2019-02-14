@@ -21,7 +21,7 @@ export class Game extends React.Component {
     }
     
     joinGameButton(){
-      const participants = {userId:{this.props.id}, }
+      const participants = {userId:`${this.props.id}`, score }
       this.props.dispatch(joinGame(participants))
     }
 
@@ -45,7 +45,7 @@ export class Game extends React.Component {
 const mapStateToProps = state => {
   console.log(state)
     return {
-      id:state.auth.cur
+      id:state.auth.currentUser
     };
 };
 
