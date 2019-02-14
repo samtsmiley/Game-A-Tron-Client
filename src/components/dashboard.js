@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
 
 
     componentDidMount() {
-      this.props.dispatch(fetchGameById('5c658988c61a4c4c2c1a31cf'))
+      this.props.dispatch(fetchGameById('5c65cc73a36b2a38705a2bd4'))
     }
 
     
@@ -68,6 +68,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
     return {
         showProfile: state.sideBar.showProfile,
         showFindGame: state.sideBar.showFindGame,
