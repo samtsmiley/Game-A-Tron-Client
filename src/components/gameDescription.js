@@ -8,13 +8,14 @@ export class GameDescription extends React.Component {
     render() {
       return (
         <div className="gameDescription">
-      
+        
         </div>
         );
     }
 }
 
 const mapStateToProps = state => {
+    
     return {
     };
 };
