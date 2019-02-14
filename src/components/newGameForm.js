@@ -54,7 +54,7 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
           placeholder="Enter an Action"
         />
         <Field
-          name={`${score}.score`}
+          name={`${score}.points`}
           type="number"
           component={renderField}
           label="How many points is it worth?"
