@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+//import requiresLogin from './requires-login';
+import {fetchMyGames} from '../actions/sideBar-actions';
 import SideBarListCurrentGame from './sideBarList-CurrentGame';
 import SideBarListMyGames from './sideBarList-MyGames';
 import SideBarListMyGameHistory from './sideBarList-MyGameHistory';
@@ -8,6 +11,17 @@ import SideBarListAllPlayers from './sideBarList-AllPlayers';
 import '../App.css';
   
 export class SideBar extends React.Component {
+
+  //FETCH GAME BY ID
+  //import from Sam's get game by id actions
+   
+  //FETCH MY GAMES -- maybe can use auth current user games array...
+  componentDidMount() {
+
+    let tester = this.props.currentUser.currentUser.id;
+
+    this.props.dispatch(fetchMyGames(tester)); 
+  }
 
   constructor(props){
     super(props);
@@ -28,7 +42,24 @@ export class SideBar extends React.Component {
     this.showSelectedGameClicked = this.showSelectedGameClicked.bind(this);
 
   }
+ 
+  profileClicked(){
 
+    console.log('profileClicked');
+    
+  }
+
+  createGameClicked(){
+    
+    console.log('createGameClicked');
+
+  }
+
+  findGameClicked(){
+    
+    console.log('findGameClicked');
+
+  }
 
   showSelectedGameClicked(game){
 
@@ -130,6 +161,8 @@ export class SideBar extends React.Component {
 
   render() {
 
+    console.log('user? : ',this.props.currentUser.currentUser.id);
+
     let displaySelectedGame=<p>Select a Game:</p>;
     let displayMyGames=null;
     let displayMyHistory=null;
@@ -148,9 +181,11 @@ export class SideBar extends React.Component {
       <div className="SideBar" >
         <h3>Side Bar!</h3>
         <p>User Avatar</p>
-        <button>USER PROFILE</button>
-        <button>CREATE NEW GAME</button>
-        <button>FIND A GAME</button>
+         ////////////////////////////////////////////////////////
+        //<p> test id = {this.props.currentUser.currentUser.id}</p>
+        <button onClick={this.profileClicked}>USER PROFILE</button>
+        <button onClick={this.createGameClicked}>CREATE NEW GAME</button>
+        <button onClick={this.findGameClicked}>FIND A GAME</button>
         <hr/>
         {displaySelectedGame}
         {/* <button onClick={()=>this.showMyGames()}>MY GAMES</button> */}
@@ -172,4 +207,16 @@ export class SideBar extends React.Component {
 
 }
 
-export default SideBar;
+const mapStateToProps = state =>{
+  const {currentUser} = state.auth;
+
+  return { 
+    currentUser: state.auth,
+    id: currentUser.id,
+    myGames: state.myGames
+  }
+
+}
+
+//export default requiresLogin()(connect(mapStateToProps)(SideBar));
+export default connect(mapStateToProps)(SideBar);
