@@ -39,21 +39,19 @@ export class Dashboard extends React.Component {
               <HeaderBar />
 							<SideBar gameInfo={tempSideBarState} />		
 							{/* show all things for now uncomment as componont gets added*/}
-							<GameDashboard />
+							{/* <GameDashboard />
 							<NewGame />
 							<Profile />
-							<FindGame />
+							<FindGame /> */}
 							{/* <Timeline /> */}
 
 
 
-							{/* 
-							enable this code when we have the sidebar reducer
 							{this.props.showProfile && <Profile/>}
 							{this.props.showFindGame && <FindGame/>}
 							{this.props.showNewGame && <NewGame/>}
 							{this.props.showOneGame && <GameDashboard/>}
-							{this.props.showAllPosts && <AllPosts/>} */}
+							{/* {this.props.showAllPosts && <AllPosts/>} */}
 
 
 							<div className="dashboard-username">
@@ -67,12 +65,11 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
     return {
-         // update when we can
-        // showProfile: state.
-        // showFindGame: state.
-        // showNewGame: state.
-        // showOneGame: state.
-		// showAllPosts: state.
+        showProfile: state.sideBar.showProfile,
+        showFindGame: state.sideBar.showFindGame,
+        showNewGame: state.sideBar.showNewGame,
+        showOneGame: state.sideBar.showOneGame,
+		    showAllPosts: state.sideBar.showAllPosts
 			    };
 };
 
