@@ -2,10 +2,55 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import store from '../store';
 
+// showProfile:state.
+        // showFindGame:state.
+        // showNewGame:state.
+        // showOneGame:state.
+		// showAllPosts:state.
 
-//maybe fetchMyGames
+
+export const SHOW_PROFILE = 'SHOW_PROFILE';
+export const showProfile = () => ({
+
+  type: SHOW_PROFILE
+  
+})
+
+export const SHOW_ALL_POSTS = 'SHOW_ALL_POSTS';
+export const showAllPosts = () => ({
+
+  type: SHOW_ALL_POSTS
+  
+})
+
+export const SHOW_ONE_GAME = 'SHOW_ONE_GAME';
+export const showOneGame = () => ({
+
+  type: SHOW_ONE_GAME
+  
+})
+
+export const SHOW_NEW_GAME = 'SHOW_NEW_GAME';
+export const showNewGame = () => ({
+
+  type: SHOW_NEW_GAME
+  
+})
+
+export const SHOW_FIND_GAME = 'SHOW_FIND_GAME';
+export const showFindGame = () => ({
+
+  type: SHOW_FIND_GAME
+  
+})
+
+ 
 
 
+
+
+
+// NOT IN USE
 
 export const FETCH_MYGAMES_REQUEST = 'FETCH_MYGAMES_REQUEST';
 export const fetchMyGamesRequest = (loading) => ({
