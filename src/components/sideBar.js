@@ -181,7 +181,8 @@ export class SideBar extends React.Component {
       <div className="SideBar" >
         <h3>Side Bar!</h3>
         <p>User Avatar</p>
-        <p> test id = {this.props.currentUser.currentUser.id}</p>
+         ////////////////////////////////////////////////////////
+        //<p> test id = {this.props.currentUser.currentUser.id}</p>
         <button onClick={this.profileClicked}>USER PROFILE</button>
         <button onClick={this.createGameClicked}>CREATE NEW GAME</button>
         <button onClick={this.findGameClicked}>FIND A GAME</button>
