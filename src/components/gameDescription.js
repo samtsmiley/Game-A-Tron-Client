@@ -8,7 +8,7 @@ export class GameDescription extends React.Component {
     render() {
       return (
         <div className="gameDescription">
-          <p>Game Description:{this.props.desc}</p>
+        
         </div>
         );
     }
@@ -17,7 +17,6 @@ export class GameDescription extends React.Component {
 const mapStateToProps = state => {
     
     return {
-        // desc : state.game.data.description
     };
 };
 
