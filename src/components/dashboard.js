@@ -9,6 +9,9 @@ import  Game  from './game';
 import Profile from './profile';
 
 
+import {fetchGameById} from '../actions/game'
+
+
 
 
 export class Dashboard extends React.Component {
@@ -16,6 +19,7 @@ export class Dashboard extends React.Component {
 
 
     componentDidMount() {
+      this.props.dispatch(fetchGameById('5c658988c61a4c4c2c1a31cf'))
     }
 
     

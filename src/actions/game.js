@@ -80,3 +80,48 @@ export const fetchGameById = (id) => (dispatch, getState) => {
             dispatch(fetchGameByIdError(err));
         });
 };
+
+
+
+
+export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
+export const joinGameSuccess = (bool, individualWordScore) => ({
+    type: JOIN_GAME_SUCCESS,
+    bool,
+    individualWordScore
+});
+
+export const JOIN_GAME_ERROR = 'JOIN_GAME_ERROR';
+export const joinGameError = error => ({
+    type: JOIN_GAME_ERROR,
+    error
+});
+
+export const JOIN_GAME_REQUEST = 'JOIN_GAME_REQUEST';
+export const joinGameRequest = () => ({
+    type: JOIN_GAME_REQUEST,
+});
+
+export const joinGame = (id, participants) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(joinGameRequest());
+    return fetch(`${API_BASE_URL}/games/${id}/participants`, {
+        method: 'PUT',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({participants})     
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((res)=>{
+            console.log('THE INDIV SCORE GOTTEN BACK IS',res.individualWordScore )
+            dispatch(joinGameSuccess(res.answerCorrect, res.individualWordScore))
+        })
+       
+        .catch(err => {
+            dispatch(joinGameError(err));
+        });
+};
