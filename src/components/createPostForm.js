@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
 import {login} from '../actions/auth';
-import {required, nonEmpty} from '../validators';
+// import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 
 
@@ -55,7 +55,7 @@ export class CreatePostForm extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log('>>>>>',state)
+    // console.log('>>>>>',state)
     return {
         // ddi: state.game.data.scores
     }
