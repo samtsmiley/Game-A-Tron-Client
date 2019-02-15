@@ -1,5 +1,6 @@
 import React from 'react';
-import '../GameLeaderBoard.css';
+import './gameLeaderboard.css';
+
 
 export default function GameLeaderboardListPlayers(props) {
 
@@ -15,7 +16,7 @@ export default function GameLeaderboardListPlayers(props) {
 
   //List all other players after
 
-  //Each player name is a button to show that players posts...
+  
 
 //note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
 let playerArrSorted = quickSort(props.players.participants);

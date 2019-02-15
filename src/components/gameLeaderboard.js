@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import GameLeaderboardListPlayers from './gameLeaderboardList-Players';
-import '../GameLeaderBoard.css';
+import GameLeaderboardListPlayers from './gameLeaderboardListPlayers';
+import './gameLeaderboard.css'
 
 //this needs to the game based on id from state:
 //then participants
@@ -25,8 +25,7 @@ export class GameLeaderboard extends React.Component {
 
       return (
         <div className="gameLeaderboard">
-            <h3>Game Leaderboard!</h3>
-            <p>Current Ranking Based on Scores:</p>
+            <h3>Game Leaderboard</h3>
             <GameLeaderboardListPlayers players={testGamesArray}/>
         </div>
         );
