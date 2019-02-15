@@ -7,17 +7,10 @@ import { GameProgressBar } from './gameProgressBar';
 import { GameLeaderboard } from './gameLeaderboard';
 import { GameCreatePost } from './gameCreatePost';
 import { GamePostsList } from './GamePostsList';
-
 import {joinGame} from '../actions/game'
-
-
-
 
 export class Game extends React.Component {
     componentDidMount() {
-      // this.props.dispatch(fetchGameById(this.props.gameId)) will add this to sidebar 
-      // this.props.dispatch(fetchGameById('5c658988c61a4c4c2c1a31cf'))
-
     }
     
     joinGameButton(){
@@ -28,7 +21,7 @@ export class Game extends React.Component {
     render() {
       return (
         <div className="game">
-          <h2>Game Title</h2>
+          <h2>{this.props.gameName}</h2>
           <button onClick={() => this.joinGameButton()}>Join Game</button>
         <GameDescription/>
         <GameRules/>
@@ -46,8 +39,7 @@ const mapStateToProps = state => {
   // console.log(state)
     return {
       userId:state.auth.currentUser.id,
-      gameId:state.game.data.id
-      
+      gameName:state.game.data.name,     
     };
 };
 
