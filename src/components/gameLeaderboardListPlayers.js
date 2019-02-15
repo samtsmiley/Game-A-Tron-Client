@@ -1,4 +1,5 @@
 import React from 'react';
+import './gameLeaderboard.css';
 
 
 export default function GameLeaderboardListPlayers(props) {
