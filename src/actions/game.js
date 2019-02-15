@@ -80,3 +80,84 @@ export const fetchGameById = (id) => (dispatch, getState) => {
             dispatch(fetchGameByIdError(err));
         });
 };
+
+
+
+
+export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
+export const joinGameSuccess = () => ({
+    type: JOIN_GAME_SUCCESS,
+});
+
+export const JOIN_GAME_ERROR = 'JOIN_GAME_ERROR';
+export const joinGameError = error => ({
+    type: JOIN_GAME_ERROR,
+    error
+});
+
+export const JOIN_GAME_REQUEST = 'JOIN_GAME_REQUEST';
+export const joinGameRequest = () => ({
+    type: JOIN_GAME_REQUEST,
+});
+
+export const joinGame = (id, participants) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(joinGameRequest());
+    return fetch(`${API_BASE_URL}/games/${id}/participants`, {
+        method: 'PUT',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({participants})     
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((res)=>{
+            dispatch(joinGameSuccess(res))
+        })
+       
+        .catch(err => {
+            dispatch(joinGameError(err));
+        });
+};
+
+
+// fetch game by id
+export const FETCH_All_GAMES_REQUEST = 'FETCH_All_GAMES_REQUEST';
+export const fetchAllGamesRequest = () => ({
+    type: FETCH_All_GAMES_REQUEST,
+});
+
+export const FETCH_All_GAMES_SUCCESS = 'FETCH_All_GAMES_SUCCESS';
+export const fetchAllGamesSuccess = allGames => ({
+    type: FETCH_All_GAMES_SUCCESS,
+    allGames
+});
+
+export const FETCH_All_GAMES_ERROR = 'FETCH_All_GAMES_ERROR';
+export const fetchAllGamesError = error => ({
+    type: FETCH_All_GAMES_ERROR,
+    error
+});
+
+export const fetchAllGames = () => (dispatch, getState) => {
+    // console.log('FETCHING GAME_BY_ID ACTION');
+    const authToken = getState().auth.authToken;
+    dispatch(fetchAllGamesRequest())
+    return fetch(`${API_BASE_URL}/games`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        // .then(res => console.log(res))
+        .then(data => dispatch(fetchAllGamesSuccess(data)))
+        .catch(err => {
+            dispatch(fetchAllGamesError(err));
+        });
+};
