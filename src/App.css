@@ -51,25 +51,15 @@ div {
 
 .side-bar {
   text-align: center;
-  /* background-color: rgb(201, 195, 195); */
-  width: 155px;
-  /* height: 1000px; */
+  
+  width: 255px;
+  
 
 }
 
-<<<<<<< HEAD
 
 
-=======
-.SideBar-lists {
-  text-align: left;
-  list-style: none;
-  width: 155px;
-}
 
-.SideBar-lists-selected {
-   background-color:red;
-}
 
 .gameLeaderboard {
   padding: 20px;
@@ -84,7 +74,6 @@ div {
   list-style: none;
   width: 200px;
 }
->>>>>>> master
 
 @keyframes App-logo-spin {
   from {
