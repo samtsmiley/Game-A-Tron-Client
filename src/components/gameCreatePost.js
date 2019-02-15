@@ -1,26 +1,40 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import  CreatePostForm  from './createPostForm';
-
+import {postPost} from '../actions/posts'
 
 export class GameCreatePost extends React.Component {
     componentDidMount() {
     }    
 
-
-
     render() {
-        
+        const scores = this.props.scoreOpps.map(item =>
+            <li className="scoreName" key={item.description}>    
+            <p className="gameButton" onClick={() =>{
+                console.log()
+                 this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }))
+             }}>
+           {item.description}
+             </p> 
+             <p>Points: {item.points}</p> 
+         </li>
+     )
+
       return (
         <div className="gameCreatePost">
-       <CreatePostForm/>
+        <h3>Post a Score</h3>
+       <ul>
+           {scores}
+       </ul>
         </div>
         );
     }
 }
 
 const mapStateToProps = state => {
+    // console.log('>>>>>',state)
     return {
+        scoreOpps: state.game.data.scores,
+        gameId:state.game.data.id
     };
 };
 
