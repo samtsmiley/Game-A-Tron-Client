@@ -1,0 +1,20 @@
+.dashboard{
+    margin: 0;
+    
+}
+
+.full-display{
+    display: flex;
+    justify-content: flex-start; 
+    height: 100vh;
+    padding-top: 75px;
+    
+}
+
+.display-area{
+    background-color: aliceblue;
+    /* border: solid red 1px; */
+    width: 100%;
+    overflow: hidden;
+    
+}

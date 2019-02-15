@@ -7,6 +7,7 @@ import SideBar from './sideBar';
 import GameDashboard  from './gameDashboard';
 import FindGame from './findGame';
 import Profile from './profile';
+import './dashboard.css';
 
 import {fetchAllGames} from '../actions/game'
 // import {fetchGameById} from '../actions/game'
@@ -36,14 +37,16 @@ export class Dashboard extends React.Component {
         return (
             <div className="dashboard">
                 <HeaderBar />
+                <div className="full-display">
 			    <SideBar gameInfo={tempSideBarState} />	
-                <section className="main-display">
+                <section className="display-area">
                     {this.props.showProfile && <Profile/>}
                     {this.props.showFindGame && <FindGame/>}
                     {this.props.showNewGame && <NewGame/>}
                     {this.props.showOneGame && <GameDashboard/>}
                     {/* {this.props.showAllPosts && <Timeline/>} */}
-                </section>	
+                </section>
+                </div>	
 				{/* <div className="dashboard-username">
                 Username: {this.props.username}
                 </div> */}
