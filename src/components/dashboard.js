@@ -9,7 +9,7 @@ import FindGame from './findGame';
 import Profile from './profile';
 
 
-import {fetchGameById} from '../actions/game'
+// import {fetchGameById} from '../actions/game'
 
 
 

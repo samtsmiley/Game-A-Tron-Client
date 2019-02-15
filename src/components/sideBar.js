@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 //import requiresLogin from './requires-login';
 import {showProfile,showAllPosts,showOneGame,showNewGame,showFindGame} from '../actions/sideBar-actions';
 import {fetchGameByIdRequest} from '../actions/game';
-import SideBarListCurrentGame from './sideBarList-CurrentGame';
 import SideBarListMyGames from './sideBarList-MyGames';
-import SideBarListMyGameHistory from './sideBarList-MyGameHistory';
-import SideBarListAllGames from './sideBarList-AllGames';
-import SideBarListAllPlayers from './sideBarList-AllPlayers';
- import './sideBar.css';
+import './sideBar.css';
+
+// import SideBarListCurrentGame from './sideBarList-CurrentGame';
+// import SideBarListMyGameHistory from './sideBarList-MyGameHistory';
+// import SideBarListAllGames from './sideBarList-AllGames';
+// import SideBarListAllPlayers from './sideBarList-AllPlayers';
+
 
   
 export class SideBar extends React.Component {
