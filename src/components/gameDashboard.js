@@ -36,7 +36,7 @@ export class Game extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state)
+   console.log(state)
     return {
       userId:state.auth.currentUser.id,
       gameName:state.game.data.name,
