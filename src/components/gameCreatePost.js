@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {postPost} from '../actions/posts'
+import {postPost} from '../actions/post'
 
 export class GameCreatePost extends React.Component {
     componentDidMount() {
