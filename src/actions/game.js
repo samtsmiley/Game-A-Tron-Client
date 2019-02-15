@@ -83,7 +83,7 @@ export const fetchGameById = (id) => (dispatch, getState) => {
 
 
 
-
+//Join a game by gameId
 export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
 export const joinGameSuccess = () => ({
     type: JOIN_GAME_SUCCESS,
@@ -100,17 +100,16 @@ export const joinGameRequest = () => ({
     type: JOIN_GAME_REQUEST,
 });
 
-export const joinGame = (id, participants) => (dispatch, getState) => {
+export const joinGame = (id) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(joinGameRequest());
-    return fetch(`${API_BASE_URL}/games/${id}/participants`, {
+    return fetch(`${API_BASE_URL}/games/join/${id}`, {
         method: 'PUT',
         headers: {
             // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({participants})     
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
