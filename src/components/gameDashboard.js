@@ -39,7 +39,8 @@ const mapStateToProps = state => {
   // console.log(state)
     return {
       userId:state.auth.currentUser.id,
-      gameName:state.game.data.name,     
+      gameName:state.game.data.name,
+      gameId:state.game.data.id     
     };
 };
 
