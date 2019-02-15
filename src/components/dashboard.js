@@ -7,18 +7,12 @@ import SideBar from './sideBar';
 import GameDashboard  from './gameDashboard';
 import FindGame from './findGame';
 import Profile from './profile';
-
 import {fetchAllGames} from '../actions/game'
-// import {fetchGameById} from '../actions/game'
 
 export class Dashboard extends React.Component {
     componentDidMount() {
-      // this.props.dispatch(fetchGameById('5c65cc73a36b2a38705a2bd4'))
       this.props.dispatch(fetchAllGames());
-
     }
-
-    
 
     render() {
         //This is for sidebar testing -- replace with actual state info when available...
@@ -41,25 +35,23 @@ export class Dashboard extends React.Component {
                     {this.props.showProfile && <Profile/>}
                     {this.props.showFindGame && <FindGame/>}
                     {this.props.showNewGame && <NewGame/>}
-                    {this.props.showOneGame && <GameDashboard/>}
+                    { this.props.showOneGame && <GameDashboard/>}
                     {/* {this.props.showAllPosts && <Timeline/>} */}
                 </section>	
-				{/* <div className="dashboard-username">
-                Username: {this.props.username}
-                </div> */}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
     return {
         showProfile: state.sideBar.showProfile,
         showFindGame: state.sideBar.showFindGame,
         showNewGame: state.sideBar.showNewGame,
         showOneGame: state.sideBar.showOneGame,
-		showAllPosts: state.sideBar.showAllPosts
+    showAllPosts: state.sideBar.showAllPosts,
+    isGameLoading: state.game.loading
 	};
 };
 
