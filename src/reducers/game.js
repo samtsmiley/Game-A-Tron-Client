@@ -4,7 +4,10 @@ import {
     FETCH_GAME_BY_ID_ERROR,
     JOIN_GAME_SUCCESS,
     JOIN_GAME_REQUEST,
-    JOIN_GAME_ERROR
+    JOIN_GAME_ERROR,
+    FETCH_All_GAMES_ERROR,
+    FETCH_All_GAMES_SUCCESS,
+    FETCH_All_GAMES_REQUEST
 
     
   
@@ -14,6 +17,7 @@ const initialState = {
     error: null,
     loading: false,
     data: null,
+    allGames: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -51,5 +55,24 @@ export default function reducer(state = initialState, action) {
             loading: true,
         });
     }
+    else if (action.type === FETCH_All_GAMES_SUCCESS) {
+            // console.log('game is ', action.data)
+            return Object.assign({}, state, {
+                allGames: action.allGames,
+                error: null,
+                loading: false,
+            });
+        } else if (action.type === FETCH_All_GAMES_ERROR) {
+            return Object.assign({}, state, {
+                error: action.error,
+                loading: false,
+            });
+        }
+        else if (action.type === FETCH_All_GAMES_REQUEST) {
+            return Object.assign({}, state, {
+                loading: true,
+            });
+        }  
+    
     return state;
 }
