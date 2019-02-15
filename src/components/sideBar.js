@@ -15,9 +15,6 @@ import './sideBar.css';
   
 export class SideBar extends React.Component {
 
-  //FETCH GAME BY ID
-  //import from Sam's get game by id actions
-   
   componentDidMount() {
     this.props.dispatch(fetchAllGames());
 } 
@@ -79,6 +76,10 @@ export class SideBar extends React.Component {
 
   showSelectedGameClicked(game_id){
 
+    //Get the selected game info and change view to showOneGame view
+    this.props.dispatch(fetchGameByIdRequest(game_id))
+    .then(()=>this.props.dispatch(showOneGame()));
+
     console.log('game object? ',game_id);
 
     let newMode = true;
@@ -92,14 +93,7 @@ export class SideBar extends React.Component {
       showAllPlayers:false,
       showAllGames:false
     })
-
-    //change the state view via action...
-    this.props.dispatch(showOneGame());
- 
-
-    //GEt the actual game info
-    this.props.dispatch(fetchGameByIdRequest(game_id));
- 
+  
   }
   
 

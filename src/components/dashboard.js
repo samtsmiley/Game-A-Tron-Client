@@ -17,23 +17,12 @@ export class Dashboard extends React.Component {
     }
 
     render() {
-        //This is for sidebar testing -- replace with actual state info when available...
-        let tempSideBarState = {
- 
-            CurrentGame: {name: 'potato race'},
-            Players:['gamePlayer1','gamePlayer2','gamePlayer3'],
-            MyGames:['game 1 id','game 2 id','potato race id'],
-            AllGames:['game 1','game 2','potato race','game 4','game 5'],
-            GameHistory: ['old-game 1','old-game 2','old-game 3'],
-            AllPlayers: ['gamePlayer1','gamePlayer2','gamePlayer3','otherUser1','otherUser2','otherUser3']
-
-        }
 
         return (
             <div className="dashboard">
                 <HeaderBar />
                 <div className="full-display">
-                    <SideBar gameInfo={tempSideBarState} />	
+                    <SideBar />	
                     <section className="display-area">
                         {this.props.showProfile && <Profile/>}
                         {this.props.showFindGame && <FindGame/>}
