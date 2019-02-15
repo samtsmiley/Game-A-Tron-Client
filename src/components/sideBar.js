@@ -210,7 +210,7 @@ export class SideBar extends React.Component {
         {/* //<p> test id = {this.props.currentUser.currentUser.id}</p> */}
         <button onClick={this.profileClicked}>My Profile</button>
         <button onClick={this.createGameClicked}>Create Game</button>
-        <button onClick={this.findGameClicked}>Join a Game</button>
+        <button onClick={this.findGameClicked}>Find Games</button>
         <button onClick={this.showAllGamesClicked}>Timeline</button>
         
         <p>My Games</p>

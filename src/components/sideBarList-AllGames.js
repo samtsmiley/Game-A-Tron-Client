@@ -17,7 +17,7 @@ export default function SideBarListAllMyGames(props) {
 
     return (
       <div>
-        <ul id='allGamesList' className="SideBar-lists">
+        <ul className="sidebar-lists">
           {allGamesList}
         </ul>
       </div>

@@ -11,7 +11,7 @@ html{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #42b983;
+  color: #425ab9;
   
 }
 body{
@@ -57,12 +57,7 @@ div {
 
 }
 
-.SideBar-lists {
-  text-align: left;
-  list-style: none;
-  width: 155px;
-  
-}
+
 
 
 @keyframes App-logo-spin {

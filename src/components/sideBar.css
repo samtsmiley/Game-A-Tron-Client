@@ -3,3 +3,10 @@
     margin: auto;
     
 }
+
+.sidebar-lists {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    
+  }
