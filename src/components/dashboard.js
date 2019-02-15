@@ -49,7 +49,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
     return {
         showProfile: state.sideBar.showProfile,
         showFindGame: state.sideBar.showFindGame,
