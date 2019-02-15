@@ -1,12 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchAllGames} from '../actions/game'
+import {fetchGameById} from '../actions/game'
+import {showOneGame} from '../actions/sideBar-actions'
+
 
 
 export class FindGame extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchAllGames());
     }    
+    
+    gamePushed(){
+
+    }
 
     render() {
         const games = this.props.gameList.map(game =>
@@ -16,8 +23,9 @@ export class FindGame extends React.Component {
                     .then(() =>this.props.dispatch(showOneGame()) )
                 }}>
               {game.name}
-                    </button>       
-                     
+                </button> 
+                <p>About: {game.description}</p> 
+                 
             </li>
         )
 
@@ -33,16 +41,20 @@ export class FindGame extends React.Component {
         <div className="">
         <h1>Find a Game</h1>
         {/* <Game /> */}
+        <ul>
         {games}
+        </ul>
         </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+    // console.log(state)
     return {
-        gameList: state.game.allGames
+        gameList: state.game.allGames,
+    isGameLoading: state.game.loading
+
     };
 };
 

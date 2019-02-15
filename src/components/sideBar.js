@@ -77,10 +77,9 @@ export class SideBar extends React.Component {
   showSelectedGameClicked(game_id){
 
     //Get the selected game info and change view to showOneGame view
-    this.props.dispatch(fetchGameByIdRequest(game_id))
-    .then(()=>this.props.dispatch(showOneGame()));
+    //this.props.dispatch(fetchGameByIdRequest(game_id));//.then(()=>this.props.dispatch(showOneGame()))
 
-    console.log('game object? ',game_id);
+    this.props.dispatch(showOneGame());
 
     let newMode = true;
  
@@ -195,7 +194,7 @@ export class SideBar extends React.Component {
    
     // if(this.state.showSelectedGame){displayCurrentGame = <SideBarListCurrentGame gameInfo={this.props.gameInfo}/>};  
     // if(this.state.showSelectedGame){displaySelectedGame = <p>{this.state.selectedGameName}</p>};
-    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames allGames={this.props.allGames} onSelect={this.showSelectedGameClicked} currentUserId={this.props.currentUserId}/>};
+    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames allMyGames={this.props.allMyGames} onSelect={this.showSelectedGameClicked} currentUserId={this.props.currentUserId}/>};
     // if(this.state.showMyHistory){displayMyHistory = <SideBarListMyGameHistory gameInfo={this.props.gameInfo}/>};
     // if(this.state.showAllPlayers){displayAllPlayers = <SideBarListAllPlayers gameInfo={this.props.gameInfo}/>};
     // if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>};
@@ -241,6 +240,7 @@ const mapStateToProps = state =>{
     showNewGame: state.sideBar.showNewGame,
     showFindGame: state.sideBar.showFindGame,
     showOneGame: state.sideBar.showOneGame,
+    allMyGames:state.auth.currentUser.games,
     allGames: state.game.allGames//<--in progress...
   }
 
