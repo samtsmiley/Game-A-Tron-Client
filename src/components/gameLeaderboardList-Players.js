@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../GameLeaderBoard.css';
 
 export default function GameLeaderboardListPlayers(props) {
 

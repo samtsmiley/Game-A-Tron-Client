@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import GameLeaderboardListPlayers from './gameLeaderboardList-Players';
+import '../GameLeaderBoard.css';
 
 //this needs to the game based on id from state:
 //then participants
