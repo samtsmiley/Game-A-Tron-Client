@@ -1,0 +1,17 @@
+.side-bar button {
+    width: 100%;
+    margin: auto;
+    
+}
+.side-bar {
+    text-align: center;
+    width: 15%;
+  }
+  
+
+.sidebar-lists {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    
+  }

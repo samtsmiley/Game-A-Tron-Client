@@ -22,7 +22,7 @@ export default function SideBarListMyGames(props) {
 
     return (
       <div>
-        <ul className="SideBar-lists" id='myGamesList'>
+        <ul className="sidebar-lists">
           {myGames}
         </ul>
       </div>
