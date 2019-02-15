@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 //import requiresLogin from './requires-login';
 import {showProfile,showAllPosts,showOneGame,showNewGame,showFindGame} from '../actions/sideBar-actions';
-import {fetchAllGames, fetchGameByIdRequest} from '../actions/game';
+import {fetchAllGames, fetchGameById} from '../actions/game';
 import SideBarListMyGames from './sideBarList-MyGames';
 import './sideBar.css';
 
@@ -77,10 +77,9 @@ export class SideBar extends React.Component {
   showSelectedGameClicked(game_id){
 
     //Get the selected game info and change view to showOneGame view
-    //this.props.dispatch(fetchGameByIdRequest(game_id));//.then(()=>this.props.dispatch(showOneGame()))
-
-    this.props.dispatch(showOneGame());
-
+    this.props.dispatch(fetchGameById(game_id))
+    .then(()=>this.props.dispatch(showOneGame()));
+ 
     let newMode = true;
  
     this.setState({
@@ -99,13 +98,14 @@ export class SideBar extends React.Component {
   //Alternate UI-extension stuff
   showMyGames(){
 
-    let newMode;
+    // let newMode;
 
-    if(this.state.showMyGames){ 
-      newMode = false;
-    } else{
-      newMode = true;
-    }
+    // if(this.state.showMyGames){ 
+    //   newMode = false;
+    // } else{
+    //   newMode = true;
+    // }
+
 
     this.setState({
       showSelectedGame:false,
@@ -200,11 +200,11 @@ export class SideBar extends React.Component {
     // if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>};
 
     //commented out below extension options & show-hide list options
+ 
+
     return(
       <div className="side-bar" >
-        {/* <p> Testing... all the games in state? {this.props.allGames} </p> */}
-         {/* //////////////////////////////////////////////////////// */}
-        {/* //<p> test id = {this.props.currentUser.currentUser.id}</p> */}
+         
         <section className="sidebar-container">
         <button onClick={this.profileClicked}>My Profile</button>
         <button onClick={this.createGameClicked}>Create Game</button>
@@ -213,6 +213,9 @@ export class SideBar extends React.Component {
         
         <p>My Games</p>
         
+
+
+
         {displayMyGames}
         
         {/* <button onClick={()=>this.showAllPlayers()}>ALL PLAYERS</button> */}
