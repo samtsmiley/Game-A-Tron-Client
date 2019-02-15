@@ -59,7 +59,7 @@ const mapStateToProps = state => {
         showFindGame: state.sideBar.showFindGame,
         showNewGame: state.sideBar.showNewGame,
         showOneGame: state.sideBar.showOneGame,
-		showAllPosts: state.sideBar.showAllPosts
+        showAllPosts: state.sideBar.showAllPosts
 	};
 };
 

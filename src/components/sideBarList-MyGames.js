@@ -4,14 +4,16 @@ import '../App.css';
 
 export default function SideBarListMyGames(props) {
 
-    let myGames = props.gameInfo.MyGames.map((game_id,index) => {
+
+  
+    let myGames = props.allMyGames.map((name,index) => {
         
         //* could add select css here?
 
         return(
        
           <li key={index}>
-            <button value={props.gameInfo.MyGames[index]} onClick={(e)=> props.onSelect(e.currentTarget.value)}>{game_id}</button>
+            <button value={props.allMyGames[index]} onClick={(e)=> props.onSelect(e.currentTarget.value)}>{name}</button>
           </li>
     
           );

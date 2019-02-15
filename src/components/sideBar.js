@@ -199,7 +199,7 @@ export class SideBar extends React.Component {
    
     // if(this.state.showSelectedGame){displayCurrentGame = <SideBarListCurrentGame gameInfo={this.props.gameInfo}/>};  
     // if(this.state.showSelectedGame){displaySelectedGame = <p>{this.state.selectedGameName}</p>};
-    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames gameInfo={this.props.gameInfo} onSelect={this.showSelectedGameClicked}/>};
+    if(this.state.showMyGames && this.props.allGames){displayMyGames = <SideBarListMyGames allGames={this.props.allGames} onSelect={this.showSelectedGameClicked}/>};
     // if(this.state.showMyHistory){displayMyHistory = <SideBarListMyGameHistory gameInfo={this.props.gameInfo}/>};
     // if(this.state.showAllPlayers){displayAllPlayers = <SideBarListAllPlayers gameInfo={this.props.gameInfo}/>};
     // if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>};
@@ -207,7 +207,7 @@ export class SideBar extends React.Component {
     //commented out below extension options & show-hide list options
     return(
       <div className="side-bar" >
-
+        <p> Testing... all the games in state? {this.props.allGames} </p>{}
          {/* //////////////////////////////////////////////////////// */}
         {/* //<p> test id = {this.props.currentUser.currentUser.id}</p> */}
         <button onClick={this.profileClicked}>My Profile</button>
@@ -244,7 +244,7 @@ const mapStateToProps = state =>{
     showNewGame: state.sideBar.showNewGame,
     showFindGame: state.sideBar.showFindGame,
     showOneGame: state.sideBar.showOneGame,
-    games: state.auth.currentUser.games//<--in progress...
+    allGames: state.game.allGames//<--in progress...
   }
 
 }
