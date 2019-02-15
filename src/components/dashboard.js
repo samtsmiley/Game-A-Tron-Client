@@ -50,9 +50,8 @@ const mapStateToProps = state => {
         showFindGame: state.sideBar.showFindGame,
         showNewGame: state.sideBar.showNewGame,
         showOneGame: state.sideBar.showOneGame,
-    showAllPosts: state.sideBar.showAllPosts,
-    isGameLoading: state.game.loading
-	};
+        showAllPosts: state.sideBar.showAllPosts,
+   	};
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
