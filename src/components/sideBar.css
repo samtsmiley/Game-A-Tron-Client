@@ -1,17 +1,32 @@
+.side-bar {
+    text-align: center;
+    width: 250px;
+    min-width: 150px;
+    
+  }
+  
+  .sidebar-container{
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0px;
+    top: 75px;
+    /* background-color: red; */
+  }
+
 .side-bar button {
     width: 100%;
     margin: auto;
-    
+    border: none;
+    margin-top: 10px;
 }
-.side-bar {
-    text-align: center;
-    width: 15%;
-  }
-  
+
+button:focus{
+    outline: 0;
+}
 
 .sidebar-lists {
-    text-align: left;
     list-style: none;
     padding: 0;
+    
     
   }
