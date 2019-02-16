@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 //import requiresLogin from './requires-login';
-import {showProfile,showAllPosts,showOneGame,showNewGame,showFindGame} from '../actions/sideBar-actions';
+import {fetchMyGamesRequest,showProfile,showAllPosts,showOneGame,showNewGame,showFindGame} from '../actions/sideBar-actions';
 import {fetchAllGames, fetchGameById} from '../actions/game';
 import SideBarListMyGames from './sideBarList-MyGames';
 import './sideBar.css';
@@ -14,19 +14,14 @@ import './sideBar.css';
 
   
 export class SideBar extends React.Component {
-
-  componentDidMount() {
-    this.props.dispatch(fetchAllGames());
-} 
-
-
-
+ 
   constructor(props){
     super(props);
 
     //Local State used for display properties
     this.state = {
 
+      myGamesListAvailable:false,
       selectedGameName:'',
       selectedGameStyle:'TEST',//for selected text -- styling
       showSelectedGame:false,
@@ -45,6 +40,15 @@ export class SideBar extends React.Component {
      
     
   }
+
+
+  componentDidMount() {
+    this.props.dispatch(fetchAllGames());
+    this.props.dispatch(fetchMyGamesRequest(this.props.currentUserId))
+     
+  } 
+
+
   
   showAllGamesClicked(){
 
@@ -180,28 +184,15 @@ export class SideBar extends React.Component {
 
 
   render() {
-
-    console.log('allGames at sideBar: ',this.props.allGames);
-    
-    //REF user stuff
-    //console.log('user? : ',this.props.currentUser.currentUser.id);
-
-    // let displaySelectedGame=<p>Select a Game:</p>;
+  
     let displayMyGames=null;
-    // let displayMyHistory=null;
-    // let displayAllPlayers=null;
-    // let displayAllGames=null;
-   
-    // if(this.state.showSelectedGame){displayCurrentGame = <SideBarListCurrentGame gameInfo={this.props.gameInfo}/>};  
-    // if(this.state.showSelectedGame){displaySelectedGame = <p>{this.state.selectedGameName}</p>};
-    if(this.state.showMyGames){displayMyGames = <SideBarListMyGames allMyGames={this.props.allMyGames} onSelect={this.showSelectedGameClicked} currentUserId={this.props.currentUserId}/>};
-    // if(this.state.showMyHistory){displayMyHistory = <SideBarListMyGameHistory gameInfo={this.props.gameInfo}/>};
-    // if(this.state.showAllPlayers){displayAllPlayers = <SideBarListAllPlayers gameInfo={this.props.gameInfo}/>};
-    // if(this.state.showAllGames){displayAllGames = <SideBarListAllGames gameInfo={this.props.gameInfo}/>};
-
-    //commented out below extension options & show-hide list options
- 
-
+    
+    if(this.props.allMyGames.games){
+      displayMyGames = <SideBarListMyGames 
+      allMyGames={this.props.allMyGames}
+      onSelect={this.showSelectedGameClicked} 
+      currentUserId={this.props.currentUserId}/>};
+     
     return(
       <div className="side-bar" >
          
@@ -210,12 +201,7 @@ export class SideBar extends React.Component {
         <button onClick={this.createGameClicked}>Create Game</button>
         <button onClick={this.findGameClicked}>Find Games</button>
         <button onClick={this.showAllGamesClicked}>Timeline</button>
-        
-        <p>My Games</p>
-        
-
-
-
+        <p>My Games</p> 
         {displayMyGames}
         
         {/* <button onClick={()=>this.showAllPlayers()}>ALL PLAYERS</button> */}
@@ -233,18 +219,18 @@ export class SideBar extends React.Component {
 }
 
 const mapStateToProps = state =>{
-  const {currentUser} = state.auth;
-
+   
   return { 
     currentUser: state.auth,
-    currentUserId: currentUser.id,
+    currentUserId: state.auth.currentUser.id,
     showProfile: state.sideBar.showProfile,
     showAllPosts: state.sideBar.showAllPosts,
     showNewGame: state.sideBar.showNewGame,
     showFindGame: state.sideBar.showFindGame,
     showOneGame: state.sideBar.showOneGame,
-    allMyGames:state.auth.currentUser.games,
-    allGames: state.game.allGames//<--in progress...
+    allMyGames:state.sideBar.myGames,
+    allGames: state.game.allGames,
+    myGamesLoaded: state.game.loadingComplete 
   }
 
 }

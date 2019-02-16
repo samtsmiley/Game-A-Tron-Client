@@ -5,43 +5,34 @@ import '../App.css';
 export default function SideBarListMyGames(props) {
 
   let myGames = null;
- 
-  console.log('sidebar list: ',props.allMyGames);
-
-  //still need participants to be in the games to compare current user ID with particpants in each game....
-  //compare participants ids to match current user and return array of games current user is in...
-  //Currently it is showing ALL the games regardless of user ID...
-
-  if(props.allMyGames) {
-
-    myGames = props.allMyGames.map((game,index) => {
+  let theList = <p>No Games Yet</p>;
+  
+  if(props.allMyGames.games.length !== 0) {
+    myGames = props.allMyGames.games.map((game,index) => {
         
       //* could add select css here?
 
       return(
      
         <li key={index}>
-          <button value={props.allMyGames[index]} onClick={(e)=> {console.log('>>> ',e.currentTarget.value);props.onSelect(e.currentTarget.value);} }>{game}</button>
+          <button value={props.allMyGames.games[index].id} 
+          onClick={(e)=> props.onSelect(e.currentTarget.value)}>
+          {props.allMyGames.games[index].name}</button>
         </li>
   
         );
 
   });
 
+  }  
 
-  } else if(myGames === null){
+    if(myGames){theList = <ul className="sidebar-lists">{myGames}</ul>;}
 
-    myGames = 'Loading them in...';
-
-  }
-  
-    
+    console.log('mygames ',myGames);
 
     return (
       <div>
-        <ul className="sidebar-lists">
-          {myGames}
-        </ul>
+        {theList}
       </div>
     )
 
