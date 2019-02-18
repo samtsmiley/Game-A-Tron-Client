@@ -5,41 +5,81 @@ import {login} from '../actions/auth';
 // import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 import './createPostForm.css'
+import {postPost} from '../actions/post'
+
 
 
 
 export class CreatePostForm extends React.Component {
+    constructor(){
+        super();
+       
+        this.state = {
+              displayMenu: false,
+            };
+            this.showDropdownMenu = this.showDropdownMenu.bind(this);
+            this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
+          
+          };
 
-   
+          showDropdownMenu(event) {
+            event.preventDefault();
+            this.setState({ displayMenu: true }, () => {
+            document.addEventListener('click', this.hideDropdownMenu);
+            });
+          }
+        
+          hideDropdownMenu() {
+            this.setState({ displayMenu: false }, () => {
+              document.removeEventListener('click', this.hideDropdownMenu);
+            });
+        
+          }
             
            
     render() {
+        const scores = this.props.scoreOpps.map(item =>
+            <li className="scoreName" key={item.description}>    
+            <p className="gameButton" onClick={() =>{
+                console.log()
+                 this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }))
+             }}>
+           I {item.description} for {item.points} points.
+             </p> 
+             {/* <p>Points: {item.points}</p>  */}
+         </li>
+     )
 
-       ;
 
-    
-        return (
-            <div>
-                <h3>Post a Score</h3>
-                
-            </div>
+    return (
+        <div  className="sdropdown" style = {{background:"red",width:"200px"}} >
+         <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div>
 
-        );
-    }
+          { this.state.displayMenu ? (
+          <ul className='sul'>
+       {scores}
+          </ul>
+        ):
+        (
+          null
+        )
+        }
+
+       </div>
+
+    );
+  }
 }
-const mapStateToProps = (state) => {
-    console.log('>>>>>',state)
+const mapStateToProps = state => {
+    // console.log('>>>>>',state)
     return {
-        scoreOpps: state.game.data.scores
-    }
+        scoreOpps: state.game.data.scores,
+        gameId:state.game.data.id
+    };
 };
 
-CreatePostForm = connect(
-    mapStateToProps,
-)(CreatePostForm);
 
 
-export default reduxForm({
-    form: 'createPost',
-    onSubmitFail: (errors, dispatch) => dispatch(focus('desc'))
-})(CreatePostForm);
+
+
+export default connect(mapStateToProps)(CreatePostForm);
