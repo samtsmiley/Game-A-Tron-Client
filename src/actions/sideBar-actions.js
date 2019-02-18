@@ -47,18 +47,33 @@ export const showFindGame = () => ({
  
 
 
-
-
-
-// NOT IN USE
+// GET MY GAMES
 
 export const FETCH_MYGAMES_REQUEST = 'FETCH_MYGAMES_REQUEST';
-export const fetchMyGamesRequest = (loading) => ({
+export const fetchMyGamesRequest = (userId) => {
 
-  type: FETCH_MYGAMES_REQUEST,
-  loading: true
+  return(dispatch,getState) => {
 
-})
+    fetch(`${API_BASE_URL}/users/${userId}`,{
+
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+
+    })
+    .then((response)=>{
+
+      return response.json();
+
+    })
+    .then(data => dispatch(fetchMyGamesSuccess(data)))
+    .catch(error => console.log(error))
+ 
+  }
+
+}
 
 export const FETCH_MYGAMES_SUCCESS = 'FETCH_MYGAMES_SUCCESS';
 export const fetchMyGamesSuccess = (myGames) => ({
@@ -79,26 +94,28 @@ export const fetchMyGamesError = (error) => ({
 
 })
 
-export const fetchMyGames = (userId) => (dispatch) => {
 
-  const authToken = store.getState().auth.authToken;
+//REF
+// export const fetchMyGames = (userId) => (dispatch) => {
 
-  return fetch(`${API_BASE_URL}/users/${userId}`, {
+//   //const authToken = store.getState().auth.authToken;
 
-    method: 'GET',
-    headers: {
-       Authorization: `Bearer ${authToken}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    } 
+//   return fetch(`${API_BASE_URL}/users/${userId}`, {
 
-  })
-  .then(res => normalizeResponseErrors(res))
-  .then(res => res.json())
-  .then(myGames => dispatch(fetchMyGamesSuccess(myGames)))
-  .catch(err => {
-    dispatch(fetchMyGamesError(err));
-  })
+//     method: 'GET',
+//     headers: {
+//       //  Authorization: `Bearer ${authToken}`,
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     } 
+
+//   })
+//   .then(res => normalizeResponseErrors(res))
+//   .then(res => res.json())
+//   .then(myGames => dispatch(fetchMyGamesSuccess(myGames)))
+//   .catch(err => {
+//     dispatch(fetchMyGamesError(err));
+//   })
 
 
-}
+// }
