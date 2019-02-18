@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import  GameDescription  from './gameDescription';
 import { GameRules } from './gameRules';
-import { GameScoreOpportunities } from './gameScoreOpportunities';
+import  GameScoreOpportunities  from './gameScoreOpportunities';
 import { GameProgressBar } from './gameProgressBar';
 import { GameLeaderboard } from './gameLeaderboard';
 import  GameCreatePost  from './gameCreatePost';
