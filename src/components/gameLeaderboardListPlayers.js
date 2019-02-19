@@ -16,10 +16,20 @@ export default function GameLeaderboardListPlayers(props) {
 
   //List all other players after
 
-  
+console.log('here? ',props.selectedGame.participants); 
+
+let rankedPlayersListItem = <p>No Players Yet</p>;  
+
+if(props.selectedGame) {
+
+  console.log('here? ',props.selectedGame.participants);
+/*
+  if(this.props.selectedGame.participants.length !== 0){
+
+///  
 
 //note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
-let playerArrSorted = quickSort(props.players.participants);
+let playerArrSorted = quickSort(props.selectedGame.participants);
 
 ///
 //-->> Quick Sort stuff -->>
@@ -67,7 +77,7 @@ let playerArrSorted = quickSort(props.players.participants);
 
 
   //index 1-3
-  let rankedPlayersListItem = playerArrSorted.map((player,index) => {
+  rankedPlayersListItem = playerArrSorted.map((player,index) => {
       
     if(index < 3){
 
@@ -104,6 +114,13 @@ let playerArrSorted = quickSort(props.players.participants);
     }
   }); 
 
+
+  ///
+
+}//outer 2
+*/
+
+}//outer
 
   return (
 
