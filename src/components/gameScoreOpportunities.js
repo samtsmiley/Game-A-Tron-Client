@@ -6,16 +6,26 @@ export class GameScoreOpportunities extends React.Component {
     }    
 
     render() {
+        const scoreOppItems = this.props.scoreOpps.map(item =>
+            <p className="scoreOppItem" key={item.description}>
+               You can {item.description} for {item.points} points.
+             </p> 
+        )
       return (
         <div className="gameScoreOpportunities">
-      
+          <h3>Ways to Score Points</h3>
+          <div>
+              {scoreOppItems}
+          </div>
         </div>
         );
     }
 }
 
 const mapStateToProps = state => {
+    // console.log('>><>>>', state)
     return {
+        scoreOpps: state.game.data.scores,
     };
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import NewGameForm from "./newGameForm";
 import  {postGame}  from '../actions/game'
+import {fetchMyGamesRequest} from '../actions/sideBar-actions';
 
 
 export class NewGame extends React.Component {
@@ -10,6 +11,7 @@ export class NewGame extends React.Component {
     newGameSubmit (values){
         // console.log('new game values', values)
         this.props.dispatch(postGame(values))
+        .then(()=>this.props.dispatch(fetchMyGamesRequest(this.props.currentUserId)));
     }
 
   render() {
@@ -23,6 +25,7 @@ export class NewGame extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    currentUserId: state.auth.currentUser.id
 });
 
 export default connect(mapStateToProps)(NewGame);
