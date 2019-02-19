@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import GameRulesList from './gameRulesList';
 
 export class GameRules extends React.Component {
     componentDidMount() {
@@ -8,15 +7,42 @@ export class GameRules extends React.Component {
 
     render() {
 
-    let testSelectedGame = {
-            rules:[{description:'this is a rule...'},{description:'this is a another rule...'},{description:'this is yet another rule...'},{description:'this is, yes, another awesome rule...'}],
-          };  
+    let theRulesList = null;
+      
+    if(this.props.selectedGame) {
+
+        if(this.props.selectedGame.rules.length !== 0){
+ 
+            let theRules = this.props.selectedGame.rules.map((gameRule,index) => {
+                
+                return(
+               
+                  <li key={index}>  
+                  <p>Rule #{index + 1}: &nbsp; {this.props.selectedGame.rules[index].description}</p>
+                  </li>
+            
+                  );
+          
+            });
+  
+          if(theRules.length !== 0){
+              theRulesList = <ul>{theRules}</ul>;           
+          }
+  
+          
+
+        }
+  
+        
+
+    }
+
+ 
 
       return (
         <div className="gameRules">
-        <h3>{this.props.selectedGame.name}</h3>
-        <h3>Game Rules!</h3>
-        <GameRulesList selectedGameRules={this.props.selectedGame.rules}/>
+        <h3>The Game Rules:</h3>
+         {theRulesList}
         </div>
         );
     }
@@ -24,7 +50,11 @@ export class GameRules extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        selectedGame:state.game.data
+        allGames: state.game.allGames,
+        selectedGame:state.game.data,
+        gameName:state.game.data.name,
+        gameRules:state.game.data.rules,
+        gameScores:state.game.data.scores
     };
 };
 
