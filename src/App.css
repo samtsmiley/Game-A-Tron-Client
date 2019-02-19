@@ -26,6 +26,13 @@ body{
   width: 0px;  /* remove scrollbar space */
 }
 
+button {
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
 
 /* div {
   border: dashed red 1px;

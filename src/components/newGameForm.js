@@ -1,10 +1,17 @@
 import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import validate from './newGameFormValidators'
+import './newGameForm.css'
 
-const renderField = ({ input, label, type, placeholder, meta: { touched, error } }) => (
+const renderField = ({ 
+  input, 
+  label, 
+  type, 
+  placeholder, 
+  meta: { touched, error, warning }
+ }) => (
   <div>
-    <label>{label}</label>
+    <label className="item-label">{label}</label>
     <div>
       <input {...input} type={type} placeholder={placeholder} />
       {touched && error && <span>{error}</span>}
@@ -14,23 +21,25 @@ const renderField = ({ input, label, type, placeholder, meta: { touched, error }
 
 const renderRules = ({ fields, meta: { error, submitFailed } }) => (
   <div>
-    <span>Enter Rules</span>  
-    <ol>
+    <p>Enter Rules</p>  
+    
       {fields.map((rule, index) => (
-        <li key={index}>
-           <Field
+       
+        <div key={index} class="rules">
+          <Field
           name={`${rule}.description`}
           type="text"
           component={renderField}
-        />
+          />
         <button
           type="button"
           title="Remove Rule"
           onClick={() => fields.remove(index)}
           >X</button>
-        </li> 
+
+        </div> 
       ))}
-    </ol>
+    
   <div>
       <button type="button" onClick={() => fields.push({})}>
         Add Rule
@@ -41,11 +50,11 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
 )
 
 const renderScores = ({ fields, meta: { error, submitFailed } }) => (
-  <div>
-    <span>Enter Scoring Opportunites</span>
-  <ul>
+  <div className="scores">
+    <p>Enter Scoring Opportunites</p>
+  
     {fields.map((score, index) => (
-      <li key={index}>
+      <div key={index}>
         <Field
           name={`${score}.description`}
           type="text"
@@ -65,20 +74,21 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
         title="Remove Score"
         onClick={() => fields.remove(index)}
         >X</button>
-      </li> 
+      </div> 
     ))}
-  </ul>
-  <div>
-    <button type="button" onClick={() => fields.push({})}>
-      Add Score
-    </button>
-      {submitFailed && error && <span>{error}</span>}
-    </div>
+  
+    <div>
+      <button type="button" onClick={() => fields.push({})}>
+        Add
+      </button>
+        {submitFailed && error && <span>{error}</span>}
+      </div>
   </div>
 )
 
 const NewGameForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props
+
   return (
      <form onSubmit={handleSubmit}> 
       <Field

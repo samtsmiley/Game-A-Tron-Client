@@ -51,7 +51,7 @@ export class CreatePostForm extends React.Component {
 
 
     return (
-        <div  className="sdropdown" style = {{background:"red",width:"200px"}} >
+        <div  className="sdropdown" >
          <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div>
 
           { this.state.displayMenu ? (

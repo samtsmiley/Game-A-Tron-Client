@@ -7,7 +7,13 @@ import {
 const initialState = {
     error: null,
     loading: false,
-    myPosts: null,
+    myPosts: [{createdAt: "",
+    description: "",
+    gameId: "",
+    id: "",
+    updatedAt: "",
+    userId: "",
+    value: ''}]
 };
 
 export default function reducer(state = initialState, action) {
