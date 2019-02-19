@@ -50,7 +50,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
 )
 
 const renderScores = ({ fields, meta: { error, submitFailed } }) => (
-  <div class="scores">
+  <div className="scores">
     <p>Enter Scoring Opportunites</p>
   
     {fields.map((score, index) => (
