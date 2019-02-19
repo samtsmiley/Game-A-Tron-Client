@@ -7,10 +7,10 @@ import {
     JOIN_GAME_ERROR,
     FETCH_All_GAMES_ERROR,
     FETCH_All_GAMES_SUCCESS,
-    FETCH_All_GAMES_REQUEST
-
-    
-  
+    FETCH_All_GAMES_REQUEST,
+    UPDATE_SCORE_REQUEST,
+    UPDATE_SCORE_SUCCESS,
+    UPDATE_SCORE_ERROR
 } from '../actions/game';
 
 const initialState = {
@@ -33,13 +33,11 @@ export default function reducer(state = initialState, action) {
             error: action.error,
             loading: false,
         });
-    }
-    else if (action.type === FETCH_GAME_BY_ID_REQUEST) {
+    } else if (action.type === FETCH_GAME_BY_ID_REQUEST) {
         return Object.assign({}, state, {
             loading: true,
         });
-    }  
-    if (action.type === JOIN_GAME_SUCCESS) {
+    } else if (action.type === JOIN_GAME_SUCCESS) {
         return Object.assign({}, state, {
             error: null,
             loading: false,
@@ -49,30 +47,30 @@ export default function reducer(state = initialState, action) {
             error: action.error,
             loading: false,
         });
-    }
-    else if (action.type === JOIN_GAME_REQUEST) {
+    } else if (action.type === JOIN_GAME_REQUEST) {
         return Object.assign({}, state, {
             loading: true,
         });
+    } else if (action.type === FETCH_All_GAMES_SUCCESS) {
+        // console.log('game is ', action.data)
+        return Object.assign({}, state, {
+            allGames: action.allGames,
+            error: null,
+            loading: false,
+        });
+    } else if (action.type === FETCH_All_GAMES_ERROR) {
+        return Object.assign({}, state, {
+            error: action.error,
+            loading: false,
+        });
     }
-    else if (action.type === FETCH_All_GAMES_SUCCESS) {
-            // console.log('game is ', action.data)
-            return Object.assign({}, state, {
-                allGames: action.allGames,
-                error: null,
-                loading: false,
-            });
-        } else if (action.type === FETCH_All_GAMES_ERROR) {
-            return Object.assign({}, state, {
-                error: action.error,
-                loading: false,
-            });
-        }
-        else if (action.type === FETCH_All_GAMES_REQUEST) {
-            return Object.assign({}, state, {
-                loading: true,
-            });
-        }  
-    
-    return state;
+    else if (action.type === FETCH_All_GAMES_REQUEST) {
+        return Object.assign({}, state, {
+            loading: true,
+        });
+    } else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
+    else if (action.type === UPDATE_SCORE_SUCCESS) return {...state, data: action.data, error: null, loading: false};
+    else if (action.type === UPDATE_SCORE_ERROR) return {...state, error: action.error, loading: false };
+
+    else return state;
 }

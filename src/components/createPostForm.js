@@ -6,7 +6,7 @@ import {login} from '../actions/auth';
 import {connect} from 'react-redux';
 import './createPostForm.css'
 import {postPost} from '../actions/post'
-
+import {updateScore} from '../actions/game';
 
 
 
@@ -40,8 +40,9 @@ export class CreatePostForm extends React.Component {
     render() {
         const scores = this.props.scoreOpps.map(item =>
             <li className="scoreName" key={item.description}>    
-            <p className="gameButton" onClick={() =>{
-                 this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }))
+            <p className="gameButton" onClick={() => {
+                this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }));
+                this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score: this.props.score + item.points}));
              }}>
            I {item.description} for {item.points} points.
              </p> 
@@ -73,12 +74,10 @@ const mapStateToProps = state => {
     // console.log('>>>>>',state)
     return {
         scoreOpps: state.game.data.scores,
-        gameId:state.game.data.id
+        gameId: state.game.data.id,
+        userId: state.auth.currentUser.id,
+        score: state.game.data.participants.find(participant => participant.userId.equals(state.auth.currentUser.id)).score
     };
 };
-
-
-
-
 
 export default connect(mapStateToProps)(CreatePostForm);
