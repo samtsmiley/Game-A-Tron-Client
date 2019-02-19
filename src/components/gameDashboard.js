@@ -8,6 +8,7 @@ import { GameLeaderboard } from './gameLeaderboard';
 import  GameCreatePost  from './gameCreatePost';
 import { GamePostsList } from './GamePostsList';
 import {joinGame} from '../actions/game'
+import './gameDashboard.css';
 
 export class Game extends React.Component {
     componentDidMount() {
@@ -20,7 +21,7 @@ export class Game extends React.Component {
     render() {
       return (
         <div className="game">
-          <h2>{this.props.gameName}</h2>
+          <h1>{this.props.gameName}</h1>
           <button onClick={() => this.joinGameButton()}>Join Game</button>
         <GameDescription/>
         <GameRules/>

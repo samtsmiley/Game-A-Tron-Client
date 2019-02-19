@@ -1,10 +1,15 @@
 
 .game-leaderboard {
+    margin: auto;
     padding: 20px;
     text-align: center;
     border-radius: 12px; 
-    background-color: rgb(201, 195, 195);
+    background-color: #f9f9f5;
     width: 250px;
+    /* border: solid red 1px; */
+    box-shadow: 1px 1px 10px #333;
+    margin-top: 10px;
+
   }
   
   .game-leaderboard-lists {
@@ -13,3 +18,15 @@
     width: 200px;
   }
   
+  .gameLeaderboard-lists {
+    /* border: solid red 1px; */
+
+    padding: 0;
+}
+
+.gameLeaderboard-lists li button {
+ display: flex;
+ justify-self: flex-start;
+ border: none;
+ width: 100%;
+}

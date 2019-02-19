@@ -15,7 +15,7 @@ export class NewGame extends React.Component {
   render() {
     return (
         <div className="newGame">
-            <h2>Make a New Game</h2>
+            <h2>Create Game</h2>
             <NewGameForm onSubmit={(values)=>this.newGameSubmit(values)} />
         </div>
     );

@@ -24,7 +24,7 @@ export class GameLeaderboard extends React.Component {
       };
 
       return (
-        <div className="gameLeaderboard">
+        <div className="game-leaderboard">
             <h3>Game Leaderboard</h3>
             <GameLeaderboardListPlayers players={testGamesArray}/>
         </div>
