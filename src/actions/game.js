@@ -160,3 +160,35 @@ export const fetchAllGames = () => (dispatch, getState) => {
             dispatch(fetchAllGamesError(err));
         });
 };
+
+export const UPDATE_SCORE_REQUEST = 'UPDATE_SCORE_REQUEST';
+export const updateScoreRequest = () => ({
+    type: UPDATE_SCORE_REQUEST
+});
+export const UPDATE_SCORE_SUCCESS = 'UPDATE_SCORE_SUCCESS';
+export const updateScoreSuccess = data => ({
+    type: UPDATE_SCORE_SUCCESS,
+    data
+});
+export const UPDATE_SCORE_ERROR = 'UPDATE_SCORE_ERROR';
+export const updateScoreError = error => ({
+    type: UPDATE_SCORE_ERROR,
+    error
+});
+
+// body should be {userId, score} where score is the new score
+export const updateScore = (gameId, body) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    dispatch(updateScoreRequest());
+    return fetch(`${API_BASE_URL}/scores/${gameId}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(data => dispatch(updateScoreSuccess(data)))
+        .catch(err => dispatch(updateScoreError(err)));
+};
