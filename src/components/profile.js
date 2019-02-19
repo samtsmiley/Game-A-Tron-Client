@@ -1,29 +1,39 @@
 import React from "react";
 import {connect} from 'react-redux';
-import GamePostsList from "./GamePostsList";
+import moment from 'moment'
 
+// import GamePostsList from "./GamePostsList";
 
 export class Profile extends React.Component {
     componentDidMount() {
     }
 
-    
-
   render() {
+    const posts = this.props.myPosts.map(post =>
+      <li className="onePost" key={post.id}>    
+      <p className="gameButton">
+     I scored {post.value} points for {post.description} in game {post.gameId} at {moment(post.createdAt).format("MMM Do YYYY, h:mm:ss a")} .
+       </p> 
+   </li>
+)
       
     return (
         <div className="container">
-            <h2>Posts</h2>
-            <GamePostsList />
+            <h2>My Score History</h2>
+            <ul>
+            {posts}
+            </ul>
+            {/* <GamePostsList /> */}
         </div>
     );
 }
 }
 
 const mapStateToProps = state => {
-    const { currentUser } = state.auth;
+  console.log('>><>>>>>',state.post.myPosts)
   return {
-    username: currentUser.username,
+    myPosts:state.post.myPosts,
+    userId: state.auth.currentUser.id
   };
 };
 
