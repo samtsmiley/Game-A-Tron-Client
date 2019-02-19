@@ -19,16 +19,15 @@ export class GameLeaderboard extends React.Component {
 
     render() {
 
-    //   let testGamesArray = {
-    //     participants:[{username:'Bob345',userId: 5550111,score:15},{username:'Joe666',userId: 5550110,score:65},{username:'fred111',userId: 5550113,score:25},{username:'staypuff99',userId: 5550118,score:45}],
-    //   };
+    if(this.props.selectedGame){console.log('GAME DATA: ',this.props.selectedGame.participants);}
+    //console.log('username? ',this.props.selectedGame.participants[0].userId.username); 
 
-    console.log('GAME DATA: ',this.props.selectedGame.participants);
+  console.log('score? ',this.props.selectedGame.participants[0].score);
 
       return (
-        <div className="gameLeaderboard">
+        <div >
             <h3>Game Leaderboard: </h3>
-            <GameLeaderboardListPlayers slectedGame={this.props.selectedGame}/>
+            <GameLeaderboardListPlayers gameParticipants={this.props.gameParticipants}/>
         </div>
         );
     }
@@ -36,7 +35,9 @@ export class GameLeaderboard extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        selectedGame: state.game.data 
+        selectedGame: state.game.data,
+        gameParticipants: state.game.data.participants
+ 
     };
 };
 
