@@ -27,8 +27,7 @@ export default function SideBarListMyGames(props) {
   }  
 
     if(myGames){theList = <ul className="sidebar-lists">{myGames}</ul>;}
-
-    console.log('mygames ',myGames);
+ 
 
     return (
       <div>
