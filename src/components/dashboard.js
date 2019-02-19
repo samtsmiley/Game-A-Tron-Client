@@ -8,32 +8,22 @@ import GameDashboard  from './gameDashboard';
 import FindGame from './findGame';
 import Profile from './profile';
 import './dashboard.css';
-
 import {fetchAllGames} from '../actions/game'
+import {fetchAllPostsForUserById} from '../actions/post'
 
 export class Dashboard extends React.Component {
     componentDidMount() {
       this.props.dispatch(fetchAllGames());
+      this.props.dispatch(fetchAllPostsForUserById(this.props.userId));
     }
 
     render() {
-        //This is for sidebar testing -- replace with actual state info when available...
-        let tempSideBarState = {
- 
-            CurrentGame: {name: 'potato race'},
-            Players:['gamePlayer1','gamePlayer2','gamePlayer3'],
-            MyGames:['game 1 id','game 2 id','potato race id'],
-            AllGames:['game 1','game 2','potato race','game 4','game 5'],
-            GameHistory: ['old-game 1','old-game 2','old-game 3'],
-            AllPlayers: ['gamePlayer1','gamePlayer2','gamePlayer3','otherUser1','otherUser2','otherUser3']
-
-        }
 
         return (
             <div className="dashboard">
                 <HeaderBar />
                 <div className="full-display">
-                    <SideBar gameInfo={tempSideBarState} />	
+                    <SideBar />	
                     <section className="display-area">
                         {this.props.showProfile && <Profile/>}
                         {this.props.showFindGame && <FindGame/>}
@@ -48,13 +38,14 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state)
+//   console.log(state)
     return {
         showProfile: state.sideBar.showProfile,
         showFindGame: state.sideBar.showFindGame,
         showNewGame: state.sideBar.showNewGame,
         showOneGame: state.sideBar.showOneGame,
         showAllPosts: state.sideBar.showAllPosts,
+        userId: state.auth.currentUser.id
    	};
 };
 
