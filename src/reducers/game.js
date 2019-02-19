@@ -7,10 +7,10 @@ import {
     JOIN_GAME_ERROR,
     FETCH_All_GAMES_ERROR,
     FETCH_All_GAMES_SUCCESS,
-    FETCH_All_GAMES_REQUEST
-
-    
-  
+    FETCH_All_GAMES_REQUEST,
+    UPDATE_SCORE_REQUEST,
+    UPDATE_SCORE_SUCCESS,
+    UPDATE_SCORE_ERROR
 } from '../actions/game';
 
 const initialState = {
@@ -68,5 +68,9 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: true,
         });
-    } else return state;
+    } else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
+    else if (action.type === UPDATE_SCORE_SUCCESS) return {...state, data: action.data, error: null, loading: false};
+    else if (action.type === UPDATE_SCORE_ERROR) return {...state, error: action.error, loading: false };
+
+    else return state;
 }
