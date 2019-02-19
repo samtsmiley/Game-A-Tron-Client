@@ -76,10 +76,10 @@ let playerArrSorted = quickSort(props.players.participants);
       let placer = '';
       let bar = null;
 
-      if(index === 0){placer='First'}
-      if(index === 1){placer='Second'}
+      if(index === 0){placer='1st'}
+      if(index === 1){placer='2nd'}
       if(index === 2){
-        placer='Third';
+        placer='3rd';
         bar = <hr/>;
       }
 
