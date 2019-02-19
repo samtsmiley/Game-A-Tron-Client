@@ -23,9 +23,8 @@ export class GameCreatePost extends React.Component {
       return (
         <div className="gameCreatePost">
         <h3>Post a Score</h3>
-        <CreatePostForm/>
        <ul>
-           {/* {scores} */}
+           {scores}
        </ul>
         </div>
         );

@@ -41,7 +41,6 @@ export class CreatePostForm extends React.Component {
         const scores = this.props.scoreOpps.map(item =>
             <li className="scoreName" key={item.description}>    
             <p className="gameButton" onClick={() =>{
-                console.log()
                  this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }))
              }}>
            I {item.description} for {item.points} points.
