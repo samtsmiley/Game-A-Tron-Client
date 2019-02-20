@@ -71,7 +71,7 @@ const mapStateToProps = state => {
     if (state.game.data.participants.length === 0) score = 0;
     else {
       // console.log(state.game.data.participants.find(participant => participant.userId === state.auth.currentUser.id))
-      score = state.game.data.participants.find(participant => participant.userId === state.auth.currentUser.id).score
+      score = state.game.data.participants.find(participant => participant.userId.id === state.auth.currentUser.id).score
     }
       return {
         scoreOpps: state.game.data.scores,
