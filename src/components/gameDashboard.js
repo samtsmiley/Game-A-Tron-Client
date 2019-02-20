@@ -39,7 +39,9 @@ export class Game extends React.Component {
 }
 
 const mapStateToProps = state => {
-  //  console.log('am i in:', state.game.data.participants.includes(state.auth.currentUser.id))
+   console.log('am i in:', state.game.data.participants.some((participant) => {
+        return participant.userId === state.auth.currentUser.id
+      }))
 
 
     return {
