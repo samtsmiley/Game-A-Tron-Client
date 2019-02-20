@@ -24,7 +24,7 @@ export class Game extends React.Component {
       return (
         <div className="game">
           <h1>{this.props.gameName}</h1>
-          <button onClick={() => this.joinGameButton()}>Join Game</button>
+         {this.props.amIAParticipant?<p>You are playing this game</p>: <button onClick={() => this.joinGameButton()}>Join Game</button>}
         <GameDescription/>
         <GameRules/>
         <GameScoreOpportunities/>
@@ -39,11 +39,17 @@ export class Game extends React.Component {
 }
 
 const mapStateToProps = state => {
-  //  console.log(state)
+  //  console.log('am i in:', state.game.data.participants.includes(state.auth.currentUser.id))
+
+
     return {
       userId:state.auth.currentUser.id,
       gameName:state.game.data.name,
-      gameId:state.game.data.id     
+      gameId:state.game.data.id,
+      // amIAParticipant: true,     
+      amIAParticipant: state.game.data.participants.some((participant) => {
+        return participant.userId === state.auth.currentUser.id
+      })
     };
 };
 

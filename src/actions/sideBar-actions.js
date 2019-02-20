@@ -1,6 +1,6 @@
 import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
-import store from '../store';
+// import {normalizeResponseErrors} from './utils';
+// import store from '../store';
 
 // showProfile:state.
         // showFindGame:state.
