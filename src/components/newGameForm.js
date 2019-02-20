@@ -25,7 +25,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
     
       {fields.map((rule, index) => (
        
-        <div key={index} class="rules">
+        <div key={index} className="rules">
           <Field
           name={`${rule}.description`}
           type="text"
@@ -35,14 +35,14 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
           type="button"
           title="Remove Rule"
           onClick={() => fields.remove(index)}
-          >X</button>
+          >x</button>
 
         </div> 
       ))}
     
   <div>
       <button type="button" onClick={() => fields.push({})}>
-        Add Rule
+        +
       </button>
       {submitFailed && error && <span>{error}</span>}
     </div>
@@ -110,18 +110,21 @@ const NewGameForm = props => {
         name="end"
         type="number"
         component={renderField}
-        label="Game End Conditions"
+        label="Game End Condition"
         placeholder="Enter Max Score"
       />
-      <div>
+      <div className="reset-submit-btn">
+        
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Reset
+        </button>
+
         <button 
           type="submit" 
           disabled={submitting}>
           Submit
         </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
+
       </div>
     </form>
   )

@@ -1,8 +1,22 @@
-.rules{
+.rules {
     display: flex;
     justify-content: center;
-    /* border: solid blue 1px; */
+    /* border: solid blue 1px;  */
+    align-content: center;
+}
 
+.rules button {
+    height: 26px;
+    margin: 5px 0;
+}
+
+.rules .item-label {
+    /* border: solid red 1px; */
+    margin: 0;
+}
+
+.rules input {
+    height: 100%;
 }
 
 .scores {
@@ -14,24 +28,48 @@
 }
 
 .scores button {
-    
-    
-    width: 25%;
+    /* width: 25%; */
 }
 
 .item-label {
-    margin-bottom: 50px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 2px;
     /* border: solid red 1px; */
 } 
 
 .newGame {
+    box-sizing: border-box;
     margin: auto;
     padding: 20px;
     text-align: center;
     border-radius: 12px; 
     background-color: #f9f9f5;
     width: 250px;
+    max-height: 85%;
+    overflow-y: scroll;
     /* border: solid red 1px; */
     box-shadow: 1px 1px 10px #333;
     margin-top: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.newGame h2 {
+    margin-top: 0;
+}
+
+input {
+    margin: 5px;
+    padding: 0;
+}
+
+.reset-submit-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    /* border: solid red 1px; */
+
 }
