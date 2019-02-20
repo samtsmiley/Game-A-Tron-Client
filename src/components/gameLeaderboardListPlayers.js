@@ -4,22 +4,37 @@ import './gameLeaderboard.css';
 
 export default function GameLeaderboardListPlayers(props) {
 
-  //Access the players in current game selected
+//Access the players in current game selected
 
-  //Determine rank based on player score
+//Determine rank based on player score
 
-  //Sort player from Highest ot Lowest
+//Sort player from Highest ot Lowest
 
-  //Return Sorted list
+//Return Sorted list
 
-  //For First, Second, Third highlight
+//For First, Second, Third highlight
 
-  //List all other players after
+//List all other players after with rank#
 
-  
+console.log('GAME DATA @ LIST: ',props.gameParticipants);
+
+let rankedPlayersListItem = <p>No Players Yet</p>;  
+
+if(props.gameParticipants) {
+
+//REF
+//console.log('username? ',props.selectedGame.participants[0].userId.username); 
+
+//console.log('score? ',props.selectedGame.participants[0].score);
+ 
+if(props.gameParticipants.length !== 0){
+
+///  
+
+console.log('HERE at player list');
 
 //note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
-let playerArrSorted = quickSort(props.players.participants);
+let playerArrSorted = quickSort(props.gameParticipants);
 
 ///
 //-->> Quick Sort stuff -->>
@@ -67,7 +82,7 @@ let playerArrSorted = quickSort(props.players.participants);
 
 
   //index 1-3
-  let rankedPlayersListItem = playerArrSorted.map((player,index) => {
+  rankedPlayersListItem = playerArrSorted.map((player,index) => {
       
     if(index < 3){
 
@@ -86,7 +101,7 @@ let playerArrSorted = quickSort(props.players.participants);
       //first, second, third
       return(
         <li key={index}>
-          <button>{placer} Place: {player.username} &nbsp;&nbsp; Score: {player.score}</button>
+          <button>{placer} Place: {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
           {bar}
         </li>
         
@@ -98,17 +113,24 @@ let playerArrSorted = quickSort(props.players.participants);
       return(
          
         <li key={index}>
-          <button>Rank:{index + 1} {player.username} &nbsp;&nbsp; Score: {player.score}</button>
+          <button>Rank:{index + 1} {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
         </li>
       );
     }
   }); 
 
 
+  ///
+
+}//outer 2
+ 
+
+}//outer
+
   return (
 
     <div>
-      <ul id='gameLeaderboardListPlayers' className='gameLeaderboard-lists'>
+      <ul id='gameLeaderboardListPlayers'>
        {rankedPlayersListItem}
       </ul>
     </div>
