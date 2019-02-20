@@ -67,12 +67,10 @@ export class CreatePostForm extends React.Component {
 }
 const mapStateToProps = state => {
     // console.log('>>>>>',state)
-    let score;
-    if (state.game.data.participants.length === 0) score = 0;
-    else {
-      // console.log(state.game.data.participants.find(participant => participant.userId === state.auth.currentUser.id))
-      score = state.game.data.participants.find(participant => participant.userId.id === state.auth.currentUser.id).score
-    }
+    let score = 0;
+    const currentParticipant = state.game.data.participants.find(participant =>
+      participant.userId.id === state.auth.currentUser.id);
+    if (currentParticipant) score = currentParticipant.score;
       return {
         scoreOpps: state.game.data.scores,
         gameId: state.game.data.id,
