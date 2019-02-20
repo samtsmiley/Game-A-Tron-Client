@@ -30,8 +30,8 @@ export class Game extends React.Component {
         <GameScoreOpportunities/>
         <GameProgressBar/>
         <GameLeaderboard/>
-        <GameCreatePost/>
-        {/* <CreatePostForm/>         */}
+        {/* <GameCreatePost/> */}
+        <CreatePostForm/>        
         <GamePostsList/>
         </div>
         );
