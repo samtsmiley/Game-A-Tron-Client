@@ -35,7 +35,7 @@ export const postGame = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('post res:',res )
+            // console.log('post res:',res )
             dispatch(postGameSuccess(res))
         })
         .catch(err => {
@@ -74,7 +74,7 @@ export const fetchGameById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
+        // .then(res => console.log('by game id',res))
         .then(data => dispatch(fetchGameByIdSuccess(data)))
         .catch(err => {
             dispatch(fetchGameByIdError(err));
@@ -114,7 +114,7 @@ export const joinGame = (id) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            // console.log('join game res',res)
+            console.log('join game res',res)
             dispatch(joinGameSuccess(res))
         })
        
