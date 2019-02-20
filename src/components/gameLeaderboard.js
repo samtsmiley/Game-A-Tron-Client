@@ -8,8 +8,6 @@ export class GameLeaderboard extends React.Component {
     }    
 
     render() {
- 
-  console.log('score? ',this.props.selectedGame.participants[0].score);
 
       return (
         <div >
