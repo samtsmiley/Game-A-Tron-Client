@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Line, Circle } from 'rc-progress';
 
-//require --> npm install --save rc-progress
+//requires doing this --> npm install --save rc-progress
 
 export class GameProgressBar extends React.Component {
     componentDidMount() {
@@ -15,14 +15,9 @@ export class GameProgressBar extends React.Component {
         let maxScore = this.props.endScore;
 
         if(currentScore && maxScore){
-
             percentProgress = ((currentScore/maxScore) * 100).toFixed(2);
-
         }
 
-        
- 
-        //}
 
         let barContainerStyle = {
             width: '70%',
@@ -51,7 +46,6 @@ const mapStateToProps = state => {
         }
     }
  
-    
     let endScore = 0;
     if(state.game.data.endScore){endScore = 0}else{
         endScore = state.game.data.endScore
