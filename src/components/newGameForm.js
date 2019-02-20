@@ -107,7 +107,7 @@ const NewGameForm = props => {
       <FieldArray name="rules" component={renderRules} />
       <FieldArray name="scores" component={renderScores} />
       <Field
-        name="end"
+        name="endScore"
         type="number"
         component={renderField}
         label="Game End Condition"
