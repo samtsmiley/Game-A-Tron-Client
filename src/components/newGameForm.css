@@ -1,21 +1,37 @@
-.rules {
+.rules,
+.title-desc {
+    box-shadow: 1px 1px 10px #333;
+    border-radius: 12px; 
+    padding: 5px 0 15px 0;
+    margin-bottom: 5px;
+    margin-top: 10px;
+
+}
+
+.rules p {
+    margin-top: 0;
+    
+}
+
+.rules-fields {
     display: flex;
     justify-content: center;
     /* border: solid blue 1px;  */
     align-content: center;
+    
 }
 
-.rules button {
+.rules-fields button {
     height: 26px;
     margin: 5px 0;
 }
 
-.rules .item-label {
+.rules-fields .item-label {
     /* border: solid red 1px; */
     margin: 0;
 }
 
-.rules input {
+.rules-fields input {
     height: 100%;
 }
 
@@ -25,10 +41,17 @@
     /* justify-content: center; */
     align-content: center;  
     /* border: solid red 1px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 10px #333;
+    border-radius: 12px; 
+
 }
 
 .scores button {
-    /* width: 25%; */
+    width: 13%;
+    margin-bottom: 5px;
 }
 
 .item-label {
@@ -62,14 +85,24 @@
 }
 
 input {
-    margin: 5px;
+    margin: 5px 5px 5px 0;
     padding: 0;
 }
 
 .reset-submit-btn {
     display: flex;
     justify-content: space-between;
-    margin-top: 5px;
+    margin-top: 15px;
     /* border: solid red 1px; */
 
+}
+
+.scores-fields {
+    width: 95%;
+    margin: auto;
+    border: solid lightgrey 1px;
+    border-radius: 12px; 
+    padding: 5px 0 5px 0;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
