@@ -40,9 +40,9 @@ export class Game extends React.Component {
 
 const mapStateToProps = state => {
   console.log('<<<',state.game.data)
-   console.log('am i in:', state.game.data.participants.some((participant) => {
-        return participant.userId.id === state.auth.currentUser.id
-      }))
+  //  console.log('am i in:', state.game.data.participants.some((participant) => {
+  //       return participant.userId.id === state.auth.currentUser.id
+  //     }))
 
 
     return {
