@@ -16,7 +16,7 @@ import {
 const initialState = {
     error: null,
     loading: false,
-    data: null,
+    data: {participants: []},
     allGames: null
 };
 
