@@ -12,6 +12,7 @@ export class NewGame extends React.Component {
         // console.log('new game values', values)
         this.props.dispatch(postGame(values))
         .then(()=>this.props.dispatch(fetchMyGamesRequest(this.props.currentUserId)));
+        
     }
 
   render() {

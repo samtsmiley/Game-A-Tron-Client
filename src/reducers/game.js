@@ -39,6 +39,7 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === JOIN_GAME_SUCCESS) {
         return Object.assign({}, state, {
+            data: action.data,
             error: null,
             loading: false,
         });
