@@ -31,7 +31,7 @@ if(props.gameParticipants.length !== 0){
 
 ///  
 
-console.log('HERE at player list');
+console.log('HERE at player list', props.gameParticipants);
 
 //note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
 let playerArrSorted = quickSort(props.gameParticipants);
@@ -83,40 +83,53 @@ let playerArrSorted = quickSort(props.gameParticipants);
 
   //index 1-3
   rankedPlayersListItem = playerArrSorted.map((player,index) => {
+    let placer = {
+      0:'1st',
+      1:'2nd',
+      2:'3rd'
+    };
+
+    const content = placer[index]
+      ? `${placer[index]} Place: `
+      : `Rank: ${index + 1} `
+
+    const bar = index === 2 
+      ? <hr/>
+      : ''
+
+    return (
+      <li key={index}>
+        <button>{content} {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
+        {bar}
+      </li> 
+    );
+    // if(index < 3){
+
+    //   //let playerName =  // access the users list by id
+
       
-    if(index < 3){
+    //   let bar = null;
 
-      //let playerName =  // access the users list by id
+    //   if(index === 0){placer='1st'}
+    //   if(index === 1){placer='2nd'}
+    //   if(index === 2){
+    //     placer='3rd';
+    //     bar = <hr/>;
+    //   }
 
-      let placer = '';
-      let bar = null;
-
-      if(index === 0){placer='1st'}
-      if(index === 1){placer='2nd'}
-      if(index === 2){
-        placer='3rd';
-        bar = <hr/>;
-      }
-
-      //first, second, third
-      return(
-        <li key={index}>
-          <button>{placer} Place: {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
-          {bar}
-        </li>
-        
-      );
-    }
-    else{
+    //   //first, second, third
       
-      //everything past 3rd place...
-      return(
+    // }
+    // else{
+      
+    //   //everything past 3rd place...
+    //   return(
          
-        <li key={index}>
-          <button>Rank:{index + 1} {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
-        </li>
-      );
-    }
+    //     <li key={index}>
+    //       <button>{player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
+    //     </li>
+    //   );
+    // }
   }); 
 
 
