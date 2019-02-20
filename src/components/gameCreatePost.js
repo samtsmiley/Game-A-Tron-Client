@@ -1,25 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {postPost} from '../actions/post'
-import  CreatePostForm  from './createPostForm';
 import {updateScore} from '../actions/game';
+import {findScore} from './components-utils';
 
+//export as function not class
 export class GameCreatePost extends React.Component {
     componentDidMount() {
     }    
 
     render() {
-        const scores = this.props.scoreOpps.map(item =>
-            <li className="scoreName" key={item.description}>    
+        const{ dispatch, gameId, userId, score, scoreOpps } = this.props;
+        const scores = scoreOpps.map((item,index) => {
+            const { points, description } = item;
+            return (<li className="scoreName" key={index}>    
             <p className="gameButton" onClick={() =>{
-                console.log()
-                 this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }));
-                 this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score:this.props.score + item.points}));
+                dispatch(postPost({description, gameId, value:points }));
+                dispatch(updateScore(gameId, {userId, score:score + points}));
              }}>
-           {item.description}
+           {description}
              </p> 
-             <p>Points: {item.points}</p> 
-         </li>
+             <p>Points: {points}</p> 
+         </li>)
+        }
      )
 
       return (
@@ -35,13 +38,16 @@ export class GameCreatePost extends React.Component {
 
 const mapStateToProps = state => {
     // console.log('>>>>>',state)
-    let score;
-    if (state.game.data.participants.length === 0) score = 0;
-    else score = state.game.data.participants.find(participant => participant.userId.id === state.auth.currentUser.id).score
+    const { participants, scores, id } = state.game.data;
+    const userId = state.auth.currentUser.id;
+    const score = participants.length === 0 
+        ? 0  
+        : findScore(participants, userId);
+    
     return {
-        scoreOpps: state.game.data.scores,
-        gameId: state.game.data.id,
-        userId: state.auth.currentUser.id,
+        scoreOpps: scores,
+        gameId: id,
+        userId,
         score
     };
 };
