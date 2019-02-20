@@ -1,7 +1,7 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
-import Input from './input';
-import {login} from '../actions/auth';
+// import {Field, reduxForm, focus} from 'redux-form';
+// import Input from './input';
+// import {login} from '../actions/auth';
 // import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 import './createPostForm.css'
@@ -58,12 +58,7 @@ export class CreatePostForm extends React.Component {
           { this.state.displayMenu ? (
           <ul className='sul'>
        {scores}
-          </ul>
-        ):
-        (
-          null
-        )
-        }
+          </ul>):(null)}
 
        </div>
 
@@ -74,8 +69,11 @@ const mapStateToProps = state => {
     // console.log('>>>>>',state)
     let score;
     if (state.game.data.participants.length === 0) score = 0;
-    else score = state.game.data.participants.find(participant => participant.userId.id === state.auth.currentUser.id).score
-    return {
+    else {
+      // console.log(state.game.data.participants.find(participant => participant.userId === state.auth.currentUser.id))
+      score = state.game.data.participants.find(participant => participant.userId === state.auth.currentUser.id).score
+    }
+      return {
         scoreOpps: state.game.data.scores,
         gameId: state.game.data.id,
         userId: state.auth.currentUser.id,
