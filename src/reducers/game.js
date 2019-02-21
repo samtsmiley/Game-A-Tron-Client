@@ -44,7 +44,7 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === JOIN_GAME_SUCCESS) {
         // return {...state.data.participants, datap }
-        console.log('in reducer',action.data)
+        // console.log('in reducer',action.data)
         return Object.assign({}, state, {
             data: action.data,
             error: null,
