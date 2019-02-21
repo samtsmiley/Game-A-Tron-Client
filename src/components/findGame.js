@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {fetchAllGames} from '../actions/game'
 import {fetchGameById} from '../actions/game'
 import {showOneGame} from '../actions/sideBar-actions'
-
+import './findGame.css'
 
 
 export class FindGame extends React.Component {
@@ -17,7 +17,7 @@ export class FindGame extends React.Component {
 
     render() {
         const games = this.props.gameList.map(game =>
-            <li className="gameName" key={game.name}>    
+            <li className="gameName subcard" key={game.name}>    
                <button className="gameButton" onClick={() =>{
                     this.props.dispatch(fetchGameById(game.id))
                     .then(() =>this.props.dispatch(showOneGame()) )
@@ -38,7 +38,7 @@ export class FindGame extends React.Component {
     // ));
 
       return (
-        <div className="">
+        <div className="findGame card">
         <h1>Find a Game</h1>
         {/* <Game /> */}
         <ul>

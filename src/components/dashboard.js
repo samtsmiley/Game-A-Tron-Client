@@ -28,7 +28,7 @@ export class Dashboard extends React.Component {
                         {this.props.showProfile && <Profile/>}
                         {this.props.showFindGame && <FindGame/>}
                         {this.props.showNewGame && <NewGame/>}
-                        { this.props.showOneGame && <GameDashboard/>}
+                        {this.props.showOneGame && <GameDashboard/>}
                         {/* {this.props.showAllPosts && <Timeline/>} */}
                     </section>	
                 </div>

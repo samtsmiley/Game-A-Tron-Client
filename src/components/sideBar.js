@@ -21,14 +21,14 @@ export class SideBar extends React.Component {
     //Local State used for display properties
     this.state = {
 
-      myGamesListAvailable:false,
-      selectedGameName:'',
-      selectedGameStyle:'TEST',//for selected text -- styling
+      myGamesListAvailable: false,
+      selectedGameName: '',
+      selectedGameStyle: 'TEST',//for selected text -- styling
       showSelectedGame:false,
-      showMyGames:true,
-      showMyHistory:false,
-      showAllPlayers:false,
-      showAllGames:false
+      showMyGames: false,
+      showMyHistory: false,
+      showAllPlayers: false,
+      showAllGames: false
 
     }
  
@@ -37,7 +37,7 @@ export class SideBar extends React.Component {
     this.createGameClicked = this.createGameClicked.bind(this);
     this.showAllGamesClicked = this.showAllGamesClicked.bind(this);
     this.findGameClicked = this.findGameClicked.bind(this);
-     
+    this.showMyGames = this.showMyGames.bind(this);
     
   }
 
@@ -47,14 +47,11 @@ export class SideBar extends React.Component {
     this.props.dispatch(fetchMyGamesRequest(this.props.currentUserId))
      
   } 
-
-
   
   showAllGamesClicked(){
 
     //change the state view via action...
     this.props.dispatch(showAllPosts());
-    
   }
 
   profileClicked(){
@@ -101,24 +98,10 @@ export class SideBar extends React.Component {
 
   //Alternate UI-extension stuff
   showMyGames(){
-
-    // let newMode;
-
-    // if(this.state.showMyGames){ 
-    //   newMode = false;
-    // } else{
-    //   newMode = true;
-    // }
-
-
+    
     this.setState({
-      showSelectedGame:false,
-      showMyGames:true,
-      showMyHistory:false,
-      showAllPlayers:false,
-      showAllGames:false
-    })
-
+        showMyGames: !this.state.showMyGames,
+      })
   }
 
   showAllGames(){
@@ -185,33 +168,39 @@ export class SideBar extends React.Component {
 
   render() {
   
+    
+    
     let displayMyGames=null;
     
     if(this.props.allMyGames.games){
       displayMyGames = <SideBarListMyGames 
       allMyGames={this.props.allMyGames}
       onSelect={this.showSelectedGameClicked} 
-      currentUserId={this.props.currentUserId}/>};
+      currentUserId={this.props.currentUserId}
+      showMyGames={this.showMyGames}
+      />
+    };
      
     return(
       <div className="side-bar" >
          
         <section className="sidebar-container">
-        <button onClick={this.profileClicked}>My Profile</button>
-        <button onClick={this.createGameClicked}>Create Game</button>
-        <button onClick={this.findGameClicked}>Find Games</button>
+          <button onClick={this.profileClicked}>My Profile</button>
+          <button onClick={this.createGameClicked}>Create Game</button>
+          <button onClick={this.findGameClicked}>Find Games</button>
+          <button onClick={this.showMyGames}> My Games </button>
+        
+
         {/* <button onClick={this.showAllGamesClicked}>Timeline</button> */}
-        <hr />
-        <p>My Games</p> 
-        {displayMyGames}
         
-        {/* <button onClick={()=>this.showAllPlayers()}>ALL PLAYERS</button> */}
-        {/* {displayAllPlayers} */}
-        {/* <button onClick={()=>this.showAllGames()}>ALL THE GAMES</button> */}
-        {/* {displayAllGames}  */}
-        
-        <br/>
         </section>
+
+        {this.state.showMyGames && 
+          <section className="sidebar-myGames subcard">
+            <hr />
+            {displayMyGames}
+          </section>
+        }
       </div>
     );
 
