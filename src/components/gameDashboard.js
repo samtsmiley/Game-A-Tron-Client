@@ -5,7 +5,7 @@ import GameRules from './gameRules';
 import  GameScoreOpportunities  from './gameScoreOpportunities';
 import GameProgressBar from './gameProgressBar';
 import GameLeaderboard from './gameLeaderboard';
-import  GameCreatePost  from './gameCreatePost';
+// import  GameCreatePost  from './gameCreatePost';
 import  CreatePostForm  from './createPostForm';
 
 import { GamePostsList } from './GamePostsList';
@@ -22,9 +22,11 @@ export class Game extends React.Component {
 
     render() {
       return (
-        <div className="game">
+        <div className="game card">
           <h1>{this.props.gameName}</h1>
-         {this.props.amIAParticipant?<p>You are playing this game</p>: <button onClick={() => this.joinGameButton()}>Join Game</button>}
+          <div className="game-btn-wrap">
+            {this.props.amIAParticipant ? <p>You are playing this game</p> : <button type="button" onClick={() => this.joinGameButton()} className="joinbtn">Join Game</button>}
+          </div>
         <GameDescription/>
         <GameRules/>
         <GameScoreOpportunities/>

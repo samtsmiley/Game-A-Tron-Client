@@ -20,12 +20,12 @@ const renderField = ({
 )
 
 const renderRules = ({ fields, meta: { error, submitFailed } }) => (
-  <div className="rules">
+  <div className="rules card">
     <p>Enter Rules</p>  
     
       {fields.map((rule, index) => (
        
-        <div key={index} className="rules-fields">
+        <div key={index} className="rules-fields subcard">
           <Field
           name={`${rule}.description`}
           type="text"
@@ -50,11 +50,11 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
 )
 
 const renderScores = ({ fields, meta: { error, submitFailed } }) => (
-  <div className="scores">
+  <div className="scores card">
     <p>Enter Scoring Opportunites</p>
   
     {fields.map((score, index) => (
-      <div key={index} className="scores-fields">
+      <div key={index} className="subcard">
         <Field
           name={`${score}.description`}
           type="text"
@@ -91,7 +91,7 @@ const NewGameForm = props => {
 
   return (
      <form onSubmit={handleSubmit}> 
-      <div className="title-desc">
+      <div className="title-desc card">
         <Field
           name="name"
           type="text"
@@ -108,7 +108,7 @@ const NewGameForm = props => {
       </div>
       <FieldArray name="rules" component={renderRules} />
       <FieldArray name="scores" component={renderScores} />
-      <div className="title-desc">
+      <div className="title-desc card">
           <Field
             name="endScore"
             type="number"

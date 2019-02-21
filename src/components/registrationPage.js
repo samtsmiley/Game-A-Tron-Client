@@ -11,8 +11,8 @@ export function RegistrationPage(props) {
         return <Redirect to="/dashboard" />;
     }
     return (
-        <div className="home">
-            <h2>Register Gameatron 3000</h2>
+        <div className="home card">
+            <h1>Gametron</h1>
             <RegistrationForm />
             <div className='link'>
             <Link className='link'to="/">Login</Link>

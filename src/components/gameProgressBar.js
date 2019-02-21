@@ -26,7 +26,7 @@ export class GameProgressBar extends React.Component {
         };
 
       return (
-        <div >
+        <div className="card">
             <h3>Your progress so far is {percentProgress}%: </h3>
             <div style={barContainerStyle}>
             <Line percent={percentProgress} strokeWidth="4" trailWidth="3.75" trailColor="#bebec8" strokeColor="#4aa84a" strokeLinecap='round'/>
