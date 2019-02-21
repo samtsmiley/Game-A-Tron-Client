@@ -23,11 +23,13 @@ export class GameProgressBar extends React.Component {
         }
 
         let sumScore = 0;
+        let playerCount = 0;
 
+        //Add up all the scores and find the current number of players...
         this.props.allGameData.participants.map(item =>{
 
-            return sumScore = sumScore + item.score;
-
+            return (sumScore = sumScore + item.score, playerCount = playerCount + 1);
+ 
         });
  
         if(sumScore && maxScore){
@@ -39,9 +41,16 @@ export class GameProgressBar extends React.Component {
             height: '70%',
             display: 'inline-block',
         };
+ 
+        const numberOfPlayerContent = (
+            playerCount === 0 ? 'There are currently no active players' :
+            playerCount === 1 ? `There is currently ${playerCount} active player` :
+            playerCount = `There are currently ${playerCount} active players` 
+        );
 
       return (
         <div >
+            <h3>{numberOfPlayerContent}</h3>
             <h3>Your progress so far is: {currentUserPercentProgress}% </h3>
             <div style={barContainerStyle}>
             <Line percent={currentUserPercentProgress}
