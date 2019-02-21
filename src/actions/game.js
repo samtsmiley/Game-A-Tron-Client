@@ -35,7 +35,7 @@ export const postGame = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('post res:',res )
+            console.log('post game res:',res )
             dispatch(postGameSuccess(res))
         })
         .catch(err => {
@@ -74,8 +74,8 @@ export const fetchGameById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
-        .then(data => dispatch(fetchGameByIdSuccess(data)))
+        .then(data =>{
+             dispatch(fetchGameByIdSuccess(data))})
         .catch(err => {
             dispatch(fetchGameByIdError(err));
         });
@@ -85,8 +85,9 @@ export const fetchGameById = (id) => (dispatch, getState) => {
 
 //Join a game by gameId
 export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
-export const joinGameSuccess = () => ({
+export const joinGameSuccess = data => ({
     type: JOIN_GAME_SUCCESS,
+    data
 });
 
 export const JOIN_GAME_ERROR = 'JOIN_GAME_ERROR';
@@ -100,7 +101,13 @@ export const joinGameRequest = () => ({
     type: JOIN_GAME_REQUEST,
 });
 
-export const joinGame = (id) => (dispatch, getState) => {
+export const JOIN_GAME_SUCCESS_SET_STATE = 'JOIN_GAME_SUCCESS_SET_STATE';
+export const joinGameSuccessSetState = participant => ({
+    type: JOIN_GAME_SUCCESS_SET_STATE,
+    participant
+});
+
+export const joinGame = (id, userName) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(joinGameRequest());
     return fetch(`${API_BASE_URL}/games/join/${id}`, {
@@ -113,10 +120,16 @@ export const joinGame = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((res)=>{
-            // console.log('join game res',res)
-            dispatch(joinGameSuccess(res))
+        .then((data)=>{
+            // console.log('responce from join:',data)
+            console.log('responce i want :',data.participants.pop())
+
+            dispatch(joinGameSuccess(data))
         })
+        // .then(()=>{
+        //     console.log('im doing join game set state')
+        //     dispatch(joinGameSuccessSetState())
+        // })
        
         .catch(err => {
             dispatch(joinGameError(err));
@@ -155,7 +168,6 @@ export const fetchAllGames = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
         .then(data => dispatch(fetchAllGamesSuccess(data)))
         .catch(err => {
             dispatch(fetchAllGamesError(err));

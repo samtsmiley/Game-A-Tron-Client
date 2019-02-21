@@ -30,7 +30,7 @@ export class Profile extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log('>><>>>>>',state.post.myPosts)
+  // console.log('>><>>>>>',state)
   return {
     myPosts:state.post.myPosts,
     userId: state.auth.currentUser.id
