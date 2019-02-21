@@ -44,11 +44,11 @@ export class Game extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('the participants:', state.game.data.participants)
-  console.log('the current user id:',state.auth.currentUser.id,)
-  console.log('<<<',state.game.data.participants.some((participant) => {
-    return participant.userId.id === state.auth.currentUser.id
-  }))
+  // console.log('the participants:', state.game.data.participants)
+  // console.log('the current user id:',state.auth.currentUser.id,)
+  // console.log('<<<',state.game.data.participants.some((participant) => {
+  //   return participant.userId.id === state.auth.currentUser.id
+  // }))
   // const amIAParticipant = state.game.data.participants.some((participant) => {
   //   return participant.userId.id === state.auth.currentUser.id
   // })

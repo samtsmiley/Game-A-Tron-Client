@@ -45,7 +45,7 @@ if(props.gameParticipants) {
 
   const playerArrSorted = sortScores(testScores,'score');
  
-  console.log('playerArrSorted ',playerArrSorted);
+  // console.log('playerArrSorted ',playerArrSorted);
    
   //index 1-3
   rankedPlayersListItem = playerArrSorted.map((player,index) => {

@@ -11,7 +11,7 @@ export class GameProgressBar extends React.Component {
 
     render() {
 
-        console.log('progress bar state: ', this.props.allGameData);
+        // console.log('progress bar state: ', this.props.allGameData);
         
         let currentUserPercentProgress = 0;
         let allUsersPercentProgress = 0;
