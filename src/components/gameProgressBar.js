@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Line, Circle } from 'rc-progress';
+import { findScore } from './components-utils';
 
 //requires doing this --> npm install --save rc-progress
 
@@ -9,15 +10,29 @@ export class GameProgressBar extends React.Component {
     }    
 
     render() {
+
+        console.log('progress bar state: ', this.props.allGameData);
         
-        let percentProgress = 0;
+        let currentUserPercentProgress = 0;
+        let allUsersPercentProgress = 0;
         let currentScore = this.props.score;
         let maxScore = this.props.endScore;
-
+ 
         if(currentScore && maxScore){
-            percentProgress = ((currentScore/maxScore) * 100).toFixed(2);
+            currentUserPercentProgress = ((currentScore/maxScore) * 100).toFixed(2);
         }
 
+        let sumScore = 0;
+
+        this.props.allGameData.participants.map(item =>{
+
+            return sumScore = sumScore + item.score;
+
+        });
+ 
+        if(sumScore && maxScore){
+            allUsersPercentProgress = ((sumScore/maxScore) * 100).toFixed(2);
+        }
 
         let barContainerStyle = {
             width: '70%',
@@ -27,9 +42,21 @@ export class GameProgressBar extends React.Component {
 
       return (
         <div >
-            <h3>Your progress so far is {percentProgress}%: </h3>
+            <h3>Your progress so far is: {currentUserPercentProgress}% </h3>
             <div style={barContainerStyle}>
-            <Line percent={percentProgress} strokeWidth="4" trailWidth="3.75" trailColor="#bebec8" strokeColor="#4aa84a" strokeLinecap='round'/>
+            <Line percent={currentUserPercentProgress}
+                  strokeWidth="4"
+                  trailWidth="3.75"
+                  trailColor="#bebec8"
+                  strokeColor="#4aa84a"
+                  strokeLinecap='round'/>
+            <h3>Overall game progress so far is: {allUsersPercentProgress}% </h3>
+            <Line percent={allUsersPercentProgress}
+                  strokeWidth="4"
+                  trailWidth="3.75"
+                  trailColor="#bebec8"
+                  strokeColor="#000080"
+                  strokeLinecap='round'/>
             {/* <Circle percent="0" strokeWidth="4" trailWidth="3.75" trailColor="#beb4b4" strokeColor="#4aa84a" strokeLinecap='round'/> */}
             </div>
         </div>
@@ -39,20 +66,19 @@ export class GameProgressBar extends React.Component {
 
 const mapStateToProps = state => {
     
-    let score = 0;
-    if(state.game.participants){
-        if(state.game.participants.length === 0){score = 0}else{
-            score = state.game.data.participants.find(participant => participant.userId.id === state.auth.currentUser.id).score
-        }
-    }
+   
+    const { userId } = state.auth.currentUser.id;
+    const { scores, participants } = state.game.data;
+    // const score = participants.length === 0
+    //     ? 0
+    //     : findScore(participants, userId); 
  
-    let endScore = 0;
-    if(state.game.data.endScore){endScore = 0}else{
-        endScore = state.game.data.endScore
-    }
     return {
-        score,
-        endScore 
+        allGameData: state.game.data,
+        score: 0,
+        scores,
+        endScore: 0,//<-- need this to be set to the actual endScore!
+        userId 
     };
     
 };
