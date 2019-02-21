@@ -81,23 +81,23 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             data: action.data.participants,
         });
-    // } else if (action.type === POST_GAME_SUCCESS) {
-    //     // console.log('game is ', action.data)
-    //     return Object.assign({}, state, {
-    //         data: action.data,
-    //         error: null,
-    //         loading: false,
-    //     });
-    // } else if (action.type === POST_GAME_ERROR) {
-    //     return Object.assign({}, state, {
-    //         error: action.error,
-    //         loading: false,
-    //     });
-    // }
-    // else if (action.type === POST_GAME_REQUEST) {
-    //     return Object.assign({}, state, {
-    //         loading: true,
-    //     });
+    } else if (action.type === POST_GAME_SUCCESS) {
+        // console.log('game is ', action.data)
+        return Object.assign({}, state, {
+            data: action.data,
+            error: null,
+            loading: false,
+        });
+    } else if (action.type === POST_GAME_ERROR) {
+        return Object.assign({}, state, {
+            error: action.error,
+            loading: false,
+        });
+    }
+    else if (action.type === POST_GAME_REQUEST) {
+        return Object.assign({}, state, {
+            loading: true,
+        });
     } else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
     else if (action.type === UPDATE_SCORE_SUCCESS) return {...state, data: action.data, error: null, loading: false};
     else if (action.type === UPDATE_SCORE_ERROR) return {...state, error: action.error, loading: false };
