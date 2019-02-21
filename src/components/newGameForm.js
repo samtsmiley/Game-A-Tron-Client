@@ -20,12 +20,12 @@ const renderField = ({
 )
 
 const renderRules = ({ fields, meta: { error, submitFailed } }) => (
-  <div>
+  <div className="rules">
     <p>Enter Rules</p>  
     
       {fields.map((rule, index) => (
        
-        <div key={index} className="rules">
+        <div key={index} className="rules-fields">
           <Field
           name={`${rule}.description`}
           type="text"
@@ -35,14 +35,14 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
           type="button"
           title="Remove Rule"
           onClick={() => fields.remove(index)}
-          >X</button>
+          >x</button>
 
         </div> 
       ))}
     
   <div>
       <button type="button" onClick={() => fields.push({})}>
-        Add Rule
+        +
       </button>
       {submitFailed && error && <span>{error}</span>}
     </div>
@@ -54,32 +54,32 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
     <p>Enter Scoring Opportunites</p>
   
     {fields.map((score, index) => (
-      <div key={index}>
+      <div key={index} className="scores-fields">
         <Field
           name={`${score}.description`}
           type="text"
           component={renderField}
-          label="What do you have to do?"
+          label="Action"
           placeholder="Enter an Action"
         />
         <Field
           name={`${score}.points`}
           type="number"
           component={renderField}
-          label="How many points is it worth?"
+          label="Point Value"
           placeholder="Enter a Number"
         />
         <button
         type="button"
         title="Remove Score"
         onClick={() => fields.remove(index)}
-        >X</button>
+        >x</button>
       </div> 
     ))}
   
     <div>
       <button type="button" onClick={() => fields.push({})}>
-        Add
+        +
       </button>
         {submitFailed && error && <span>{error}</span>}
       </div>
@@ -91,37 +91,44 @@ const NewGameForm = props => {
 
   return (
      <form onSubmit={handleSubmit}> 
-      <Field
-        name="name"
-        type="text"
-        component={renderField}
-        label="Game Name"
-      />
-       <Field
-        name="description"
-        type="textarea"
-        component={renderField}
-        label="Game Description"
-        placeholder="Tell people what your game is all about. :)"
-      />
+      <div className="title-desc">
+        <Field
+          name="name"
+          type="text"
+          component={renderField}
+          label="Game Name"
+        />
+        <Field
+          name="description"
+          type="textarea"
+          component={renderField}
+          label="Game Description"
+          placeholder=""
+        />
+      </div>
       <FieldArray name="rules" component={renderRules} />
       <FieldArray name="scores" component={renderScores} />
-      <Field
-        name="endScore"
-        type="number"
-        component={renderField}
-        label="Game End Conditions"
-        placeholder="Enter Max Score"
-      />
-      <div>
+      <div className="title-desc">
+          <Field
+            name="endScore"
+            type="number"
+            component={renderField}
+            label="Game End Condition"
+            placeholder="Enter Max Score"
+          />
+      </div>
+      <div className="reset-submit-btn">
+        
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Reset
+        </button>
+
         <button 
           type="submit" 
           disabled={submitting}>
           Submit
         </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
+
       </div>
     </form>
   )

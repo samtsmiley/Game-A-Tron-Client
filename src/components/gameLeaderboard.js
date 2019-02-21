@@ -22,7 +22,6 @@ const mapStateToProps = state => {
     return {
         selectedGame: state.game.data,
         gameParticipants: state.game.data.participants
- 
     };
 };
 

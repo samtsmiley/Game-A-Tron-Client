@@ -4,83 +4,49 @@ import './gameLeaderboard.css';
 
 export default function GameLeaderboardListPlayers(props) {
 
-//Access the players in current game selected
+// > Access the players in current game selected
+// > Determine rank based on player score
+// > Sort player from Highest to Lowest
+// > Return Sorted list
+// > For First, Second, Third highlight
+// > List all other players after with rank #
 
-//Determine rank based on player score
-
-//Sort player from Highest ot Lowest
-
-//Return Sorted list
-
-//For First, Second, Third highlight
-
-//List all other players after with rank#
-
-// console.log('GAME DATA @ LIST: ',props.gameParticipants);
+//console.log('GAME DATA @ LIST: ',props.gameParticipants);
 
 let rankedPlayersListItem = <p>No Players Yet</p>;  
 
+//If the participants is available to read...
 if(props.gameParticipants) {
 
-//REF
-//console.log('username? ',props.selectedGame.participants[0].userId.username); 
-
-//console.log('score? ',props.selectedGame.participants[0].score);
+  //If the participants array is populated with at least one player...
+  if(props.gameParticipants.length !== 0){
  
-if(props.gameParticipants.length !== 0){
+  //console.log('HERE at player list', props.gameParticipants);
 
-///  
+  //test array...
+  let testScores = [
+    {score: 55, username: 'player name 11'},
+    {score: 15, username: 'player name 3'},
+    {score: 3, username: 'player name 46'},
+    {score: 72, username: 'player name 5'},
+  ];
 
-// console.log('HERE at player list', props.gameParticipants);
+  //note this is based the structure of the participants array as:
+  //[{score:55,username:'name'},{score:11,username:'name'},etc...
 
-//note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
-let playerArrSorted = quickSort(props.gameParticipants);
+  //this function sorts the scores in the player objects based on the key: score...
+  function sortScores(array, key){
 
-///
-//-->> Quick Sort stuff -->>
+    return array.sort((a, b) => {
+      return a[key]-b[key];
+    });
+
+  }
+
+  const playerArrSorted = sortScores(testScores,'score');
+ 
+  console.log('playerArrSorted ',playerArrSorted);
    
-    let count = 0;
-  
-    function quickSort(array, start=0, end=array.length){
-  //finished
-
-  if (start >= end) {
-    return array;
-  }
-
-  const middle = partition(array, start, end);
-  array = quickSort(array, start, middle);
-  array = quickSort(array, middle + 1, end);
-  return array;
-
-    }
-
-    function swap(array, i, j){
-  const tmp = array[i].score;
-  array[i].score = array[j].score;
-  array[j].score = tmp;
-    }
-
-    function partition(array, start, end) {
-  //let count = 0;
-  const pivot = array[end - 1].score;//5
-  let j = start;//0
-  for (let i=start; i<end - 1; i++) {
-    count = count + 1;
-    if (array[i].score >= pivot) { 
-      swap(array, i, j);
-      j++;
-    }
-  }
-  swap(array, end-1, j);
-  
-  return j;
-    }
-
-  //-->> Quick Sort stuff
-///
-
-
   //index 1-3
   rankedPlayersListItem = playerArrSorted.map((player,index) => {
     let placer = {
@@ -94,49 +60,26 @@ let playerArrSorted = quickSort(props.gameParticipants);
       : `Rank: ${index + 1} `
 
     const bar = index === 2 
-      ? <hr/>
+      ? <React.Fragment><br/><hr/><br/></React.Fragment>
       : ''
+
+    //My need this structure...still in progress   
+    // const playerName = player.userId.username
+    //   ? player.userId.username
+    //   : null
+
+    const playerName = player.username;
 
     return (
       <li key={index}>
-        <button>{content} {player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
+        <button>{content} {playerName} &nbsp;&nbsp; Score: {player.score}</button>
         {bar}
       </li> 
     );
-    // if(index < 3){
-
-    //   //let playerName =  // access the users list by id
-
-      
-    //   let bar = null;
-
-    //   if(index === 0){placer='1st'}
-    //   if(index === 1){placer='2nd'}
-    //   if(index === 2){
-    //     placer='3rd';
-    //     bar = <hr/>;
-    //   }
-
-    //   //first, second, third
-      
-    // }
-    // else{
-      
-    //   //everything past 3rd place...
-    //   return(
-         
-    //     <li key={index}>
-    //       <button>{player.userId.username} &nbsp;&nbsp; Score: {player.score}</button>
-    //     </li>
-    //   );
-    // }
+    
   }); 
 
-
-  ///
-
-}//outer 2
- 
+  }//inner
 
 }//outer
 

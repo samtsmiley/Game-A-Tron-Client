@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import NewGameForm from "./newGameForm";
 import  {postGame}  from '../actions/game'
 import {fetchMyGamesRequest} from '../actions/sideBar-actions';
-
+import './newGameForm.css'
 
 export class NewGame extends React.Component {
    
