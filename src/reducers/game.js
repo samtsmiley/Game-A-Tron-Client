@@ -10,7 +10,12 @@ import {
     FETCH_All_GAMES_REQUEST,
     UPDATE_SCORE_REQUEST,
     UPDATE_SCORE_SUCCESS,
-    UPDATE_SCORE_ERROR
+    UPDATE_SCORE_ERROR,
+    POST_GAME_ERROR,
+    POST_GAME_SUCCESS,
+    POST_GAME_REQUEST,
+    JOIN_GAME_SUCCESS_SET_STATE,
+    
 } from '../actions/game';
 
 const initialState = {
@@ -39,8 +44,9 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === JOIN_GAME_SUCCESS) {
         // return {...state.data.participants, datap }
+        console.log('in reducer',action.data)
         return Object.assign({}, state, {
-            // data: action.data,
+            data: action.data,
             error: null,
             loading: false,
         });
@@ -70,6 +76,28 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: true,
         });
+    }
+    else if (action.type === JOIN_GAME_SUCCESS_SET_STATE) {
+        return Object.assign({}, state, {
+            data: action.data.participants,
+        });
+    // } else if (action.type === POST_GAME_SUCCESS) {
+    //     // console.log('game is ', action.data)
+    //     return Object.assign({}, state, {
+    //         data: action.data,
+    //         error: null,
+    //         loading: false,
+    //     });
+    // } else if (action.type === POST_GAME_ERROR) {
+    //     return Object.assign({}, state, {
+    //         error: action.error,
+    //         loading: false,
+    //     });
+    // }
+    // else if (action.type === POST_GAME_REQUEST) {
+    //     return Object.assign({}, state, {
+    //         loading: true,
+    //     });
     } else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
     else if (action.type === UPDATE_SCORE_SUCCESS) return {...state, data: action.data, error: null, loading: false};
     else if (action.type === UPDATE_SCORE_ERROR) return {...state, error: action.error, loading: false };

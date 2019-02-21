@@ -25,7 +25,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
     
       {fields.map((rule, index) => (
        
-        <div key={index} class="rules">
+        <div key={index} className="rules">
           <Field
           name={`${rule}.description`}
           type="text"

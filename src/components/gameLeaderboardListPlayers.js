@@ -16,7 +16,7 @@ export default function GameLeaderboardListPlayers(props) {
 
 //List all other players after with rank#
 
-console.log('GAME DATA @ LIST: ',props.gameParticipants);
+// console.log('GAME DATA @ LIST: ',props.gameParticipants);
 
 let rankedPlayersListItem = <p>No Players Yet</p>;  
 
@@ -31,7 +31,7 @@ if(props.gameParticipants.length !== 0){
 
 ///  
 
-console.log('HERE at player list', props.gameParticipants);
+// console.log('HERE at player list', props.gameParticipants);
 
 //note this is based on an object structure of participants[{score:55},{score:11},{score:22}] etc...
 let playerArrSorted = quickSort(props.gameParticipants);
