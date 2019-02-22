@@ -8,7 +8,7 @@ import GameLeaderboard from './gameLeaderboard';
 // import  GameCreatePost  from './gameCreatePost';
 import  CreatePostForm  from './createPostForm';
 
-import { GamePostsList } from './GamePostsList';
+import  GamePostsList  from './GamePostsList';
 import {joinGame} from '../actions/game'
 import './gameDashboard.css';
 

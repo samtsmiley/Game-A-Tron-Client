@@ -2,11 +2,16 @@ import {
     FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST,
     FETCH_ALL_POSTS_FOR_USER_BY_ID_SUCCESS,
     FETCH_ALL_POSTS_FOR_USER_BY_ID_ERROR,
+    POST_POST_SUCCESS,
+    POST_POST_ERROR,
+    POST_POST_REQUEST,
+
 } from '../actions/post';
 
 const initialState = {
     error: null,
     loading: false,
+    // posts: '',
     myPosts: [{createdAt: "",
     description: "",
     gameId: "",
@@ -29,11 +34,25 @@ export default function reducer(state = initialState, action) {
             error: action.error,
             loading: false,
         });
-    }
-    else if (action.type === FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST) {
+    } else if (action.type === FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST) {
         return Object.assign({}, state, {
             loading: true,
         });
-    }      
+    } else if (action.type === POST_POST_ERROR) {
+        return Object.assign({}, state, {
+            error: action.error,
+            loading: false,
+        });
+    } else if (action.type === POST_POST_SUCCESS) {
+        return Object.assign({}, state, {
+            // posts: action.data,
+            error: null,
+            loading: false,
+        });
+    } else if (action.type === POST_POST_REQUEST) {
+        return Object.assign({}, state, {
+            loading: true,
+        });
+    }        
     return state;
 }
