@@ -10,7 +10,7 @@ export class GameLeaderboard extends React.Component {
     render() {
 
       return (
-        <div >
+        <div className="card">
             <h3>Game Leaderboard: </h3>
             <GameLeaderboardListPlayers gameParticipants={this.props.gameParticipants}/>
         </div>

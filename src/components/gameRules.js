@@ -8,44 +8,29 @@ export class GameRules extends React.Component {
     render() {
 
     let theRulesList = null;
-      
-    if(this.props.selectedGame) {
 
-        if(this.props.selectedGame.rules.length !== 0){
- 
-            let theRules = this.props.selectedGame.rules.map((gameRule,index) => {
-                
-                return(
-               
-                  <li key={index}>  
-                  <p>Rule #{index + 1}: &nbsp; {this.props.selectedGame.rules[index].description}</p>
-                  </li>
-            
-                  );
-          
-            });
-  
-          if(theRules.length !== 0){
-              theRulesList = <ul>{theRules}</ul>;           
-          }
-  
-          
+if(this.props.selectedGame) {
+  if(this.props.selectedGame.rules.length !== 0){
+    let theRules = this.props.selectedGame.rules.map((gameRule,index) => { 
+      return(
+        <li key={index} className="subcard">  
+         <p>Rule #{index + 1}: &nbsp; {this.props.selectedGame.rules[index].description}</p>
+        </li>
+      );
+    });
 
-        }
-  
-        
-
+    if(theRules.length !== 0){
+    theRulesList = <ul>{theRules}</ul>;           
     }
-
- 
-
-      return (
-        <div className="gameRules">
-        <h3>The Game Rules:</h3>
-         {theRulesList}
-        </div>
-        );
-    }
+  }
+}
+  return (
+    <div className="gameRules card">
+      <h3>The Game Rules:</h3>
+      {theRulesList}
+    </div>
+    );
+}
 }
 
 const mapStateToProps = state => {

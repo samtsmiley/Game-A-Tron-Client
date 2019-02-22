@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
-import moment from 'moment'
+import moment from 'moment';
+import './profile.css';
 
 // import GamePostsList from "./GamePostsList";
 
@@ -10,7 +11,7 @@ export class Profile extends React.Component {
 
   render() {
     const posts = this.props.myPosts.map(post =>
-      <li className="onePost" key={post.id}>    
+      <li className="onePost subcard" key={post.id}>    
       <p className="gameButton">
      I scored {post.value} points for {post.description} in game {post.gameId} at {moment(post.createdAt).format("MMM Do YYYY, h:mm:ss a")} .
        </p> 
@@ -18,7 +19,7 @@ export class Profile extends React.Component {
 )
       
     return (
-        <div className="container">
+        <div className="container card">
             <h2>My Score History</h2>
             <ul>
             {posts}

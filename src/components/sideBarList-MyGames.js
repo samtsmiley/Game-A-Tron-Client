@@ -8,16 +8,24 @@ export default function SideBarListMyGames(props) {
   let theList = <p>No Games Yet</p>;
   
   if(props.allMyGames.games.length !== 0) {
-    myGames = props.allMyGames.games.map((game,index) => {
+    myGames = props.allMyGames.games.map((game, index) => {
         
       //* could add select css here?
 
       return(
      
         <li key={index}>
-          <button value={props.allMyGames.games[index].id} 
-          onClick={(e)=> props.onSelect(e.currentTarget.value)}>
-          {props.allMyGames.games[index].name}</button>
+          <button 
+          value={props.allMyGames.games[index].id} 
+          onClick={(e) => {
+            console.log('the props inside list are ', props);
+            
+            props.onSelect(e.currentTarget.value);
+            props.showMyGames();
+          }}
+          >
+          {props.allMyGames.games[index].name}
+          </button>
         </li>
   
         );

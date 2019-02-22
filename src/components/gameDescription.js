@@ -7,7 +7,7 @@ export class GameDescription extends React.Component {
 
     render() {
       return (
-        <div className="gameDescription">
+        <div className="gameDescription card">
         <h3>About this Game</h3>
         <p>{this.props.gameDesc}</p>
         </div>
