@@ -30,6 +30,8 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
           name={`${rule}.description`}
           type="text"
           component={renderField}
+          label={`Rule ${index + 1}`}
+          placeholder="Enter a Rule"
           />
         <button
           type="button"
