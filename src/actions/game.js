@@ -35,7 +35,7 @@ export const postGame = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('post game res:',res )
+            // console.log('post game res:',res )
             dispatch(postGameSuccess(res))
         })
         .catch(err => {
@@ -193,7 +193,7 @@ export const updateScoreError = error => ({
 export const updateScore = (gameId, body) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(updateScoreRequest());
-    return fetch(`${API_BASE_URL}/scores/${gameId}`, {
+    return fetch(`${API_BASE_URL}/games/scores/${gameId}`, {
         method: 'PUT',
         headers: {
             Authorization: `Bearer ${authToken}`,
@@ -202,6 +202,8 @@ export const updateScore = (gameId, body) => (dispatch, getState) => {
         body: JSON.stringify(body)
     }).then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => dispatch(updateScoreSuccess(data)))
+        .then(data => {
+            // console.log('res from updateScore',data)
+            dispatch(updateScoreSuccess(data))})
         .catch(err => dispatch(updateScoreError(err)));
 };
