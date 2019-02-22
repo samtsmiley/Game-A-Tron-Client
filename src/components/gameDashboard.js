@@ -11,7 +11,7 @@ import  CreatePostForm  from './createPostForm';
 import { GamePostsList } from './GamePostsList';
 import {joinGame} from '../actions/game'
 import './gameDashboard.css';
-
+ 
 export class Game extends React.Component {
     componentDidMount() {
     }
@@ -24,6 +24,7 @@ export class Game extends React.Component {
   //     const amIAParticipant = this.props.participants.some((participant) => {
   //   return participant.userId.id === this.props.userId
   // })
+ 
       return (
         <div className="game">
           <h1>{this.props.gameName}</h1>
@@ -38,6 +39,7 @@ export class Game extends React.Component {
         {/* <GameCreatePost/> */}
         <CreatePostForm/>        
         <GamePostsList/>
+        
         </div>
         );
     }
@@ -53,6 +55,8 @@ const mapStateToProps = state => {
   //   return participant.userId.id === state.auth.currentUser.id
   // })
     return {
+      gameData:state.game.data,
+      showPostFocus:state.postFocus.showPostWindow,
       userId:state.auth.currentUser.id,
       gameName:state.game.data.name,
       userName:state.auth.currentUser.username,
