@@ -23,21 +23,19 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="firstName">First name</label>
-
-                <Field component={Input} type="text" name="firstName" />
-
-                <label htmlFor="lastName">Last name</label>
-
-                <Field component={Input} type="text" name="lastName" />
-
                 <label htmlFor="username">Username</label>
-                
                 <Field
                     component={Input}
                     type="text"
                     name="username"
                     validate={[required, nonEmpty, isTrimmed]}
+                />
+                <label htmlFor="email">Email</label>
+                <Field
+                    component={Input}
+                    type="email"
+                    name="email"
+                    validate={[isTrimmed]}
                 />
                 <label htmlFor="password">Password</label>
                 <Field
@@ -58,6 +56,7 @@ export class RegistrationForm extends React.Component {
                     disabled={this.props.pristine || this.props.submitting}>
                     Register
                 </button>
+                <p>Please Note: You are not required to give us your email.  If you do, we will only use it to reset your password.</p>
             </form>
         );
     }
