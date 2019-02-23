@@ -26,7 +26,7 @@ export class CreatePostForm extends React.Component {
           showDropdownMenu(event) {
             event.preventDefault();
  
-            this.props.dispatch(showPostFocus());
+            //this.props.dispatch(showPostFocus());
 
             console.log('showDropdownMenu clicked');
 
@@ -73,7 +73,7 @@ export class CreatePostForm extends React.Component {
 
 
     let postMenu = (
-      this.state.displayMode === 'showDrop' ? <PostFocus /> : //<ul className='sul'>{scores}</ul>
+      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : //<ul className='sul'>{scores}</ul>
       this.state.displayMode === 'noDrop'
     );
 

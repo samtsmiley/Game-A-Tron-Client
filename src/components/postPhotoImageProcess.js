@@ -2,60 +2,12 @@ import React from 'react';
 import PostPhotoImageLoading from './postPhotoImageLoading';
 import PostPhotoButtons from './postPhotoButtons';
 import PostPhotoImages from './postPhotoImages';
-
-import {API_BASE_URL} from '../config';
-
-export default class PostPhotoImageProcess extends React.Component {
-
-  constructor(props){
-    super(props);
-    this.state = {
-
-      uploading: false,
-      images:[]
-
-    }
-
-  }
-
-  onChange = e => {
-    const files = Array.from(e.target.files)
-    this.setState({
-      uploading: true
-    })
-
-    const formData = new FormData();
-
-    files.forEach((file,i)=>{
-      formData.append(i,file)
-    })
-
-    fetch(`${API_BASE_URL}/image-upload`,{
-      method: 'POST',
-      body: formData
-    })
-    .then(res => res.json())
-    .then(images => {
-      this.setState({
-        uploading: false,
-        images
-      })
-
-    })
  
-  }
-
-  removeImage = id => {
-      
-      this.setState({
-        images: this.state.images.filter(image => image.public_id !== id)
-      })
-  
-  }
+export default class PostPhotoImageProcess extends React.Component {
  
   render() {
 
-    const { uploading, images } = this.state;
+    const { uploading, images } = this.props.theState;
   
     const content = () => {
  
@@ -63,9 +15,9 @@ export default class PostPhotoImageProcess extends React.Component {
         case uploading: 
           return <PostPhotoImageLoading />
         case images.length > 0: 
-          return <PostPhotoImages images={images} removeImage={this.removeImage} />
+          return <PostPhotoImages images={this.props.images} removeImage={this.props.removeImage} />
         default: 
-          return <PostPhotoButtons onChange={this.onChange} /> 
+          return <PostPhotoButtons onChange={this.props.onChange} noPhoto={this.props.noPhoto}/> 
       }
        
     } 
@@ -74,7 +26,7 @@ export default class PostPhotoImageProcess extends React.Component {
 
       <div>
         <div>
-          {content() }
+          {content()}
         </div>
       </div>
 
