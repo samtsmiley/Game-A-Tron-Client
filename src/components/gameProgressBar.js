@@ -15,7 +15,7 @@ export class GameProgressBar extends React.Component {
         let currentUserId = this.props.userId;
         let currentUserScore = 0;
 
-        //smelly but working...
+        //Ok yes, it's smelly but it's working...
         const findCurrentUserScore = this.props.allGameData.participants.map((user,index) => {
   
           if(this.props.allGameData.participants[index].userId.id === currentUserId){
