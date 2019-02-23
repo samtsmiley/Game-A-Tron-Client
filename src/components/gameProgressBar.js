@@ -36,6 +36,7 @@ export class GameProgressBar extends React.Component {
       
         });
   
+        //make sure both values are no falsey
         if(currentUserScore && maxScore){
             currentUserPercentProgress = ((currentUserScore/maxScore) * 100).toFixed(2);
         }
