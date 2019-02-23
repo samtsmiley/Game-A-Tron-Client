@@ -18,8 +18,8 @@ export class PostFocus extends React.Component {
       postComment:'',
       scoreValue: 0,
       scoreDescription: null,
-      postImageSource:'',
-      postImageId:'',
+      postImageSource: null,
+      postImageId: null,
       uploading: false,
       images:[],
       showPhotoProcess: true,
@@ -42,11 +42,37 @@ export class PostFocus extends React.Component {
     //Add user comment -- from input field
     //Add user image or null from postImageSource
 
-    console.log('whats going to postPost: ',this.state.scoreDescription,this.props.gameId,this.state.scoreValue);
-    console.log('whats going to updateScore: ',this.props.gameId,this.props.userId,(this.props.score + this.state.scoreValue));
+    console.log('whats going to postPost: ',
+    this.state.scoreDescription,
+    this.props.gameId,
+    this.state.scoreValue,
+    this.state.postComment,
+    this.state.images[0].secure_url,
+    this.state.images[0].public_id,'end>>');
 
-    this.props.dispatch(postPost({description:this.state.scoreDescription, gameId:this.props.gameId, value:this.state.scoreValue }));
-    this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score: this.props.score + this.state.scoreValue}));
+    console.log('whats going to updateScore: ',
+    this.props.gameId,
+    this.props.userId,
+    (this.props.score + this.state.scoreValue));
+
+    //TO THE POSTS
+    this.props.dispatch(postPost(
+      {
+        description:this.state.scoreDescription,
+        gameId:this.props.gameId,
+        value: parseInt(this.state.scoreValue),
+        comment: this.state.postComment,
+        image: this.state.images[0].secure_url,
+        imageId: this.state.images[0].public_id
+      }));
+  
+    //TO USER 
+    this.props.dispatch(updateScore(
+      this.props.gameId,
+      {
+        userId: this.props.userId,
+        score: parseInt(this.props.score) + parseInt(this.state.scoreValue)
+      }));
 
     this.props.dispatch(this.props.hideDropdownMenu);
  
@@ -101,7 +127,7 @@ export class PostFocus extends React.Component {
     .then(images => {
       this.setState({
         uploading: false,
-        images,
+        images, 
         postReady: true
       })
 
@@ -212,12 +238,21 @@ render(){
 
 const mapStateToProps = state => {
 
+  let score = 0;
+  const currentParticipant = state.game.data.participants
+    .find(participant =>
+      participant.userId.id === state.auth.currentUser.id);
+
+  if(currentParticipant) {score = currentParticipant.score;}
+   
+
   return {
 
-    userId: state.auth.currentUser.id,
-    gameId: state.game.data.id,
     selectGameData: state.game.data,
-    scoreOpps: state.game.data.scores
+    scoreOpps: state.game.data.scores,
+    gameId: state.game.data.id,
+    userId: state.auth.currentUser.id,
+    score
   }
    
 }

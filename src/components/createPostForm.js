@@ -51,6 +51,8 @@ export class CreatePostForm extends React.Component {
            
     render() {
 
+      console.log('current users score: ',this.props.score);
+
       //REF
       // console.log('this>>> ',this.props.selectGameData);
        

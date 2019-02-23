@@ -6,7 +6,7 @@ export default function(props) {
     return(
 
       <div key={i} className='fadein'>
-        <div onClick={()=>props.removeImage(image.public_id)}
+        <div onClick={() => props.removeImage(image.public_id)}
              className='delete'>CLICK HERE TO USE A DIFFERENT IMAGE
         </div>
         <h3>IMAGE UPLOADED: </h3>
