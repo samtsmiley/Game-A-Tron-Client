@@ -40,28 +40,40 @@ export class PostFocus extends React.Component {
     //Add user comment -- from input field
     //Add user image or null from postImageSource
 
-    console.log('whats going to postPost: ',
-    this.state.scoreDescription,
-    this.props.gameId,
-    this.state.scoreValue,
-    this.state.postComment,
-    this.state.images[0].secure_url,
-    this.state.images[0].public_id,'end>>');
+    // console.log('whats going to postPost: ',
+    // this.state.scoreDescription,
+    // this.props.gameId,
+    // this.state.scoreValue,
+    // this.state.postComment,
+    // this.state.images[0].secure_url,
+    // this.state.images[0].public_id,'end>>');
 
-    console.log('whats going to updateScore: ',
-    this.props.gameId,
-    this.props.userId,
-    (this.props.score + this.state.scoreValue));
+    // console.log('whats going to updateScore: ',
+    // this.props.gameId,
+    // this.props.userId,
+    // (this.props.score + this.state.scoreValue));
+
+    let imageAdd = null;
+    let imageIdAdd = null;
+
+    if(this.state.images.length > 0){
+
+      imageAdd = this.state.images[0].secure_url;
+      imageIdAdd = this.state.images[0].public_id;
+
+    }
+ 
 
     //TO THE POSTS
     this.props.dispatch(postPost(
+ 
       {
         description:this.state.scoreDescription,
         gameId:this.props.gameId,
         value: parseInt(this.state.scoreValue),
         comment: this.state.postComment,
-        image: this.state.images[0].secure_url,
-        imageId: this.state.images[0].public_id
+        image: imageAdd,
+        imageId: imageIdAdd
       }));
   
     //TO USER 
@@ -124,10 +136,18 @@ export class PostFocus extends React.Component {
     })
     .then(res => res.json())
     .then(images => {
+
+      let setBool = false;
+
+      if(this.state.scoreDescription){
+
+        setBool = true;
+      }
+
       this.setState({
         uploading: false,
         images, 
-        postReady: true
+        postReady: setBool
       })
 
     })
