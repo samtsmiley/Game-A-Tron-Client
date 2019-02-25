@@ -7,7 +7,7 @@ export default ({value, description, gameId, createdAt, userId, id, iScored, com
     ? 'I'
     : userId.username
   const showGame = iScored
-    ? `in game ${gameId}`
+    ? `in game ${gameId.name}`
     : ''
 
     return (
