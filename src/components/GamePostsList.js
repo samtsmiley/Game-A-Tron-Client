@@ -7,7 +7,7 @@ export class GamePostsList extends React.Component {
     }    
 
     render() {
-        const posts = this.props.posts.map((post, index) => {
+        const posts = this.props.posts.slice(0).reverse().map((post, index) => {
             return <Post key={index} {...post} iScored={false}/>
           })
 
