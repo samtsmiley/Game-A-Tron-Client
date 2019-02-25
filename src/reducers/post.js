@@ -7,18 +7,22 @@ import {
 const initialState = {
     error: null,
     loading: false,
-    myPosts: [{createdAt: "",
-    description: "",
-    gameId: "",
-    id: "",
-    updatedAt: "",
-    userId: "",
-    value: ''}]
+    myPosts: [{createdAt: '',
+    description: '',
+    gameId: '',
+    id: '',
+    updatedAt: '',
+    userId: '',
+    value: '',
+    comment: '',
+    image: null,
+    imageId: null
+    }]
 };
 
 export default function reducer(state = initialState, action) {
     if (action.type === FETCH_ALL_POSTS_FOR_USER_BY_ID_SUCCESS) {
-        // console.log('game is ', action.data)
+        console.log('game is @ game reducer! ', action.data)
         return Object.assign({}, state, {
             myPosts: action.data,
             error: null,

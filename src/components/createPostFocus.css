@@ -1,0 +1,11 @@
+.postFocusWindow {
+  text-align: center;
+  background-color: white;
+  border-color: grey;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 12px;
+ 
+}

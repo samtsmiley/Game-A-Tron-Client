@@ -4,6 +4,7 @@ import auth from './auth'
 import sideBar from './sideBar-reducer';
 import game from './game'
 import post from './post'
+import postFocus from './postFocus';
 
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   sideBar,
   game,
   post,
+  postFocus
 
 });
 

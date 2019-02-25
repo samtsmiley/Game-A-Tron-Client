@@ -7,15 +7,16 @@ import {connect} from 'react-redux';
 import './createPostForm.css'
 import {postPost} from '../actions/post'
 import {updateScore} from '../actions/game';
-
-
-
+import PostFocus from './postFocus';
+import{showPostFocus,exitPostFocus} from '../actions/postFocus'
+  
 export class CreatePostForm extends React.Component {
     constructor(){
         super();
        
         this.state = {
               displayMenu: false,
+              displayMode: 'noDrop'
             };
             this.showDropdownMenu = this.showDropdownMenu.bind(this);
             this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
@@ -24,42 +25,74 @@ export class CreatePostForm extends React.Component {
 
           showDropdownMenu(event) {
             event.preventDefault();
-            this.setState({ displayMenu: true }, () => {
-            document.addEventListener('click', this.hideDropdownMenu);
+ 
+            //this.props.dispatch(showPostFocus());
+
+            console.log('showDropdownMenu clicked');
+
+            this.setState({ displayMode: 'showDrop' }, () => {
+            //document.addEventListener('click', this.hideDropdownMenu);
             });
           }
         
           hideDropdownMenu() {
-            this.setState({ displayMenu: false }, () => {
+            this.setState({ displayMode: 'noDrop' }, () => {
               document.removeEventListener('click', this.hideDropdownMenu);
             });
         
           }
+
+          showItemFocus(event) {
+
+            console.log('this is hit!');
+ 
+          }
             
            
     render() {
-        const scores = this.props.scoreOpps.map(item =>
-            <li className="scoreName" key={item.description}>    
-            <p className="gameButton" onClick={() => {
-                this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }));
-                this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score: this.props.score + item.points}));
-             }}>
-           I {item.description} for {item.points} points.
-             </p> 
-             {/* <p>Points: {item.points}</p>  */}
-         </li>
-     )
+
+      console.log('current users score: ',this.props.score);
+
+      //REF
+      // console.log('this>>> ',this.props.selectGameData);
+       
+      //   const scores = this.props.scoreOpps.map(item =>
+      //       <li className="scoreName" key={item.description}>    
+      //       <button className="gameButton" onClick={() => {
+
+      //         // this.setState({
+      //         //   displayMode: 'noDrop'
+      //         // });
+      //           //these will be on submit button for postFocus window...
+      //           //this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }));
+      //           //this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score: this.props.score + item.points}));
+      //        }}>
+      //      {/* I {item.description} for {item.points} points. */}
+      //        </button> 
+      //        {/* <p>Points: {item.points}</p>  */}
+      //    </li>
+      // )
+
+
+    let postMenu = (
+      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : //<ul className='sul'>{scores}</ul>
+      this.state.displayMode === 'noDrop'
+    );
+
+    let showButton = (
+      this.state.displayMode === 'noDrop' ? <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div> :
+      null
+    );
+     
+    if(this.state.displayMode === 'showDrop'){
+      showButton = null;
+    }
 
 
     return (
         <div  className="sdropdown" >
-         <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div>
-
-          { this.state.displayMenu ? (
-          <ul className='sul'>
-       {scores}
-          </ul>):(null)}
-
+        {postMenu} 
+        {showButton}  
        </div>
 
     );
@@ -67,11 +100,14 @@ export class CreatePostForm extends React.Component {
 }
 const mapStateToProps = state => {
     // console.log('>>>>>',state)
+     
     let score = 0;
     const currentParticipant = state.game.data.participants.find(participant =>
       participant.userId.id === state.auth.currentUser.id);
-    if (currentParticipant) score = currentParticipant.score;
+    if (currentParticipant) {score = currentParticipant.score;}
+
       return {
+        selectGameData: state.game.data,
         scoreOpps: state.game.data.scores,
         gameId: state.game.data.id,
         userId: state.auth.currentUser.id,
