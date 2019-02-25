@@ -10,12 +10,13 @@ export default function GameLeaderboardListPlayers(props) {
 // > Return Sorted list
 // > For First, Second, Third highlight
 // > List all other players after with rank #
+//Logic to determine if game is over and show end of game info
 
-console.log('GAME DATA @ LIST: ',props.gameParticipants);
+//console.log('GAME DATA @ LIST: ',props.gameParticipants);
 
-let rankedPlayersListItem = <p>No Players Yet</p>;  
-
-
+let rankedPlayersListItem = <p>No Players Yet</p>;
+let theWinner = null;  
+ 
 //If the participants array is populated with at least one player...
 if(props.gameParticipants.length > 0){
     
@@ -55,14 +56,22 @@ if(props.gameParticipants.length > 0){
     );
     
   }); 
+  
+  //Logic for winner -- game over
+  if(playerArrSorted[0].score >= props.gameEndScore){
+
+    theWinner = <div><h2>This Game Has Been Won,</h2> 
+    <h1>The Winner Is:</h1> 
+    <h1>{props.gameParticipants[0].userId.username}!!! with a score of {playerArrSorted[0].score} points!!!</h1></div>
+ 
+  }
 
 } 
-
-
-
+ 
   return (
 
     <div>
+      <div>{theWinner}</div>
       <ul id='gameLeaderboardListPlayers'>
        {rankedPlayersListItem}
       </ul>
