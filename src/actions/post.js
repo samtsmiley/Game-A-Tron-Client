@@ -4,15 +4,15 @@ import {normalizeResponseErrors} from './utils';
 
 //POST a post
 export const POST_POST_SUCCESS = 'POST_POST_SUCCESS';
-export const postPostSuccess = (data) => ({
+export const postPostSuccess = (data) => ({ 
     type: POST_POST_SUCCESS,
-    data,
+    data
 });
 
 export const POST_POST_ERROR = 'POST_POST_ERROR';
 export const postPostError = error => ({
     type: POST_POST_ERROR,
-    error,
+    error
 });
 
 export const POST_POST_REQUEST = 'POST_POST_REQUEST';
@@ -35,7 +35,7 @@ export const postPost = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            // console.log('post res:',res )
+            console.log('post res:',res )
             dispatch(postPostSuccess(res))
         })
         .catch(err => {
@@ -74,8 +74,9 @@ export const fetchAllPostsForUserById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
+        // .then(res => console.log('res from fetch all by id:',res))
         .then(data => {
+            // console.log('res from fetch all by id:',data)
             dispatch(fetchAllPostsForUserByIdSuccess(data))})
         .catch(err => {
             dispatch(fetchAllPostsForUserByIdError(err));

@@ -10,43 +10,24 @@ export default function GameLeaderboardListPlayers(props) {
 // > Return Sorted list
 // > For First, Second, Third highlight
 // > List all other players after with rank #
+//Logic to determine if game is over and show end of game info
 
-//console.log('GAME DATA @ LIST: ',props.gameParticipants);
-
-let rankedPlayersListItem = <p>No Players Yet</p>;  
-
-//If the participants is available to read...
-if(props.gameParticipants) {
-
-  //If the participants array is populated with at least one player...
-  if(props.gameParticipants.length !== 0){
  
-  //console.log('HERE at player list', props.gameParticipants);
-
-  //test array...
-  let testScores = [
-    {score: 55, username: 'player name 11'},
-    {score: 15, username: 'player name 3'},
-    {score: 3, username: 'player name 46'},
-    {score: 72, username: 'player name 5'},
-  ];
-
-  //note this is based the structure of the participants array as:
-  //[{score:55,username:'name'},{score:11,username:'name'},etc...
-
+let rankedPlayersListItem = <p>No Players Yet</p>;
+let theWinner = null;  
+ 
+//If the participants array is populated with at least one player...
+if(props.gameParticipants.length > 0){
+    
   //this function sorts the scores in the player objects based on the key: score...
-  function sortScores(array, key){
-
+  function sortByScores(array, key){
     return array.sort((a, b) => {
-      return a[key]-b[key];
+      return b[key]-a[key];
     });
-
   }
 
-  const playerArrSorted = sortScores(testScores,'score');
- 
-  // console.log('playerArrSorted ',playerArrSorted);
-   
+  const playerArrSorted = sortByScores((props.gameParticipants),'score');
+  
   //index 1-3
   rankedPlayersListItem = playerArrSorted.map((player,index) => {
     let placer = {
@@ -62,30 +43,34 @@ if(props.gameParticipants) {
     const bar = index === 2 
       ? <React.Fragment><br/><hr/><br/></React.Fragment>
       : ''
-
-    //My need this structure...still in progress   
-    // const playerName = player.userId.username
-    //   ? player.userId.username
-    //   : null
-
-    const playerName = player.username;
+   
+    let playerName = props.gameParticipants[index].userId.username;
+    let playerScore = props.gameParticipants[index].score;
 
     return (
       <li key={index}>
-        <button>{content} {playerName} &nbsp;&nbsp; Score: {player.score}</button>
+        <button>{content} {playerName} &nbsp;&nbsp; Score: {playerScore}</button>
         {bar}
       </li> 
     );
     
   }); 
+  
+  //Logic for winner -- game over
+  if(playerArrSorted[0].score >= props.gameEndScore){
 
-  }//inner
+    theWinner = <div><h2>This Game Has Been Won,</h2> 
+    <h1>The Winner Is:</h1> 
+    <h1>{props.gameParticipants[0].userId.username}!!! with a score of {playerArrSorted[0].score} points!!!</h1></div>
+ 
+  }
 
-}//outer
-
+} 
+ 
   return (
 
     <div>
+      <div>{theWinner}</div>
       <ul id='gameLeaderboardListPlayers'>
        {rankedPlayersListItem}
       </ul>

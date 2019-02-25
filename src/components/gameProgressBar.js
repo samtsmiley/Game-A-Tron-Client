@@ -1,25 +1,44 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Line, Circle } from 'rc-progress';
-import { findScore } from './components-utils';
-
+import { Line } from 'rc-progress';
+// import { Line, Circle } from 'rc-progress';
+// import { findScore } from './components-utils';
 //requires doing this --> npm install --save rc-progress
 
 export class GameProgressBar extends React.Component {
-    componentDidMount() {
-    }    
-
+     
     render() {
-
-        // console.log('progress bar state: ', this.props.allGameData);
-        
+  
         let currentUserPercentProgress = 0;
         let allUsersPercentProgress = 0;
-        let currentScore = this.props.score;
-        let maxScore = this.props.endScore;
+        let maxScore = this.props.allGameData.endScore; 
+        let currentUserId = this.props.userId;
+        let currentUserScore = 0;
+
+        //Ok yes, it's smelly but it's working...
+        const findCurrentUserScore = this.props.allGameData.participants.map((user,index) => {
+  
+          if(this.props.allGameData.participants[index].userId.id === currentUserId){
+                     
+            if(parseInt(this.props.allGameData.participants[index].score)){
+                  
+                currentUserScore = parseInt(this.props.allGameData.participants[index].score);
+            }   
  
-        if(currentScore && maxScore){
-            currentUserPercentProgress = ((currentScore/maxScore) * 100).toFixed(2);
+            return 0;
+
+          } 
+          else{
+
+            return 0;
+
+          }
+      
+        });
+  
+        //make sure both values are no falsey
+        if(currentUserScore && maxScore){
+            currentUserPercentProgress = ((currentUserScore/maxScore) * 100).toFixed(2);
         }
 
         let sumScore = 0;
@@ -47,7 +66,7 @@ export class GameProgressBar extends React.Component {
             playerCount === 1 ? `There is currently ${playerCount} active player` :
             playerCount = `There are currently ${playerCount} active players` 
         );
-
+  
       return (
         <div className="card">
             <h3>{numberOfPlayerContent}</h3>
@@ -74,20 +93,14 @@ export class GameProgressBar extends React.Component {
 }
 
 const mapStateToProps = state => {
-    
-   
-    const { userId } = state.auth.currentUser.id;
+     
     const { scores, participants } = state.game.data;
-    // const score = participants.length === 0
-    //     ? 0
-    //     : findScore(participants, userId); 
- 
+      
     return {
         allGameData: state.game.data,
-        score: 0,
-        scores,
-        endScore: 0,//<-- need this to be set to the actual endScore!
-        userId 
+        participants: participants, 
+        scores, 
+        userId: state.auth.currentUser.id 
     };
     
 };
