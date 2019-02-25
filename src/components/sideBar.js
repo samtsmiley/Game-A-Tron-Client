@@ -185,6 +185,7 @@ export class SideBar extends React.Component {
       <div className="side-bar" >
          
         <section className="sidebar-container">
+          <h3>{this.props.currentUsername}</h3>
           <button onClick={this.profileClicked}>My Profile</button>
           <button onClick={this.createGameClicked}>Create Game</button>
           <button onClick={this.findGameClicked}>Find Games</button>
@@ -213,6 +214,7 @@ const mapStateToProps = state =>{
   return { 
     currentUser: state.auth,
     currentUserId: state.auth.currentUser.id,
+    currentUsername: state.auth.currentUser.username,
     showProfile: state.sideBar.showProfile,
     showAllPosts: state.sideBar.showAllPosts,
     showNewGame: state.sideBar.showNewGame,

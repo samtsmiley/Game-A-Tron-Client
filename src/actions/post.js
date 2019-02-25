@@ -4,15 +4,15 @@ import {normalizeResponseErrors} from './utils';
 
 //POST a post
 export const POST_POST_SUCCESS = 'POST_POST_SUCCESS';
-export const postPostSuccess = (data) => ({
+export const postPostSuccess = (data) => ({ 
     type: POST_POST_SUCCESS,
-    data,
+    data
 });
 
 export const POST_POST_ERROR = 'POST_POST_ERROR';
 export const postPostError = error => ({
     type: POST_POST_ERROR,
-    error,
+    error
 });
 
 export const POST_POST_REQUEST = 'POST_POST_REQUEST';
