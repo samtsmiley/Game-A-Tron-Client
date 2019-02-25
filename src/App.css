@@ -62,6 +62,14 @@ h1 {
   /* margin-left: 0; */
 }
 
+input {
+  border: solid red 1px;
+}
+
+button {
+  border: solid red 1px;
+
+}
 
 
 
