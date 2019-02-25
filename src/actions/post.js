@@ -74,8 +74,9 @@ export const fetchAllPostsForUserById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
+        // .then(res => console.log('res from fetch all by id:',res))
         .then(data => {
+            console.log('res from fetch all by id:',data)
             dispatch(fetchAllPostsForUserByIdSuccess(data))})
         .catch(err => {
             dispatch(fetchAllPostsForUserByIdError(err));
