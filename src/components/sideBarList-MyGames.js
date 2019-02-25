@@ -18,8 +18,6 @@ export default function SideBarListMyGames(props) {
           <button 
           value={props.allMyGames.games[index].id} 
           onClick={(e) => {
-            console.log('the props inside list are ', props);
-            
             props.onSelect(e.currentTarget.value);
             props.showMyGames();
           }}
