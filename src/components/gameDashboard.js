@@ -40,7 +40,7 @@ export class Game extends React.Component {
         <GameProgressBar/>
         <GameLeaderboard/>
         {/* <GameCreatePost/> */}
-        <CreatePostForm/>        
+            {this.props.amIAParticipant && <CreatePostForm/>}        
         <GamePostsList/>
         
         </div>
