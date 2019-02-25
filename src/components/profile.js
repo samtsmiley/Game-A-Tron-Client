@@ -2,11 +2,12 @@ import React from "react";
 import {connect} from 'react-redux';
 import './profile.css';
 import Post from './post'
-
-// import GamePostsList from "./GamePostsList";
+import {fetchAllPostsForUserById} from '../actions/post'
 
 export class Profile extends React.Component {
-
+  componentDidMount() {
+    this.props.dispatch(fetchAllPostsForUserById(this.props.userId));
+  }
 
   render() {
     const posts = this.props.myPosts.map((post, index) => {
@@ -20,7 +21,6 @@ export class Profile extends React.Component {
             <ul>
             {posts}
             </ul>
-            {/* <GamePostsList /> */}
         </div>
     );
 }
