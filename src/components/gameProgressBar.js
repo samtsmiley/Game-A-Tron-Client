@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Line, Circle } from 'rc-progress';
-import { findScore } from './components-utils';
-
+import { Line } from 'rc-progress';
+// import { Line, Circle } from 'rc-progress';
+// import { findScore } from './components-utils';
 //requires doing this --> npm install --save rc-progress
 
 export class GameProgressBar extends React.Component {

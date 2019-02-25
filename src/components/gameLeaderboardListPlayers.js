@@ -11,7 +11,7 @@ export default function GameLeaderboardListPlayers(props) {
 // > For First, Second, Third highlight
 // > List all other players after with rank #
 
-console.log('GAME DATA @ LIST: ',props.gameParticipants);
+// console.log('GAME DATA @ LIST: ',props.gameParticipants);
 
 let rankedPlayersListItem = <p>No Players Yet</p>;  
 
