@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import moment from 'moment';
 import './profile.css';
-import Post from './post'
+// import Post from './post'
 
 // import GamePostsList from "./GamePostsList";
 

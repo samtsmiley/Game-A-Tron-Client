@@ -5,10 +5,10 @@ import React from 'react';
 // import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 import './createPostForm.css'
-import {postPost} from '../actions/post'
-import {updateScore} from '../actions/game';
+// import {postPost} from '../actions/post'
+// import {updateScore} from '../actions/game';
 import PostFocus from './postFocus';
-import{showPostFocus,exitPostFocus} from '../actions/postFocus'
+// import{showPostFocus,exitPostFocus} from '../actions/postFocus'
   
 export class CreatePostForm extends React.Component {
     constructor(){

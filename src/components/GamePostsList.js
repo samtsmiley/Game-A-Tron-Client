@@ -23,7 +23,7 @@ export class GamePostsList extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log('state.game.data in GPL:',state.game.data)
+    // console.log('state.game.data in GPL:',state.game.data)
     return {
         posts:state.game.data.posts
     };
