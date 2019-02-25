@@ -124,7 +124,7 @@ export class PostFocus extends React.Component {
 
     const formData = new FormData();
 
-    console.log('here at process: ',files);
+    // console.log('here at process: ',files);
 
     files.forEach((file,i)=>{
       formData.append(i,file)
@@ -181,7 +181,7 @@ export class PostFocus extends React.Component {
 
 render(){
 
-  console.log('current local state: ',this.state);
+  // console.log('current local state: ',this.state);
   
   //List of score opportunities with radio buttons for selection        
   const scoreOpps = this.props.scoreOpps.map(item =>

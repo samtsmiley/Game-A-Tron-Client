@@ -12,8 +12,7 @@ export default function GameLeaderboardListPlayers(props) {
 // > List all other players after with rank #
 //Logic to determine if game is over and show end of game info
 
-//console.log('GAME DATA @ LIST: ',props.gameParticipants);
-
+ 
 let rankedPlayersListItem = <p>No Players Yet</p>;
 let theWinner = null;  
  

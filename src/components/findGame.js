@@ -10,52 +10,43 @@ export class FindGame extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchAllGames());
     }    
-    
-    gamePushed(){
 
+    gameClicked(id){
+      const { dispatch} = this.props;
+      dispatch(fetchGameById(id))
+        .then(() =>dispatch(showOneGame()));
     }
 
     render() {
-        const games = this.props.gameList.map(game =>
-            <li className="gameName subcard" key={game.name}>    
-               <button className="gameButton" onClick={() =>{
-                    this.props.dispatch(fetchGameById(game.id))
-                    .then(() =>this.props.dispatch(showOneGame()) )
-                }}>
-              {game.name}
-                </button> 
-                <p>About: {game.description}</p> 
-                 
-            </li>
+      const { gameList} = this.props;
+      const games = gameList.map(game => {
+        const {name, id, description} = game;
+
+        return (
+          <li className="gameName subcard" key={name}>    
+            <button className="gameButton"
+             onClick={() => this.gameClicked(id)}>
+              {name}
+            </button> 
+            <p>About: {description}</p>    
+          </li>
         )
-
-
-
-    //     let { games } = this.props;
-    //     //console.log("in SessionList", games);
-    //     const game = games.map( (game, index) => (
-    //         <Game game={game} key={index} />
-    // ));
+      });
 
       return (
         <div className="findGame card">
-        <h1>Find a Game</h1>
-        {/* <Game /> */}
-        <ul>
-        {games}
-        </ul>
+          <h1>Find a Game</h1>
+          <ul>
+            {games}
+          </ul>
         </div>
-        );
+      );
     }
 }
 
-const mapStateToProps = state => {
-    // console.log(state)
-    return {
-        gameList: state.game.allGames,
-    isGameLoading: state.game.loading
-
-    };
-};
+const mapStateToProps = state => ({
+  gameList: state.game.allGames,
+  isGameLoading: state.game.loading
+});
 
 export default connect(mapStateToProps)(FindGame);
