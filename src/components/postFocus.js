@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {exitPostFocus} from '../actions/postFocus';
-//import './createPostFocus.css';
 import './postPhotoImageLoading';
 import PostPhotoImageProcess from './postPhotoImageProcess';
 import {postPost} from '../actions/post'
@@ -42,28 +40,40 @@ export class PostFocus extends React.Component {
     //Add user comment -- from input field
     //Add user image or null from postImageSource
 
-    console.log('whats going to postPost: ',
-    this.state.scoreDescription,
-    this.props.gameId,
-    this.state.scoreValue,
-    this.state.postComment,
-    this.state.images[0].secure_url,
-    this.state.images[0].public_id,'end>>');
+    // console.log('whats going to postPost: ',
+    // this.state.scoreDescription,
+    // this.props.gameId,
+    // this.state.scoreValue,
+    // this.state.postComment,
+    // this.state.images[0].secure_url,
+    // this.state.images[0].public_id,'end>>');
 
-    console.log('whats going to updateScore: ',
-    this.props.gameId,
-    this.props.userId,
-    (this.props.score + this.state.scoreValue));
+    // console.log('whats going to updateScore: ',
+    // this.props.gameId,
+    // this.props.userId,
+    // (this.props.score + this.state.scoreValue));
+
+    let imageAdd = null;
+    let imageIdAdd = null;
+
+    if(this.state.images.length > 0){
+
+      imageAdd = this.state.images[0].secure_url;
+      imageIdAdd = this.state.images[0].public_id;
+
+    }
+ 
 
     //TO THE POSTS
     this.props.dispatch(postPost(
+ 
       {
         description:this.state.scoreDescription,
         gameId:this.props.gameId,
         value: parseInt(this.state.scoreValue),
         comment: this.state.postComment,
-        image: this.state.images[0].secure_url,
-        imageId: this.state.images[0].public_id
+        image: imageAdd,
+        imageId: imageIdAdd
       }));
   
     //TO USER 
@@ -108,6 +118,7 @@ export class PostFocus extends React.Component {
   onChange = e => {
     const files = Array.from(e.target.files)
     this.setState({
+      postReady: false,
       uploading: true
     })
 
@@ -125,10 +136,18 @@ export class PostFocus extends React.Component {
     })
     .then(res => res.json())
     .then(images => {
+
+      let setBool = false;
+
+      if(this.state.scoreDescription){
+
+        setBool = true;
+      }
+
       this.setState({
         uploading: false,
         images, 
-        postReady: true
+        postReady: setBool
       })
 
     })
@@ -160,7 +179,6 @@ export class PostFocus extends React.Component {
   
   }
 
-
 render(){
 
   console.log('current local state: ',this.state);
@@ -185,7 +203,8 @@ render(){
 
  //Button options
  const submitPostButton = <button onClick={this.onSubmitPost}>SUBMIT SCORE POST</button>;
- const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>
+ const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>;
+ 
 
  //When postReady is set to true then show
  //the SUBMIT button otherwise show the NEVERMIND button
@@ -217,7 +236,7 @@ render(){
       <label><h3> Add a comment: </h3></label>
       <input onChange={(e) => this.onComment(e.currentTarget.value)}
              type='text'
-             placeholder='I crushed this! Victory will be mine!'>
+             placeholder='I am CRUSHED this!'>
       </input>
       {/* <input onChange={e => props.handleChange(e.target.value)}/> */}
        

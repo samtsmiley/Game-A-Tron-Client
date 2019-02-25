@@ -25,10 +25,6 @@ export class CreatePostForm extends React.Component {
 
           showDropdownMenu(event) {
             event.preventDefault();
- 
-            //this.props.dispatch(showPostFocus());
-
-            console.log('showDropdownMenu clicked');
 
             this.setState({ displayMode: 'showDrop' }, () => {
             //document.addEventListener('click', this.hideDropdownMenu);
@@ -41,38 +37,9 @@ export class CreatePostForm extends React.Component {
             });
         
           }
-
-          showItemFocus(event) {
-
-            console.log('this is hit!');
- 
-          }
-            
+   
            
     render() {
-
-      console.log('current users score: ',this.props.score);
-
-      //REF
-      // console.log('this>>> ',this.props.selectGameData);
-       
-      //   const scores = this.props.scoreOpps.map(item =>
-      //       <li className="scoreName" key={item.description}>    
-      //       <button className="gameButton" onClick={() => {
-
-      //         // this.setState({
-      //         //   displayMode: 'noDrop'
-      //         // });
-      //           //these will be on submit button for postFocus window...
-      //           //this.props.dispatch(postPost({description:item.description, gameId:this.props.gameId, value:item.points }));
-      //           //this.props.dispatch(updateScore(this.props.gameId, {userId: this.props.userId, score: this.props.score + item.points}));
-      //        }}>
-      //      {/* I {item.description} for {item.points} points. */}
-      //        </button> 
-      //        {/* <p>Points: {item.points}</p>  */}
-      //    </li>
-      // )
-
 
     let postMenu = (
       this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : //<ul className='sul'>{scores}</ul>
