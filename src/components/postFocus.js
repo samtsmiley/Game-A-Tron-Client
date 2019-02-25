@@ -216,7 +216,7 @@ render(){
       <label><h3> Add a comment: </h3></label>
       <input onChange={(e) => this.onComment(e.currentTarget.value)}
              type='text'
-             placeholder='I crushed this! Victory will be mine!'>
+             placeholder='I am CRUSHED this!'>
       </input>
       {/* <input onChange={e => props.handleChange(e.target.value)}/> */}
        
