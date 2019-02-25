@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {exitPostFocus} from '../actions/postFocus';
-//import './createPostFocus.css';
 import './postPhotoImageLoading';
 import PostPhotoImageProcess from './postPhotoImageProcess';
 import {postPost} from '../actions/post'
@@ -108,6 +106,7 @@ export class PostFocus extends React.Component {
   onChange = e => {
     const files = Array.from(e.target.files)
     this.setState({
+      postReady: false,
       uploading: true
     })
 
@@ -160,7 +159,6 @@ export class PostFocus extends React.Component {
   
   }
 
-
 render(){
 
   console.log('current local state: ',this.state);
@@ -185,7 +183,8 @@ render(){
 
  //Button options
  const submitPostButton = <button onClick={this.onSubmitPost}>SUBMIT SCORE POST</button>;
- const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>
+ const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>;
+ 
 
  //When postReady is set to true then show
  //the SUBMIT button otherwise show the NEVERMIND button
