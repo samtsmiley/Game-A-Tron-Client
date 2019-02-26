@@ -1,10 +1,9 @@
 import React from 'react';
 import './gameLeaderboard.css';
 import { Line } from 'rc-progress';
-
-
+  
 export default function GameLeaderboardListPlayers(props) {
-
+ 
 // > Access the players in current game selected
 // > Determine rank based on player score
 // > Sort player from Highest to Lowest
@@ -16,8 +15,13 @@ export default function GameLeaderboardListPlayers(props) {
 // console.log('GAME DATA @ LIST: ',props.gameParticipants);
 
 let rankedPlayersListItem = <p>No Players Yet</p>;  
-let theWinner = null;  
+let theWinner = null;
+let secondPlace = null;
+let thirdPlace = null;  
 let baseColor = 0;//35;//parseInt(256 * Math.random());//225
+let pageTitle = <h2>Game Leaderboard: </h2>
+  
+let prizeMenu = null;
  
 //If the participants array is populated with at least one player...
 if(props.gameParticipants.length > 0){
@@ -56,10 +60,7 @@ if(props.gameParticipants.length > 0){
     const randomColor = index === 0
       ? `hsl(${baseColor},100%, 50%,1)` 
       : randomHSL()
-       
-      
-    //}//"#" + (((Math.random()*10).toString(16)) + '000000').slice(2, 8);
-
+     
     const progressBar = <Line percent={playerPercentProgress}
                           strokeWidth="4"
                           trailWidth="3.75"
@@ -74,6 +75,7 @@ if(props.gameParticipants.length > 0){
       height: '50%',
       display: 'inline-block',
   };
+ 
 
     return (
       
@@ -85,14 +87,73 @@ if(props.gameParticipants.length > 0){
     );
     
   }); 
-  
+   
   //Logic for winner -- game over
   if(playerArrSorted[0].score >= props.selectedGame.endScore){
-
-    theWinner = <div><h2>This Game Has Been Won,</h2> 
-    <h1>The Winner Is:</h1> 
-    <h1>{props.gameParticipants[0].userId.username}!!! with a score of {playerArrSorted[0].score} points!!!</h1></div>
  
+    pageTitle = <h1>The Winner's Circle</h1>;
+
+    //2nd place
+    if(playerArrSorted.length > 1){
+
+      secondPlace = 
+      <div><img src={props.prize_2} width="110" alt=''/>
+      <h2>Third Place</h2>
+      <h2>Goes to {props.gameParticipants[1].userId.username}<br/> with a super score of {playerArrSorted[1].score} points!!</h2>
+      </div>
+
+    }
+
+    //3rd place
+    if(playerArrSorted.length > 2){
+
+      thirdPlace = 
+      <div><img src={props.prize_3} width="100" alt=''/>
+      <h2>Second Place</h2>
+      <h2>Goes to {props.gameParticipants[2].userId.username}<br/> with a great score of {playerArrSorted[2].score} points!</h2>
+      </div>
+
+    }
+
+    //1st place
+    theWinner = <div><h2>This Game Has Been Won!</h2> 
+    <img src={props.prize_1} width="120" alt=''/>
+    <h1>First Place</h1>
+    <h1>Goes to {props.gameParticipants[0].userId.username}!<br/> with an awesome score of {playerArrSorted[0].score} points!!!</h1>
+    {secondPlace}
+    {thirdPlace}
+    </div>
+     
+    let prizeListItems = props.prizeOptions.map((name,index) => {
+
+      return(
+
+        <li className="scoreName" key={index+1}>    
+         <input type='radio'
+            name={name}
+            checked={props.prizeType === index+1}
+            className="gameButton"
+            onChange={(e)=>{ 
+             props.selectPrize(e.currentTarget.name)
+            }} >
+      
+        </input> 
+         <label htmlFor="public">Select {name} Style</label>
+       </li>
+
+      )
+
+
+    })
+
+    //prize selection...
+    prizeMenu = <div>Select Prize Style: 
+     <ul>
+       {prizeListItems}
+     </ul>
+     
+     </div>;
+   
   }
 
 } 
@@ -100,7 +161,11 @@ if(props.gameParticipants.length > 0){
   return (
 
     <div>
+      {pageTitle}
       <div>{theWinner}</div>
+      <br/>
+      {prizeMenu}
+      <br/>
       <ul id='gameLeaderboardListPlayers'>
        {rankedPlayersListItem} 
       </ul>
