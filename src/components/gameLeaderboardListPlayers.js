@@ -77,8 +77,8 @@ if(props.gameParticipants.length > 0){
 
     return (
       <li key={index}>
-        <button style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
-        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.selectedGame.endScore} possible points{progressBar}</button>
+        <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
+        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.selectedGame.endScore} possible points{progressBar}</p>
         {bar}
       </li> 
     );
