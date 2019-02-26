@@ -36,7 +36,7 @@ export class GameProgressBar extends React.Component {
       
         });
   
-        //make sure both values are no falsey
+        //make sure both values are not falsey
         if(currentUserScore && maxScore){
             currentUserPercentProgress = ((currentUserScore/maxScore) * 100).toFixed(2);
         }
@@ -44,16 +44,32 @@ export class GameProgressBar extends React.Component {
         let sumScore = 0;
         let playerCount = 0;
 
-        //Add up all the scores and find the current number of players...
-        this.props.allGameData.participants.map(item =>{
-
-            return (sumScore = sumScore + item.score, playerCount = playerCount + 1);
- 
+        //this function sorts the scores 
+        function sortByScores(array, key){
+            return array.sort((a, b) => {
+            return b[key]-a[key];
         });
+
+        
+  }
+
+        // //Add up all the scores and find the current number of players...
+        // this.props.allGameData.participants.map(item =>{
+
+        //     return (sumScore = sumScore + item.score, playerCount = playerCount + 1);
  
-        if(sumScore && maxScore){
-            allUsersPercentProgress = ((sumScore/maxScore) * 100).toFixed(2);
-        }
+        // });
+
+        playerCount = this.props.allGameData.participants.length;
+ 
+        //if(sumScore && maxScore){
+        //allUsersPercentProgress = ((sortByScores(this.props.allGameData.participants, 'score')) * 100)[0].toFixed(2);
+        //}
+
+        allUsersPercentProgress = sortByScores(this.props.allGameData.participants, 'score');
+
+        let allUsersPercent = ((parseInt(allUsersPercentProgress[0].score)/maxScore) * 100).toFixed(2);
+        let topUserPoints = parseInt(allUsersPercentProgress[0].score);
 
         let barContainerStyle = {
             width: '70%',
@@ -77,14 +93,14 @@ export class GameProgressBar extends React.Component {
                   trailWidth="3.75"
                   trailColor="#bebec8"
                   strokeColor="#4aa84a"
-                  strokeLinecap='round'/>
-            <h3>Overall game progress so far is: {allUsersPercentProgress}% </h3>
-            <Line percent={allUsersPercentProgress}
+                  strokeLinecap='round'/>{currentUserScore} points out of {this.props.allGameData.endScore} possible points
+            <h3>Overall game progress so far is: {allUsersPercent}% </h3>
+            <Line percent={allUsersPercent}
                   strokeWidth="4"
                   trailWidth="3.75"
                   trailColor="#bebec8"
                   strokeColor="#000080"
-                  strokeLinecap='round'/>
+                  strokeLinecap='round'/>{topUserPoints} points out of {this.props.allGameData.endScore} possible points
             {/* <Circle percent="0" strokeWidth="4" trailWidth="3.75" trailColor="#beb4b4" strokeColor="#4aa84a" strokeLinecap='round'/> */}
             </div>
         </div>
