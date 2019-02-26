@@ -69,10 +69,16 @@ if(props.gameParticipants.length > 0){
    
     let playerName = props.gameParticipants[index].userId.username;
     let playerScore = props.gameParticipants[index].score;
+    let barContainerStyle = {
+      width: '50%',
+      height: '50%',
+      display: 'inline-block',
+  };
 
     return (
+      
       <li key={index}>
-        <p >{content} {playerName} &nbsp;&nbsp;
+        <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
         Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.selectedGame.endScore} possible points{progressBar}</p>
         {bar}
       </li> 
@@ -85,7 +91,7 @@ if(props.gameParticipants.length > 0){
 
     theWinner = <div><h2>This Game Has Been Won,</h2> 
     <h1>The Winner Is:</h1> 
-    <h1>{props.gameParticipants[0].userId.username} with a score of {playerArrSorted[0].score} points!!!</h1></div>
+    <h1>{props.gameParticipants[0].userId.username}!!! with a score of {playerArrSorted[0].score} points!!!</h1></div>
  
   }
 
