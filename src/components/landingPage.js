@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import {login} from '../actions/auth';
 import './landingPage.css';
-
+import { showFindGame } from '../actions/sideBar-actions';
 import LoginForm from './loginForm';
 
 export function LandingPage(props) {
@@ -10,13 +11,22 @@ export function LandingPage(props) {
     if (props.loggedIn) {
         return <Redirect to="/dashboard" />;
     }
-
+    
+    const onSubmit = () =>  {
+        props.dispatch(login('spectator', '0123456789'));
+        props.dispatch(showFindGame())
+    }
+    
     return (
         <div className="home">
             <div className="landingPageLogo"></div>
             <h1>Welcome</h1>
             <p>Use this app to easily create or join games.</p>
             <p>Compete against other players to achieve Vicory!</p>
+            <p>Just want to spectate?
+                <span> </span>  
+                <span className='slink' onClick={()=>onSubmit()}>Click Here</span>
+            </p>
             <p>And Remember...</p>
             <h2>You Can't Win if You Don't Play</h2>
             <span>

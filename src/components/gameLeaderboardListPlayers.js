@@ -51,7 +51,7 @@ if(props.gameParticipants.length > 0){
       ? <React.Fragment><br/><hr/><br/></React.Fragment>
       : ''
 
-    const playerPercentProgress = ((props.gameParticipants[index].score/props.selectedGame.endScore) * 100).toFixed(2);  
+    const playerPercentProgress = ((props.gameParticipants[index].score/props.gameEndScore) * 100).toFixed(2);  
 
     function randomHSL(){
       return `hsl(${baseColor}, ${(playerArrSorted.length/index) * 30}%, 50%,1)`;
@@ -79,9 +79,10 @@ if(props.gameParticipants.length > 0){
 
     return (
       
+      
       <li key={index}>
         <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
-        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.selectedGame.endScore} possible points{progressBar}</p>
+        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.gameEndScore} possible points{progressBar}</p>
         {bar}
       </li> 
     );

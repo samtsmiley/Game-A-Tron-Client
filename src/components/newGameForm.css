@@ -1,9 +1,19 @@
+
+.newGame p {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+
+
+
+
 @media screen and (min-width: 600px) {
     
 
     .rules p {
         margin-top: 0;
-        
+        border: solid red;
     }
 
     .rules-fields {

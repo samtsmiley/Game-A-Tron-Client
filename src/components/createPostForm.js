@@ -1,14 +1,7 @@
 import React from 'react';
-// import {Field, reduxForm, focus} from 'redux-form';
-// import Input from './input';
-// import {login} from '../actions/auth';
-// import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 import './createPostForm.css'
-// import {postPost} from '../actions/post'
-// import {updateScore} from '../actions/game';
 import PostFocus from './postFocus';
-// import{showPostFocus,exitPostFocus} from '../actions/postFocus'
   
 export class CreatePostForm extends React.Component {
     constructor(){
@@ -27,7 +20,6 @@ export class CreatePostForm extends React.Component {
             event.preventDefault();
 
             this.setState({ displayMode: 'showDrop' }, () => {
-            //document.addEventListener('click', this.hideDropdownMenu);
             });
           }
         
@@ -42,13 +34,15 @@ export class CreatePostForm extends React.Component {
     render() {
 
     let postMenu = (
-      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : //<ul className='sul'>{scores}</ul>
-      this.state.displayMode === 'noDrop'
+      this.state.displayMode === 'showDrop' 
+      ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> 
+      : this.state.displayMode === 'noDrop'
     );
 
     let showButton = (
-      this.state.displayMode === 'noDrop' ? <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div> :
-      null
+      this.state.displayMode === 'noDrop' 
+      ? <button className="postbtn" onClick={this.showDropdownMenu}>Post A Score</button> 
+      :null
     );
      
     if(this.state.displayMode === 'showDrop'){
@@ -57,7 +51,7 @@ export class CreatePostForm extends React.Component {
 
 
     return (
-        <div  className="sdropdown" >
+        <div  className="" >
         {postMenu} 
         {showButton}  
        </div>
@@ -66,8 +60,6 @@ export class CreatePostForm extends React.Component {
   }
 }
 const mapStateToProps = state => {
-    // console.log('>>>>>',state)
-     
     let score = 0;
     const currentParticipant = state.game.data.participants.find(participant =>
       participant.userId.id === state.auth.currentUser.id);
