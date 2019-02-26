@@ -4,7 +4,7 @@ import { Line } from 'rc-progress';
 
 
 export default function GameLeaderboardListPlayers(props) {
-
+ 
 // > Access the players in current game selected
 // > Determine rank based on player score
 // > Sort player from Highest to Lowest
@@ -47,7 +47,7 @@ if(props.gameParticipants.length > 0){
       ? <React.Fragment><br/><hr/><br/></React.Fragment>
       : ''
 
-    const playerPercentProgress = ((props.gameParticipants[index].score/props.selectedGame.endScore) * 100).toFixed(2);  
+    const playerPercentProgress = ((props.gameParticipants[index].score/props.gameEndScore) * 100).toFixed(2);  
 
     function randomHSL(){
       return `hsl(${baseColor}, ${(playerArrSorted.length/index) * 30}%, 50%,1)`;
@@ -77,9 +77,10 @@ if(props.gameParticipants.length > 0){
 
     return (
       
+      
       <li key={index}>
         <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
-        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.selectedGame.endScore} possible points{progressBar}</p>
+        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.gameEndScore} possible points{progressBar}</p>
         {bar}
       </li> 
     );
@@ -87,7 +88,7 @@ if(props.gameParticipants.length > 0){
   }); 
   
   //Logic for winner -- game over
-  if(playerArrSorted[0].score >= props.selectedGame.endScore){
+  if(playerArrSorted[0].score >= props.gameEndScore){
 
     theWinner = <div><h2>This Game Has Been Won,</h2> 
     <h1>The Winner Is:</h1> 

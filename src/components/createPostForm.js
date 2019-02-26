@@ -20,7 +20,6 @@ export class CreatePostForm extends React.Component {
             event.preventDefault();
 
             this.setState({ displayMode: 'showDrop' }, () => {
-            //document.addEventListener('click', this.hideDropdownMenu);
             });
           }
         
@@ -35,13 +34,15 @@ export class CreatePostForm extends React.Component {
     render() {
 
     let postMenu = (
-      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : 
-      this.state.displayMode === 'noDrop'
+      this.state.displayMode === 'showDrop' 
+      ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> 
+      : this.state.displayMode === 'noDrop'
     );
 
     let showButton = (
-      this.state.displayMode === 'noDrop' ? <div className="sbutton" onClick={this.showDropdownMenu}> Post A Score </div> :
-      null
+      this.state.displayMode === 'noDrop' 
+      ? <button className="postbtn" onClick={this.showDropdownMenu}>Post A Score</button> 
+      :null
     );
      
     if(this.state.displayMode === 'showDrop'){
@@ -50,7 +51,7 @@ export class CreatePostForm extends React.Component {
 
 
     return (
-        <div  className="sdropdown" >
+        <div  className="" >
         {postMenu} 
         {showButton}  
        </div>
@@ -59,7 +60,6 @@ export class CreatePostForm extends React.Component {
   }
 }
 const mapStateToProps = state => {
-    
     let score = 0;
     const currentParticipant = state.game.data.participants.find(participant =>
       participant.userId.id === state.auth.currentUser.id);
