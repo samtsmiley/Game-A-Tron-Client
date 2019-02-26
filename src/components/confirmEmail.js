@@ -1,24 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {API_BASE_URL} from '../config';
-import { normalizeResponseErrors } from '../actions/utils';
+import {confirmEmail} from '../actions/email';
 
-export default class ConfirmEmail extends React.Component {
-  message = 'confirming your email';
-
+export class ConfirmEmail extends React.Component {
   componentDidMount() {
-    const id = this.props.match.params.id;
-    fetch(`${API_BASE_URL}/email/confirm/${id}`)
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .then(data => this.message = data.message)
-      .catch(err => console.log(err));
+    this.props.dispatch(confirmEmail(this.props.userId))
   }
 
   render() {
     return (
       <div className='confirmEmail'>
-        <p>{this.message}</p>
+        <p>{this.props.message}</p>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  message: state.email.message,
+  userId: state.auth.currentUser.id
+});
+export default connect(mapStateToProps)(ConfirmEmail);
