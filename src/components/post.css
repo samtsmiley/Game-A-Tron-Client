@@ -1,0 +1,9 @@
+.onePost img {
+  width: 75%;
+}
+
+@media screen and (min-width: 600px) {
+  .onePost img {
+    width: 50%;
+  }
+}
