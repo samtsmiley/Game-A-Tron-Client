@@ -49,7 +49,7 @@ if(props.gameParticipants.length > 0){
 
     return (
       <li key={index}>
-        <button>{content} {playerName} &nbsp;&nbsp; Score: {playerScore}</button>
+        <p>{content} {playerName} &nbsp;&nbsp; Score: {playerScore}</p>
         {bar}
       </li> 
     );

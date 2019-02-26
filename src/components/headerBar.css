@@ -1,5 +1,5 @@
 .header-bar {
-    background-color: rgb(52, 57, 62);
+    background-color: #fafafae2;
     font-style: oblique;
     position: fixed;
     width: 100vw;
@@ -10,12 +10,6 @@
     padding-left: 1px;
 }
 
-.header-bar button{
-    border: none;
-    background-color: transparent;
-    color: #425ab9;
-    margin-right: 25px;
-}
 
 .header-bar h1 {
     margin-left: 25px;
@@ -23,5 +17,16 @@
 
 
 .header-bar img {
-    width: 25vw;
+    width: 60vw;
+    height: 100%;
+}
+
+.header-bar button {
+    border: none;
+    background-color: transparent;
+    
+    margin-right: 10px;
+    align-self: center;
+    color: rgb( 33, 150, 243);
+    box-shadow: none;
 }

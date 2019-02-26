@@ -90,21 +90,13 @@ export class PostFocus extends React.Component {
    
   //ADD A COMMENT TO POST
   onComment = text => {
-
     this.setState({
       postComment: text
     })
 
   }
 
-  onRadioSelect = (name,value) => {
-
-    // let setTrue = false;
-
-    // if(this.showPhotoProcess === false){
-    //   setTrue = true;
-    // }
-
+  onRadioSelect = (name, value) => {
     this.setState({
       scoreValue: value,
       scoreDescription: name,
@@ -126,8 +118,8 @@ export class PostFocus extends React.Component {
 
     // console.log('here at process: ',files);
 
-    files.forEach((file,i)=>{
-      formData.append(i,file)
+    files.forEach((file, i)=>{
+      formData.append(i, file)
     })
 
     fetch(`${API_BASE_URL}/image-upload`,{
@@ -192,7 +184,7 @@ render(){
            checked={this.state.scoreDescription === item.description}
            className="gameButton"
            onChange={(e)=>{ 
-            this.onRadioSelect(e.currentTarget.name,e.currentTarget.value)
+            this.onRadioSelect(e.currentTarget.name, e.currentTarget.value)
            }} >
      
      </input> 
@@ -202,8 +194,8 @@ render(){
  )
 
  //Button options
- const submitPostButton = <button onClick={this.onSubmitPost}>SUBMIT SCORE POST</button>;
- const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>;
+ const submitPostButton = <button onClick={this.onSubmitPost}>Submit</button>;
+ const nevermindButton = <button onClick={this.props.hideDropdownMenu}>Cancel</button>;
  
 
  //When postReady is set to true then show
@@ -225,26 +217,27 @@ render(){
 
   return (
 
-    <div className='postFocusWindow'>
-    <br/>
-    <h2>AWESOME YOU SCORED!</h2> 
-    <form>
-      <label><h3>Select a score option:</h3></label>
-      <ul>{scoreOpps}</ul>
-    </form>
-    <form>
-      <label><h3> Add a comment: </h3></label>
-      <input onChange={(e) => this.onComment(e.currentTarget.value)}
-             type='text'
-             placeholder='I am CRUSHED this!'>
-      </input>
-      {/* <input onChange={e => props.handleChange(e.target.value)}/> */}
-       
-    </form>
-    <br/>
-    {showPhotoProcess}
-    <br/><br/>
-    {showSubmit} 
+    <div className='postFocusWindow subcard'>
+      <br/>
+      <h2>Post a Score</h2> 
+      <form>
+        <label>Select a score option:</label>
+        <ul>{scoreOpps}</ul>
+      </form>
+      <form>
+        <label>Add a comment:</label>
+        <input onChange={(e) => this.onComment(e.currentTarget.value)}
+              type='text-area'
+              placeholder=''
+              >
+        </input>
+        {/* <input onChange={e => props.handleChange(e.target.value)}/> */}
+        
+      </form>
+      <br/>
+      {showPhotoProcess}
+      <br/>
+      {showSubmit} 
     </div>
 
   )
