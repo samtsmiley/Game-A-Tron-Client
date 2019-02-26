@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-// import './landingPage.css';
+import './landingPage.css';
 
 import LoginForm from './loginForm';
 
@@ -13,18 +13,17 @@ export function LandingPage(props) {
 
     return (
         <div className="home">
-            <h1>Welcome to Gameatron 3000</h1>
-            <div className='about'>
-            <h2>About</h2>
-            <p> 
-              Use this web app to easily make games and keep track of players score.
-            </p>
-            </div>
+            <div className='landingPageLogo'/>
+            <h1>Welcome</h1>
+            <p>Use this app to easily create or join games.</p>
+            <p>Compete against other players to achieve Vicory!</p>
+            <p>And Remember...</p>
+            <h2>You can't win if you dont Play</h2>
+            <span>
+                <Link className='link' to="/register">Create a New Account</Link> or login below.
+            </span>
             <div className='logIn'>
-            <LoginForm />
-              <div className='link'>
-              <Link className='link' to="/register">Register</Link>
-              </div>
+                <LoginForm />
             </div>
         </div>
     );
