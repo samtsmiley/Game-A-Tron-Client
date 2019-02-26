@@ -21,7 +21,8 @@ export class GameLeaderboard extends React.Component {
 const mapStateToProps = state => {
     return {
         selectedGame: state.game.data,
-        gameParticipants: state.game.data.participants
+        gameParticipants: state.game.data.participants,
+        gameEndScore: state.game.data.endScore
     };
 };
 

@@ -9,12 +9,10 @@ import FindGame from './findGame';
 import Profile from './profile';
 import './dashboard.css';
 import {fetchAllGames} from '../actions/game'
-import {fetchAllPostsForUserById} from '../actions/post'
 
 export class Dashboard extends React.Component {
     componentDidMount() {
       this.props.dispatch(fetchAllGames());
-      this.props.dispatch(fetchAllPostsForUserById(this.props.userId));
     }
 
     render() {
