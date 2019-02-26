@@ -1,7 +1,6 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
-
 //POST a post
 export const POST_POST_SUCCESS = 'POST_POST_SUCCESS';
 export const postPostSuccess = (data) => ({ 
@@ -35,14 +34,13 @@ export const postPost = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('post res:',res )
+            // console.log('post res:',res )
             dispatch(postPostSuccess(res))
         })
         .catch(err => {
             dispatch(postPostError(err));
         });
 };
-
 
 // fetch posts for one user by Userid
 export const FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST = 'FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST';
@@ -74,9 +72,7 @@ export const fetchAllPostsForUserById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log('res from fetch all by id:',res))
         .then(data => {
-            // console.log('res from fetch all by id:',data)
             dispatch(fetchAllPostsForUserByIdSuccess(data))})
         .catch(err => {
             dispatch(fetchAllPostsForUserByIdError(err));
