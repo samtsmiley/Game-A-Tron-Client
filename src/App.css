@@ -27,10 +27,7 @@ body{
   width: 0px;  /* remove scrollbar space */
 }
 
-button {
-  cursor: pointer;
-  border: solid red 1px;
-}
+
 
 ul, ol {
   list-style: none;
@@ -71,7 +68,12 @@ h1 {
 }
 
 input {
-  border: solid red 1px;
+  /* border: solid red 1px; */
+}
+
+button {
+  cursor: pointer;
+  /* border: solid red 1px; */
 }
 
 @media screen and (min-width: 600px) {
