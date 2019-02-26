@@ -25,24 +25,26 @@ export class GameProgressBar extends React.Component {
 
             playerCount = players.length;
 
-            //Ok yes, it's smelly but it's working...
-            const findCurrentUserScore = players.map((player,index) => {
+            const currentUser = players.find(player => {
   
-                if(players[index].userId.id === currentUserId){
+                if(player.userId.id === currentUserId){
       
-                  if(parseInt(players[index].score)){
+                  if(parseInt(player.score)){
                         
-                      currentUserScore = parseInt(players[index].score);
+                       return parseInt(player.score);
                   }   
         
                 } 
-                else{
-      
-                  return 0;
-      
-                }
-            
+
+                return null;
+                  
             });
+
+            console.log('current user: ', currentUser)
+
+            if(currentUser){
+                currentUserScore = currentUser.score;
+            }
 
             //make sure both values are not falsey
             if(currentUserScore && maxScore){
