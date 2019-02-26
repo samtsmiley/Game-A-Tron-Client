@@ -14,7 +14,7 @@ export const confirmEmailError = err => ({
 
 export const sendConfirmationEmail = () => (dispatch, getState) => {
   const email = getState().auth.currentUser.email;
-  return fetch(`${API_BASE_URL}/emails/`, {
+  return fetch(`${API_BASE_URL}/email/`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({email})
