@@ -209,7 +209,7 @@ export class SideBar extends React.Component {
 }
 
 const mapStateToProps = state =>{
-   
+  console.log('state in sidebar',state)   
   return { 
     currentUser: state.auth,
     currentUserId: state.auth.currentUser.id,
