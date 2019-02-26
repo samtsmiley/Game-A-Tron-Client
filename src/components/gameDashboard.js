@@ -22,7 +22,7 @@ export class Game extends React.Component {
           <h1>{this.props.gameName}</h1>
           <div className="game-btn-wrap">
           {this.props.userName === 'spectator'
-            ? <p>Create an account to join a game.</p>
+            ? <p>Make an account to join a game and post scores.</p>
             : this.props.amIAParticipant 
                 ? <p>You are playing this game</p> 
                 : <button type="button" onClick={() => this.joinGameButton()} 
