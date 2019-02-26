@@ -5,6 +5,7 @@ import sideBar from './sideBar-reducer';
 import game from './game'
 import post from './post'
 import postFocus from './postFocus';
+import email from './email';
 
 
 const rootReducer = combineReducers({
@@ -13,8 +14,8 @@ const rootReducer = combineReducers({
   sideBar,
   game,
   post,
-  postFocus
-
+  postFocus,
+  email
 });
 
 export default rootReducer;
