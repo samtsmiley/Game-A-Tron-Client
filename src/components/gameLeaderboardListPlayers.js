@@ -86,7 +86,7 @@ if(props.gameParticipants.length > 0){
   }); 
   
   //Logic for winner -- game over
-  if(playerArrSorted[0].score >= props.gameEndScore){
+  if(playerArrSorted[0].score >= props.selectedGame.endScore){
 
     theWinner = <div><h2>This Game Has Been Won,</h2> 
     <h1>The Winner Is:</h1> 
