@@ -1,6 +1,6 @@
 .game {
     /* border: solid red 1px; */
-    text-align: center;
+    /* text-align: center;
     box-sizing: border-box;
     margin: auto;
     padding: 20px;
@@ -12,10 +12,10 @@
     overflow-y: scroll;
     /* border: solid red 1px; */
     
-    margin-top: 10px;
+    /* margin-top: 10px;
     height: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */ 
 }
 
 

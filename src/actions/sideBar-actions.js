@@ -52,7 +52,7 @@ export const showFindGame = () => ({
 export const FETCH_MYGAMES_REQUEST = 'FETCH_MYGAMES_REQUEST';
 export const fetchMyGamesRequest = (userId) => {
 
-  return(dispatch,getState) => {
+  return(dispatch, getState) => {
 
     fetch(`${API_BASE_URL}/users/${userId}`,{
 

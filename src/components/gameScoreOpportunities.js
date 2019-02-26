@@ -12,7 +12,7 @@ export class GameScoreOpportunities extends React.Component {
              </p> 
         )
       return (
-        <div className="gameScoreOpportunities card">
+        <div className="gameScoreOpportunities subcard">
           <h3>Ways to Score Points</h3>
           <div>
               {scoreOppItems}

@@ -20,3 +20,8 @@
 .header-bar h1 {
     margin-left: 25px;
 }
+
+
+.header-bar img {
+    width: 25vw;
+}

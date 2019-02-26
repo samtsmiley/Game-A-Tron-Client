@@ -13,12 +13,12 @@ export function LandingPage(props) {
 
     return (
         <div className="home">
-            <div className='landingPageLogo'/>
+            <div className="landingPageLogo"></div>
             <h1>Welcome</h1>
             <p>Use this app to easily create or join games.</p>
             <p>Compete against other players to achieve Vicory!</p>
             <p>And Remember...</p>
-            <h2>You can't win if you dont Play</h2>
+            <h2>You Can't Win if You Don't Play</h2>
             <span>
                 <Link className='link' to="/register">Create a New Account</Link> or login below.
             </span>
