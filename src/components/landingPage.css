@@ -22,3 +22,8 @@
 .home h1, p {
   margin: 0;
 }
+.slink {
+  cursor:pointer;
+  color:blue;
+  text-decoration:underline;
+}

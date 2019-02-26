@@ -16,21 +16,26 @@ export class Profile extends React.Component {
      
       
     return (
-        <div className="container card">
-            <h2>My Score History</h2>
+      <div>
+        <h2>My Score History</h2>
+      {this.props.userName === 'spectator'
+        ? <p>Make an account to post scores and see your history.</p>
+        : <div className="container card">
             <ul>
-            {posts}
+              {posts}
             </ul>
-        </div>
+          </div>}
+      </div>
     );
-}
+  }
 }
 
 const mapStateToProps = state => {
   // console.log('>><>>>>>',state)
   return {
     myPosts:state.post.myPosts,
-    userId: state.auth.currentUser.id
+    userId: state.auth.currentUser.id,
+    userName:state.auth.currentUser.username,
   };
 };
 
