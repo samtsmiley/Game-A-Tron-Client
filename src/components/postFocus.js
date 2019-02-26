@@ -176,8 +176,8 @@ render(){
  //When postReady is set to true then show
  //the SUBMIT button otherwise show the NEVERMIND button
  const showSubmit = this.state.postReady 
-  ? <React.Fragment>{submitPostButton}&nbsp;&nbsp;{nevermindButton}</React.Fragment>
-  : <React.Fragment>{disabledSubmitPostButton}&nbsp;&nbsp;{nevermindButton}</React.Fragment>
+  ? <React.Fragment>{nevermindButton}&nbsp;&nbsp;{submitPostButton}</React.Fragment>
+  : <React.Fragment>{nevermindButton}&nbsp;&nbsp;{disabledSubmitPostButton}</React.Fragment>
 
   //Show the photo upload options if showPhotoProcess is
   //set to true otherwise hide it         
