@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 //import requiresLogin from './requires-login';
-import {fetchMyGamesRequest,showProfile,showAllPosts,showOneGame,showNewGame,showFindGame} from '../actions/sideBar-actions';
-import {fetchAllGames, fetchGameById} from '../actions/game';
+import { fetchMyGamesRequest, showProfile, showAllPosts, showOneGame, showNewGame, showFindGame} from '../actions/sideBar-actions';
+import { fetchAllGames, fetchGameById } from '../actions/game';
 import SideBarListMyGames from './sideBarList-MyGames';
 import './sideBar.css';
 
@@ -185,7 +185,6 @@ export class SideBar extends React.Component {
       <div className="side-bar" >
          
         <section className="sidebar-container">
-          <h3>{this.props.currentUsername}</h3>
           <button onClick={this.profileClicked}>My Profile</button>
           <button onClick={this.createGameClicked}>Create Game</button>
           <button onClick={this.findGameClicked}>Find Games</button>

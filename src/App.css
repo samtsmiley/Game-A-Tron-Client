@@ -29,6 +29,7 @@ body{
 
 button {
   cursor: pointer;
+  border: solid red 1px;
 }
 
 ul, ol {
@@ -37,14 +38,20 @@ ul, ol {
 }
 
 .card {
+  
   box-shadow: 1px 1px 10px #aaa;
   border-radius: 12px; 
-  padding: 5px 0 15px 0;
-  margin-bottom: 5px;
+  padding: 5px 20px 15px 20px;
+  margin-bottom: 75px;
   margin-top: 10px;
-  background-color: #f9f9f5;
+  background-color: #fafafae2;
+  
 
-
+  min-height: 75vh;
+  max-height: 75vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .subcard {
@@ -55,7 +62,8 @@ ul, ol {
   padding: 5px 0 5px 0;
   margin-bottom: 5px;
   margin-top: 10px;
-  background-color: rgb(252, 251, 251)
+  background-color: rgb(252, 251, 251);
+  
 }
 
 h1 {
@@ -66,9 +74,13 @@ input {
   border: solid red 1px;
 }
 
-button {
-  border: solid red 1px;
-
+@media screen and (min-width: 600px) {
+ .card {
+  box-sizing: border-box;
+  min-height: 87vh;
+  max-height: 87vh;
+  margin-top: 0;
+  }
 }
 
 
