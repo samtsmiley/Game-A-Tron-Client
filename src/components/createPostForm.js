@@ -1,14 +1,7 @@
 import React from 'react';
-// import {Field, reduxForm, focus} from 'redux-form';
-// import Input from './input';
-// import {login} from '../actions/auth';
-// import {required, nonEmpty} from '../validators';
 import {connect} from 'react-redux';
 import './createPostForm.css'
-// import {postPost} from '../actions/post'
-// import {updateScore} from '../actions/game';
 import PostFocus from './postFocus';
-// import{showPostFocus,exitPostFocus} from '../actions/postFocus'
   
 export class CreatePostForm extends React.Component {
     constructor(){
@@ -42,7 +35,7 @@ export class CreatePostForm extends React.Component {
     render() {
 
     let postMenu = (
-      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : //<ul className='sul'>{scores}</ul>
+      this.state.displayMode === 'showDrop' ? <PostFocus hideDropdownMenu={this.hideDropdownMenu}/> : 
       this.state.displayMode === 'noDrop'
     );
 
@@ -66,8 +59,7 @@ export class CreatePostForm extends React.Component {
   }
 }
 const mapStateToProps = state => {
-    // console.log('>>>>>',state)
-     
+    
     let score = 0;
     const currentParticipant = state.game.data.participants.find(participant =>
       participant.userId.id === state.auth.currentUser.id);
