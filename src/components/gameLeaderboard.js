@@ -10,9 +10,9 @@ export class GameLeaderboard extends React.Component {
     render() {
 
       return (
-        <div className="card">
+        <div className="subcard">
             <h3>Game Leaderboard: </h3>
-            <GameLeaderboardListPlayers gameParticipants={this.props.gameParticipants}/>
+            <GameLeaderboardListPlayers selectedGame ={this.props.selectedGame} gameParticipants={this.props.gameParticipants}/>
         </div>
         );
     }
@@ -21,7 +21,8 @@ export class GameLeaderboard extends React.Component {
 const mapStateToProps = state => {
     return {
         selectedGame: state.game.data,
-        gameParticipants: state.game.data.participants
+        gameParticipants: state.game.data.participants,
+        gameEndScore: state.game.data.endScore
     };
 };
 

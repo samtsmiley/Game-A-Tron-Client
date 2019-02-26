@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-// import './landingPage.css';
-
+import {login} from '../actions/auth';
+import './landingPage.css';
+import { showFindGame } from '../actions/sideBar-actions';
 import LoginForm from './loginForm';
 
 export function LandingPage(props) {
@@ -10,21 +11,29 @@ export function LandingPage(props) {
     if (props.loggedIn) {
         return <Redirect to="/dashboard" />;
     }
-
+    
+    const onSubmit = () =>  {
+        props.dispatch(login('spectator', '0123456789'));
+        props.dispatch(showFindGame())
+    }
+    
     return (
         <div className="home">
-            <h1>Welcome to Gameatron 3000</h1>
-            <div className='about'>
-            <h2>About</h2>
-            <p> 
-              Use this web app to easily make games and keep track of players score.
+            <div className="landingPageLogo"></div>
+            <h1>Welcome</h1>
+            <p>Use this app to easily create or join games.</p>
+            <p>Compete against other players to achieve Vicory!</p>
+            <p>Just want to spectate?
+                <span> </span>  
+                <span className='slink' onClick={()=>onSubmit()}>Click Here</span>
             </p>
-            </div>
+            <p>And Remember...</p>
+            <h2>You Can't Win if You Don't Play</h2>
+            <span>
+                <Link className='link' to="/register">Create a New Account</Link> or login below.
+            </span>
             <div className='logIn'>
-            <LoginForm />
-              <div className='link'>
-              <Link className='link' to="/register">Register</Link>
-              </div>
+                <LoginForm />
             </div>
         </div>
     );

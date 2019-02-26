@@ -20,7 +20,6 @@ export const postGameRequest = () => ({
 });
 
 export const postGame = values => (dispatch, getState) => {
-    // console.log('POSTING GAME ACTION SENDING', JSON.stringify(values));
     const authToken = getState().auth.authToken;
     dispatch(postGameRequest());
     return fetch(`${API_BASE_URL}/games/`, {
@@ -35,7 +34,6 @@ export const postGame = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            // console.log('post game res:',res )
             dispatch(postGameSuccess(res))
         })
         .catch(err => {
@@ -62,7 +60,6 @@ export const fetchGameByIdError = error => ({
 });
 
 export const fetchGameById = (id) => (dispatch, getState) => {
-    // console.log('FETCHING GAME_BY_ID ACTION');
     const authToken = getState().auth.authToken;
     dispatch(fetchGameByIdRequest())
     return fetch(`${API_BASE_URL}/games/${id}`, {
@@ -75,13 +72,12 @@ export const fetchGameById = (id) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then(data =>{
+            // console.log('res from get game by id:',data)
              dispatch(fetchGameByIdSuccess(data))})
         .catch(err => {
             dispatch(fetchGameByIdError(err));
         });
 };
-
-
 
 //Join a game by gameId
 export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS';
@@ -121,21 +117,12 @@ export const joinGame = (id, userName) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data)=>{
-            // console.log('responce from join:',data)
-            // console.log('responce i want :',data.participants.pop())
-
             dispatch(joinGameSuccess(data))
-        })
-        // .then(()=>{
-        //     console.log('im doing join game set state')
-        //     dispatch(joinGameSuccessSetState())
-        // })
-       
+        }) 
         .catch(err => {
             dispatch(joinGameError(err));
         });
 };
-
 
 // fetch game by id
 export const FETCH_All_GAMES_REQUEST = 'FETCH_All_GAMES_REQUEST';
@@ -156,7 +143,6 @@ export const fetchAllGamesError = error => ({
 });
 
 export const fetchAllGames = () => (dispatch, getState) => {
-    // console.log('FETCHING GAME_BY_ID ACTION');
     const authToken = getState().auth.authToken;
     dispatch(fetchAllGamesRequest())
     return fetch(`${API_BASE_URL}/games`, {
@@ -203,7 +189,6 @@ export const updateScore = (gameId, body) => (dispatch, getState) => {
     }).then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then(data => {
-            // console.log('res from updateScore',data)
             dispatch(updateScoreSuccess(data))})
         .catch(err => dispatch(updateScoreError(err)));
 };

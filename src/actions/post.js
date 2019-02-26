@@ -1,7 +1,6 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
-
 //POST a post
 export const POST_POST_SUCCESS = 'POST_POST_SUCCESS';
 export const postPostSuccess = (data) => ({ 
@@ -43,7 +42,6 @@ export const postPost = values => (dispatch, getState) => {
         });
 };
 
-
 // fetch posts for one user by Userid
 export const FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST = 'FETCH_ALL_POSTS_FOR_USER_BY_ID_REQUEST';
 export const fetchAllPostsForUserByIdRequest = () => ({
@@ -74,7 +72,6 @@ export const fetchAllPostsForUserById = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        // .then(res => console.log(res))
         .then(data => {
             dispatch(fetchAllPostsForUserByIdSuccess(data))})
         .catch(err => {

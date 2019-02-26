@@ -25,7 +25,7 @@ if(this.props.selectedGame) {
   }
 }
   return (
-    <div className="gameRules card">
+    <div className="gameRules subcard">
       <h3>The Game Rules:</h3>
       {theRulesList}
     </div>

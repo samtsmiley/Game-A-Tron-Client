@@ -1,42 +1,41 @@
 import React from "react";
 import {connect} from 'react-redux';
-import moment from 'moment';
 import './profile.css';
-
-// import GamePostsList from "./GamePostsList";
+import Post from './post'
+import {fetchAllPostsForUserById} from '../actions/post'
 
 export class Profile extends React.Component {
-    componentDidMount() {
-    }
+  componentDidMount() {
+    this.props.dispatch(fetchAllPostsForUserById(this.props.userId));
+  }
 
   render() {
-    const posts = this.props.myPosts.map(post =>
-      <li className="onePost subcard" key={post.id}>    
-        <p className="gameButton">
-          I scored {post.value} points for {post.description} in game {post.gameId} at {moment(post.createdAt).format("MMM Do YYYY, h:mm:ss a")}.
-        </p> 
-        <p>{post.comment}</p>
-        <img width= '300px' src={post.image} alt=''></img>
-      </li>
-)
+    const posts = this.props.myPosts.map((post, index) => {
+      return <Post key={index} {...post} iScored={true}/>
+    })
+     
       
     return (
-        <div className="container card">
-            <h2>My Score History</h2>
+      <div>
+        <h2>My Score History</h2>
+      {this.props.userName === 'spectator'
+        ? <p>Make an account to post scores and see your history.</p>
+        : <div className="container card">
             <ul>
-            {posts}
+              {posts}
             </ul>
-            {/* <GamePostsList /> */}
-        </div>
+          </div>}
+      </div>
     );
-}
+  }
 }
 
 const mapStateToProps = state => {
   // console.log('>><>>>>>',state)
   return {
     myPosts:state.post.myPosts,
-    userId: state.auth.currentUser.id
+    userId: state.auth.currentUser.id,
+    userName:state.auth.currentUser.username,
   };
 };
 

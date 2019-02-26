@@ -1,75 +1,85 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Line, Circle } from 'rc-progress';
-import { findScore } from './components-utils';
-
+import { Line } from 'rc-progress';
+// import { Line, Circle } from 'rc-progress';
+// import { findScore } from './components-utils';
 //requires doing this --> npm install --save rc-progress
 
 export class GameProgressBar extends React.Component {
      
     render() {
   
+        const players = this.props.allGameData.participants;
         let currentUserPercentProgress = 0;
         let allUsersPercentProgress = 0;
         let maxScore = this.props.allGameData.endScore; 
         let currentUserId = this.props.userId;
         let currentUserScore = 0;
-
-        //Ok yes, it's smelly but it's working...
-        const findCurrentUserScore = this.props.allGameData.participants.map((user,index) => {
-  
-          if(this.props.allGameData.participants[index].userId.id === currentUserId){
-                     
-            if(parseInt(this.props.allGameData.participants[index].score)){
-                  
-                currentUserScore = parseInt(this.props.allGameData.participants[index].score);
-            }   
- 
-            return 0;
-
-          } 
-          else{
-
-            return 0;
-
-          }
-      
-        });
-  
-        //make sure both values are no falsey
-        if(currentUserScore && maxScore){
-            currentUserPercentProgress = ((currentUserScore/maxScore) * 100).toFixed(2);
-        }
-
-        let sumScore = 0;
         let playerCount = 0;
+        let allUsersPercent = 0;
+        let topUserPoints = 0;
+        
 
-        //Add up all the scores and find the current number of players...
-        this.props.allGameData.participants.map(item =>{
+        //if there are participants in the game...
+        if(players.length > 0){
 
-            return (sumScore = sumScore + item.score, playerCount = playerCount + 1);
+            playerCount = players.length;
+
+            //Ok yes, it's smelly but it's working...
+            const findCurrentUserScore = players.map((player,index) => {
+  
+                if(players[index].userId.id === currentUserId){
+      
+                  if(parseInt(players[index].score)){
+                        
+                      currentUserScore = parseInt(players[index].score);
+                  }   
+        
+                } 
+                else{
+      
+                  return 0;
+      
+                }
+            
+            });
+
+            //make sure both values are not falsey
+            if(currentUserScore && maxScore){
+                currentUserPercentProgress = ((currentUserScore/maxScore) * 100).toFixed(2);
+            }
  
-        });
- 
-        if(sumScore && maxScore){
-            allUsersPercentProgress = ((sumScore/maxScore) * 100).toFixed(2);
+            //this function sorts the scores 
+            function sortByScores(array, key){
+                return array.sort((a, b) => {
+                return b[key]-a[key];
+              });
+            }
+  
+            allUsersPercentProgress = sortByScores(this.props.allGameData.participants, 'score');
+
+            allUsersPercent = ((parseInt(allUsersPercentProgress[0].score)/maxScore) * 100).toFixed(2);
+            topUserPoints = parseInt(allUsersPercentProgress[0].score);
+
         }
-
-        let barContainerStyle = {
+          
+        const barContainerStyle = {
             width: '70%',
             height: '70%',
             display: 'inline-block',
         };
- 
-        const numberOfPlayerContent = (
-            playerCount === 0 ? 'There are currently no active players' :
-            playerCount === 1 ? `There is currently ${playerCount} active player` :
-            playerCount = `There are currently ${playerCount} active players` 
-        );
+  
+        let numberOfPlayersContent = topUserPoints >= this.props.allGameData.endScore 
+          ? `There were ${playerCount} players and the game is now over.`
+          :  playerCount === 0 ? 'There are currently no active players' 
+          :  playerCount === 1 ? `There is currently ${playerCount} active player` 
+          :  playerCount = `There are currently ${playerCount} active players`
+          
   
       return (
-        <div className="card">
-            <h3>{numberOfPlayerContent}</h3>
+
+        <div className="subcard">
+            <h3>{numberOfPlayersContent}</h3>
             <h3>Your progress so far is: {currentUserPercentProgress}% </h3>
             <div style={barContainerStyle}>
             <Line percent={currentUserPercentProgress}
@@ -77,15 +87,14 @@ export class GameProgressBar extends React.Component {
                   trailWidth="3.75"
                   trailColor="#bebec8"
                   strokeColor="#4aa84a"
-                  strokeLinecap='round'/>
-            <h3>Overall game progress so far is: {allUsersPercentProgress}% </h3>
-            <Line percent={allUsersPercentProgress}
+                  strokeLinecap='round'/>{currentUserScore} points out of {this.props.allGameData.endScore} possible points
+            <h3>Overall game progress so far is: {allUsersPercent}% </h3>
+            <Line percent={allUsersPercent}
                   strokeWidth="4"
                   trailWidth="3.75"
                   trailColor="#bebec8"
                   strokeColor="#000080"
-                  strokeLinecap='round'/>
-            {/* <Circle percent="0" strokeWidth="4" trailWidth="3.75" trailColor="#beb4b4" strokeColor="#4aa84a" strokeLinecap='round'/> */}
+                  strokeLinecap='round'/>{topUserPoints} points out of {this.props.allGameData.endScore} possible points
             </div>
         </div>
         );

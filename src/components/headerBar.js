@@ -20,7 +20,9 @@ export class HeaderBar extends React.Component {
         }
         return (
             <div className="header-bar">
-                <h1>Gametron</h1>
+                <img 
+                src={require('../assets/images/gameatron_logo_clearbg_.png')} 
+                alt="game a tron" />
                 {logOutButton}
             </div>
         );

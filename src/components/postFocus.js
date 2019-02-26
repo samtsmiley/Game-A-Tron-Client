@@ -34,25 +34,7 @@ export class PostFocus extends React.Component {
 
   //SUBMIT POST
   onSubmitPost = () => {
-      
-    //Add point opp description
-    //Add point value -- from radio button selection
-    //Add user comment -- from input field
-    //Add user image or null from postImageSource
-
-    // console.log('whats going to postPost: ',
-    // this.state.scoreDescription,
-    // this.props.gameId,
-    // this.state.scoreValue,
-    // this.state.postComment,
-    // this.state.images[0].secure_url,
-    // this.state.images[0].public_id,'end>>');
-
-    // console.log('whats going to updateScore: ',
-    // this.props.gameId,
-    // this.props.userId,
-    // (this.props.score + this.state.scoreValue));
-
+     
     let imageAdd = null;
     let imageIdAdd = null;
 
@@ -124,7 +106,7 @@ export class PostFocus extends React.Component {
 
     const formData = new FormData();
 
-    console.log('here at process: ',files);
+    // console.log('here at process: ',files);
 
     files.forEach((file,i)=>{
       formData.append(i,file)
@@ -156,13 +138,7 @@ export class PostFocus extends React.Component {
  
   //SET POST TO NO PHOTO -- hide add photo stuff
   noPhoto = () => {
-    
-    // let setTrue = false;
-
-    // if(this.scoreDescription === false){
-    //   setTrue = true;
-    // }
-
+     
     this.setState({
       uploading: false,
       showPhotoProcess: false,
@@ -180,9 +156,7 @@ export class PostFocus extends React.Component {
   }
 
 render(){
-
-  console.log('current local state: ',this.state);
-  
+ 
   //List of score opportunities with radio buttons for selection        
   const scoreOpps = this.props.scoreOpps.map(item =>
     <li className="scoreName" key={item.description}>    
@@ -203,6 +177,7 @@ render(){
 
  //Button options
  const submitPostButton = <button onClick={this.onSubmitPost}>SUBMIT SCORE POST</button>;
+ const disabledSubmitPostButton = <button disabled >SUBMIT SCORE POST</button>;
  const nevermindButton = <button onClick={this.props.hideDropdownMenu}>NEVERMIND</button>;
  
 
@@ -210,7 +185,7 @@ render(){
  //the SUBMIT button otherwise show the NEVERMIND button
  const showSubmit = this.state.postReady 
   ? <React.Fragment>{submitPostButton}&nbsp;&nbsp;{nevermindButton}</React.Fragment>
-  : <React.Fragment>{nevermindButton}</React.Fragment>
+  : <React.Fragment>{disabledSubmitPostButton}&nbsp;&nbsp;{nevermindButton}</React.Fragment>
 
   //Show the photo upload options if showPhotoProcess is
   //set to true otherwise hide it         
@@ -236,14 +211,13 @@ render(){
       <label><h3> Add a comment: </h3></label>
       <input onChange={(e) => this.onComment(e.currentTarget.value)}
              type='text'
-             placeholder='I am CRUSHED this!'>
+             placeholder='I CRUSHED this!!!'>
       </input>
-      {/* <input onChange={e => props.handleChange(e.target.value)}/> */}
-       
+      
     </form>
     <br/>
     {showPhotoProcess}
-    <br/><br/>
+    <br/>
     {showSubmit} 
     </div>
 
