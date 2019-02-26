@@ -210,7 +210,10 @@ render(){
         
       </form>
       <br/>
-      {showPhotoProcess}
+      <div className="addphotobtn">
+        {showPhotoProcess}  
+      </div>
+     
       <br/>
       {showSubmit} 
     </div>

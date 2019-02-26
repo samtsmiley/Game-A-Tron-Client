@@ -76,10 +76,6 @@ h1 {
   /* margin-left: 0; */
 }
 
-input {
-  /* border: solid red 1px; */
-}
-
 button {
   box-sizing: border-box;
   border: none;
@@ -144,6 +140,29 @@ button:disabled::after {
 
 
 
+label {
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+}
+
+input {
+  display: flex;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:90%;
+  margin: auto;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+input:focus{
+  outline:none; 
+}
+
+input:valid {
+  border-bottom: 1px solid #4fc24f;
+}
 
 
 
