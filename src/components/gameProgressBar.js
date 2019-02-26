@@ -77,7 +77,8 @@ export class GameProgressBar extends React.Component {
           
   
       return (
-        <div className="card">
+
+        <div className="subcard">
             <h3>{numberOfPlayersContent}</h3>
             <h3>Your progress so far is: {currentUserPercentProgress}% </h3>
             <div style={barContainerStyle}>
