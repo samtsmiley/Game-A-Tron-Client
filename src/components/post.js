@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment';
+import './post.css';
 
 export default ({value, description, gameId, createdAt, userId, id, iScored, comment, image}) => {
   const timeStamp = moment(createdAt).format("MMM Do YYYY, h:mm:ss a")
@@ -16,7 +17,7 @@ export default ({value, description, gameId, createdAt, userId, id, iScored, com
          {whoScored} scored {value} points for {description} {showGame} at {timeStamp}.
       </p>
       <p>{comment}</p>
-        <img width= '300px' src={image} alt=''></img> 
+        <img src={image} alt=''></img> 
      </li>
     )
 }

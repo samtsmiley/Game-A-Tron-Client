@@ -1,7 +1,9 @@
 .side-bar {
   text-align: center;
   width: 100vw;
-  
+  padding: 0;
+  /* background-color: red; */
+  margin: 0;
 }
 
 .sidebar-container{
@@ -19,10 +21,10 @@
   
 }
 
-.sidebar-myGames, 
+/* .sidebar-myGames, 
 .sidebar-myGames button {
   background-color: aliceblue;
-}
+} */
 
 hr {
   display: none;
