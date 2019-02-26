@@ -11,7 +11,7 @@ export default function(props){
       </div>
       <br/>
       <div>
-      <h3>OR TO NOT INCLUDE A PHOTO CLICK</h3>  
+      <h3>OR FOR NO PHOTO CLICK</h3>  
       <button onClick={props.noPhoto}>NO PHOTO</button>
       </div>
     </div>
