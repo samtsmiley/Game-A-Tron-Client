@@ -4,16 +4,22 @@ import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
 import Input from './input';
 import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
+import {sendConfirmationEmail} from '../actions/email';
 const passwordLength = length({min: 8, max: 20});
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
-        const {username, password, firstName, lastName} = values;
+        const {username, password, firstName, lastName, email} = values;
         const user = {username, password, firstName, lastName};
+        if (email) user.email = email;
         return this.props
             .dispatch(registerUser(user))
-            .then(() => this.props.dispatch(login(username, password)));
+            .then(() => this.props.dispatch(login(username, password)))
+            .then(() => {
+                if (email) this.props.dispatch(sendConfirmationEmail());
+                // console.log('email sent');
+            });
     }
 
     render() {
