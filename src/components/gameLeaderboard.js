@@ -18,12 +18,31 @@ export class GameLeaderboard extends React.Component {
 
     this.state = {
  
-        prizeType: 1,
-        prizeOptions:['Medal','Trophy','Bear'],
-        prize_1: FirstMedal,
-        prize_2: SecondMedal,
-        prize_3: ThirdMedal
- 
+        prizeType: 0,
+        prizeImageOptions:[
+                  {   
+                    setIndex:'0',
+                    setName: 'Medals',
+                    prize_1: FirstMedal,
+                    prize_2: SecondMedal,
+                    prize_3: ThirdMedal
+                  },
+                  {   
+                    setIndex:'1',
+                    setName: 'Trophies',
+                    prize_1: FirstTrophy,
+                    prize_2: SecondTrophy,
+                    prize_3: ThirdTrophy
+                  },
+                  {   
+                    setIndex:'2',
+                    setName: 'Bears',
+                    prize_1: FirstBear,
+                    prize_2: SecondBear,
+                    prize_3: ThirdBear
+                  },
+        ]
+      
     }
 
     this.selectPrize = this.selectPrize.bind(this);
@@ -31,57 +50,29 @@ export class GameLeaderboard extends React.Component {
     }
  
     selectPrize(value){
-
-        console.log('hello',value)
- 
-        if (value === this.state.prizeOptions[0]){
-         
-         this.setState({
-                prizeType: 1,
-                prize_1: FirstMedal,
-                prize_2: SecondMedal,
-                prize_3: ThirdMedal
-            })
-
-        }
-
-        if (value === this.state.prizeOptions[1]){
-              
-         this.setState({
-                prizeType: 2,
-                prize_1: FirstTrophy,
-                prize_2: SecondTrophy,
-                prize_3: ThirdTrophy
-            })
-
-        }
-
-        if (value === this.state.prizeOptions[2]){
-              
-         this.setState({
-                prizeType: 3,
-                prize_1: FirstBear,
-                prize_2: SecondBear,
-                prize_3: ThirdBear
-            })
-
-        }
   
-     
-   
+        const imagePointer = parseInt(value);
+          
+        this.setState({
+            prizeType: imagePointer,
+            prize_1: this.state.prizeImageOptions[imagePointer].prize_1,
+            prize_2: this.state.prizeImageOptions[imagePointer].prize_2,
+            prize_3: this.state.prizeImageOptions[imagePointer].prize_3
+        })
+  
     }
 
-    render() {
+    
 
+    render() {
+ 
       return (
         <div className="subcard">
             <GameLeaderboardListPlayers 
-                prizeOptions={this.state.prizeOptions}
+                gameEndScore={this.props.gameEndScore}
+                prizeImageOptions={this.state.prizeImageOptions}
                 prizeType={this.state.prizeType}
                 selectPrize={this.selectPrize}
-                prize_1={this.state.prize_1}
-                prize_2={this.state.prize_2}
-                prize_3={this.state.prize_3}
                 selectedGame ={this.props.selectedGame}
                 gameParticipants={this.props.gameParticipants}/>
         </div>
