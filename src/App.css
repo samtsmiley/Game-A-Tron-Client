@@ -140,29 +140,24 @@ button:disabled::after {
 
 
 
-label {
-  left:5px;
-  top:10px;
-  transition:0.2s ease all;
-}
-
 input {
-  display: flex;
-  padding:10px 10px 10px 5px;
-  display:block;
-  width:90%;
+  padding: 10px 10px 10px 5px;
+  display: block;
   margin: auto;
-  border:none;
-  border-bottom:1px solid #757575;
+  border: none;
+}
+input:focus { 
+  outline: solid rgb( 33, 150, 243) 1px  ; 
+  border-bottom: 0 !important; 
 }
 
-input:focus{
-  outline:none; 
-}
+input:valid { border-bottom: 1px solid rgb( 33, 150, 243);}
 
-input:valid {
-  border-bottom: 1px solid #4fc24f;
-}
+
+
+
+
+
 
 
 

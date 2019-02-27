@@ -11,9 +11,10 @@ const renderField = ({
   meta: { touched, error, warning }
  }) => (
   <div>
-    <label className="item-label">{label}</label>
+    
     <div>
       <input {...input} type={type} placeholder={placeholder} />
+      <label className="item-label">{label}</label>
       {touched && error && <span>{error}</span>}
     </div>
   </div>
@@ -31,7 +32,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
           type="text"
           component={renderField}
           label={`Rule ${index + 1}`}
-          placeholder="Enter a Rule"
+          placeholder={`Rule ${index + 1}`}
           />
         <button
           type="button"
@@ -62,14 +63,14 @@ const renderScores = ({ fields, meta: { error, submitFailed } }) => (
           type="text"
           component={renderField}
           label="Action"
-          placeholder="Enter an Action"
+          placeholder="Action"
         />
         <Field
           name={`${score}.points`}
           type="number"
           component={renderField}
           label="Point Value"
-          placeholder="Enter a Number"
+          placeholder="Point Value"
         />
         <button
         type="button"
@@ -99,13 +100,15 @@ const NewGameForm = props => {
           type="text"
           component={renderField}
           label="Game Name"
+          placeholder="Game Title"
+
         />
         <Field
           name="description"
           type="textarea"
           component={renderField}
           label="Game Description"
-          placeholder=""
+          placeholder="Description"
         />
       </div>
       <FieldArray name="rules" component={renderRules} />
@@ -116,7 +119,7 @@ const NewGameForm = props => {
             type="number"
             component={renderField}
             label="Game End Condition"
-            placeholder="Enter Max Score"
+            placeholder="Winning Point Total"
           />
       </div>
       <div className="reset-submit-btn">
