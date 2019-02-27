@@ -9,11 +9,14 @@ import  CreatePostForm  from './createPostForm';
 import  GamePostsList  from './GamePostsList';
 import {joinGame} from '../actions/game'
 import './gameDashboard.css';
+import { fetchMyGamesRequest } from '../actions/sideBar-actions';
+
  
 export class Game extends React.Component {
     
     joinGameButton(){
       this.props.dispatch(joinGame(`${this.props.gameId}`,`${this.props.userName}`))
+      .then(()=>this.props.dispatch(fetchMyGamesRequest(this.props.userId)))
     }
 
     render() {
