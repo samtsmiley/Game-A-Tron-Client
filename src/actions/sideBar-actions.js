@@ -68,7 +68,6 @@ export const fetchMyGamesRequest = (userId) => {
 
     })
     .then(data => {
-      console.log('res form myGames',data)
       dispatch(fetchMyGamesSuccess(data))})
     .catch(error => console.log(error))
  
