@@ -8,6 +8,7 @@ export default class Input extends React.Component {
     }
     render() {
         const Element = this.props.element || 'input';
+        const { name } = this.props.input;
 
         let error;
         if (this.props.meta.touched && this.props.meta.error) {
@@ -23,17 +24,18 @@ export default class Input extends React.Component {
 
         return (
             <div className="form-input">
-                <label htmlFor={this.props.input.name}>
+                <label htmlFor={name}>
                     {/* {this.props.label} */}
                     {error}
                     {warning}
                 </label>
                 <Element
                     {...this.props.input}
-                    id={this.props.input.name}
+                    id={name}
                     type={this.props.type}
                     ref={input => (this.input = input)}
                     autoComplete="on"
+                    placeholder={name.charAt(0).toUpperCase() + name.slice(1)}
                 />
             </div>
         );
