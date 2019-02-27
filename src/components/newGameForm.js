@@ -22,7 +22,7 @@ const renderField = ({
 
 const renderRules = ({ fields, meta: { error, submitFailed } }) => (
   <div className="rules subcard">
-    <p>Enter Rules</p>  
+    <p>Set Rules</p>  
     
       {fields.map((rule, index) => (
        
@@ -54,7 +54,7 @@ const renderRules = ({ fields, meta: { error, submitFailed } }) => (
 
 const renderScores = ({ fields, meta: { error, submitFailed } }) => (
   <div className="scores subcard">
-    <p>Enter Scoring Opportunites</p>
+    <p>Set Ways to Score</p>
   
     {fields.map((score, index) => (
       <div key={index} className="subcard">
