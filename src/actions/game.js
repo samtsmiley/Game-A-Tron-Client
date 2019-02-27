@@ -20,7 +20,7 @@ export const postGameRequest = () => ({
 });
 
 export const postGame = values => (dispatch, getState) => {
-    console.log(values)
+    // console.log(values)
     const authToken = getState().auth.authToken;
     dispatch(postGameRequest());
     return fetch(`${API_BASE_URL}/games/`, {
@@ -35,7 +35,7 @@ export const postGame = values => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((res)=>{
-            console.log('res',res)
+            // console.log('res',res)
             dispatch(postGameSuccess(res))
         })
         .catch(err => {
