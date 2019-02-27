@@ -16,8 +16,7 @@ export class Game extends React.Component {
     
     joinGameButton(){
       this.props.dispatch(joinGame(`${this.props.gameId}`,`${this.props.userName}`))
-      this.props.dispatch(fetchMyGamesRequest(this.props.userId))
-
+      .then(()=>this.props.dispatch(fetchMyGamesRequest(this.props.userId)))
     }
 
     render() {
