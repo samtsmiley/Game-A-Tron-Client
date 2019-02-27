@@ -20,12 +20,13 @@ let secondPlace = null;
 let thirdPlace = null;  
 let baseColor = 0;//35;//parseInt(256 * Math.random());//225
 let pageTitle = <h2>Game Leaderboard: </h2>
+const theEndScore = parseInt(props.gameEndScore);
   
 let prizeMenu = null;
  
 //If the participants array is populated with at least one player...
 if(props.gameParticipants.length > 0){
-    
+ 
   //this function sorts the scores in the player objects based on the key: score...
   function sortByScores(array, key){
     return array.sort((a, b) => {
@@ -34,7 +35,7 @@ if(props.gameParticipants.length > 0){
   }
 
   const playerArrSorted = sortByScores((props.gameParticipants),'score');
-  
+ 
   //index 1-3
   rankedPlayersListItem = playerArrSorted.map((player,index) => {
     let placer = {
@@ -48,10 +49,11 @@ if(props.gameParticipants.length > 0){
       : `Rank: ${index + 1} `
 
     const bar = index === 2 
-      ? <React.Fragment><br/><hr/><br/></React.Fragment>
-      : ''
+      ? null
+      : null
 
-    const playerPercentProgress = ((props.gameParticipants[index].score/props.gameEndScore) * 100).toFixed(2);  
+     
+    const playerPercentProgress = ((parseInt(props.gameParticipants[index].score)/theEndScore) * 100).toFixed(2);   
 
     function randomHSL(){
       return `hsl(${baseColor}, ${(playerArrSorted.length/index) * 30}%, 50%,1)`;
@@ -75,14 +77,12 @@ if(props.gameParticipants.length > 0){
       height: '50%',
       display: 'inline-block',
   };
- 
 
+    
     return (
       
-      
       <li key={index}>
-        <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;
-        Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.gameEndScore} possible points{progressBar}</p>
+        <p style={barContainerStyle}>{content} {playerName} &nbsp;&nbsp;Score: {playerScore}&nbsp;{playerPercentProgress}% of {props.gameEndScore} possible points{progressBar}</p>
         {bar}
       </li> 
     );
@@ -92,14 +92,17 @@ if(props.gameParticipants.length > 0){
   //Logic for winner -- game over
   if(playerArrSorted[0].score >= props.selectedGame.endScore){
  
+    const imagePath = props.prizeImageOptions;
+    const imageSetIndex = parseInt(props.prizeType);//where to find the set of images in the images array...
+
     pageTitle = <h1>The Winner's Circle</h1>;
 
     //2nd place
     if(playerArrSorted.length > 1){
 
       secondPlace = 
-      <div><img src={props.prize_2} width="110" alt=''/>
-      <h2>Third Place</h2>
+      <div><img src={imagePath[imageSetIndex].prize_2} width="110" alt=''/>
+      <h2>Second Place</h2>
       <h2>Goes to {props.gameParticipants[1].userId.username}<br/> with a super score of {playerArrSorted[1].score} points!!</h2>
       </div>
 
@@ -109,8 +112,8 @@ if(props.gameParticipants.length > 0){
     if(playerArrSorted.length > 2){
 
       thirdPlace = 
-      <div><img src={props.prize_3} width="100" alt=''/>
-      <h2>Second Place</h2>
+      <div><img src={imagePath[imageSetIndex].prize_3} width="100" alt=''/>
+      <h2>Third Place</h2>
       <h2>Goes to {props.gameParticipants[2].userId.username}<br/> with a great score of {playerArrSorted[2].score} points!</h2>
       </div>
 
@@ -118,33 +121,32 @@ if(props.gameParticipants.length > 0){
 
     //1st place
     theWinner = <div><h2>This Game Has Been Won!</h2> 
-    <img src={props.prize_1} width="120" alt=''/>
+    <img src={imagePath[imageSetIndex].prize_1} width="120" alt=''/>
     <h1>First Place</h1>
     <h1>Goes to {props.gameParticipants[0].userId.username}!<br/> with an awesome score of {playerArrSorted[0].score} points!!!</h1>
     {secondPlace}
     {thirdPlace}
     </div>
      
-    let prizeListItems = props.prizeOptions.map((name,index) => {
+    let prizeListItems = imagePath.map((item,index) => {
 
       return(
 
-        <li className="scoreName" key={index+1}>    
+        <li className="scoreName" key={index}>    
          <input type='radio'
-            name={name}
-            checked={props.prizeType === index+1}
+            name={item.setIndex}
+            checked={props.prizeType === index}
             className="gameButton"
             onChange={(e)=>{ 
              props.selectPrize(e.currentTarget.name)
             }} >
       
         </input> 
-         <label htmlFor="public">Select {name} Style</label>
+         <label htmlFor="public">Select {item.setName} Style</label>
        </li>
 
       )
-
-
+ 
     })
 
     //prize selection...
@@ -162,10 +164,10 @@ if(props.gameParticipants.length > 0){
   return (
 
     <div>
-      {pageTitle}
+       {pageTitle}
       <div>{theWinner}</div>
       <br/>
-      {prizeMenu}
+       {prizeMenu}
       <br/>
       <ul id='gameLeaderboardListPlayers'>
        {rankedPlayersListItem} 

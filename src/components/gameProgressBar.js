@@ -39,9 +39,7 @@ export class GameProgressBar extends React.Component {
                 return null;
                   
             });
-
-            console.log('current user: ', currentUser)
-
+  
             if(currentUser){
                 currentUserScore = currentUser.score;
             }
