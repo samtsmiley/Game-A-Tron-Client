@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {API_BASE_URL} from '../config';
 import {confirmEmail} from '../actions/email';
 
 export class ConfirmEmail extends React.Component {
   componentDidMount() {
-    this.props.dispatch(confirmEmail(this.props.userId))
+    const id = this.props.match.params.id;
+    this.props.dispatch(confirmEmail(id))
   }
 
   render() {
@@ -18,7 +18,6 @@ export class ConfirmEmail extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  message: state.email.message,
-  userId: state.auth.currentUser.id
+  message: state.email.message
 });
 export default connect(mapStateToProps)(ConfirmEmail);

@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Link, Redirect, BrowserRouter, Switch, Route} from 'react-router-dom';
 import {login} from '../actions/auth';
 import './landingPage.css';
 import { showFindGame } from '../actions/sideBar-actions';
 import LoginForm from './loginForm';
+import ConfirmEmail from './confirmEmail';
 
 export function LandingPage(props) {
     // If we are logged in redirect straight to the user's dashboard
@@ -19,6 +20,11 @@ export function LandingPage(props) {
     
     return (
         <div className="home">
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/confirm/:id' component={ConfirmEmail} />
+                </Switch>
+            </BrowserRouter>
             <div className="landingPageLogo"></div>
             <h1>Welcome</h1>
             <p>Use this app to easily create or join games.</p>
