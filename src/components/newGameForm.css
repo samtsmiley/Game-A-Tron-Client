@@ -11,6 +11,13 @@
     /* border: solid red 1px; */
 } 
 
+.reset-submit-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    /* border: solid red 1px; */
+}
+
 
 
 @media screen and (min-width: 600px) {
@@ -95,13 +102,7 @@
         padding: 0;
     }
 
-    .reset-submit-btn {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 15px;
-        /* border: solid red 1px; */
-
-    }
+    
 
     
   }
