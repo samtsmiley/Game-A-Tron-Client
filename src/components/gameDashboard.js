@@ -32,9 +32,9 @@ export class Game extends React.Component {
           <div className="game-btn-wrap">
           {this.props.userName === 'spectator'
             ? <p>Make an account to join a game and post scores.</p>
-            : this.props.amIAParticipant 
+            : this.props.amIAParticipant
                 ? <p>You are playing this game</p> 
-                : <button type="button" onClick={() => this.joinGameButton()} 
+                : !winnerDetector && <button type="button" onClick={() => this.joinGameButton()} 
                 className="joinbtn">Join Game
                 </button>}
         </div>
