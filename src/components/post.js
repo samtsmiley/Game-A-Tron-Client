@@ -13,7 +13,7 @@ export default ({value, description, gameId, createdAt, userId, id, iScored, com
 
     return (
       <li className="onePost subcard" key={id}>    
-        <p className="gameButton">
+        <p className="gamePost">
          {whoScored} scored {value} points for {description} {showGame} at {timeStamp}.
       </p>
       <p>{comment}</p>

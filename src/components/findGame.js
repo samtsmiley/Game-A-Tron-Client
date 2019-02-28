@@ -24,7 +24,7 @@ export class FindGame extends React.Component {
 
         return (
           <li className="gameName subcard" key={name}>    
-            <button className="gameButton"
+            <button className="gameButton gamebtn"
              onClick={() => this.gameClicked(id)}>
               {name}
             </button> 
