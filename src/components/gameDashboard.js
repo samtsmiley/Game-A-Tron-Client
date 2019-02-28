@@ -26,10 +26,6 @@ export class Game extends React.Component {
         return item.score >= this.props.endScore
       })
 
-      console.log('participants ',this.props.participants);
-      console.log('winnerDetector ',winnerDetector);
-      console.log('endScore ',this.props.endScore);
-
       return (
         <div className="game card">
           <h1>{this.props.gameName}</h1>
