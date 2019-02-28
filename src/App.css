@@ -76,10 +76,6 @@ h1 {
   /* margin-left: 0; */
 }
 
-input {
-  /* border: solid red 1px; */
-}
-
 button {
   box-sizing: border-box;
   border: none;
@@ -141,6 +137,31 @@ button:disabled::before {
 button:disabled::after {
   opacity: 0;
 }
+
+
+
+input {
+  padding: 10px 10px 10px 5px;
+  display: block;
+  margin: auto;
+  border: none;
+  background-color: transparent;
+}
+input:focus { 
+  outline: solid rgb( 33, 150, 243) 1px  ; 
+  border-bottom: 0 !important; 
+}
+
+input:valid { 
+  border-bottom: 1px solid rgb( 33, 150, 243);
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 100px white inset;
+  -webkit-box-shadow: 0 0 0 100px white inset;
+}
+
+
 
 
 

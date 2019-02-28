@@ -151,19 +151,21 @@ render(){
  
   //List of score opportunities with radio buttons for selection        
   const scoreOpps = this.props.scoreOpps.map(item =>
-    <li className="scoreName" key={item.description}>    
-    <input type='radio'
-           value={item.points}
-           name={item.description}
-           checked={this.state.scoreDescription === item.description}
-           className="gameButton"
-           onChange={(e)=>{ 
-            this.onRadioSelect(e.currentTarget.name, e.currentTarget.value)
-           }} >
-     
-     </input> 
-     <label htmlFor="public">{item.description} for {item.points} points.</label>
-      
+    <li className="scoreName" key={item.description}> 
+      <input type='radio'
+            value={item.points}
+            name={item.description}
+            checked={this.state.scoreDescription === item.description}
+            className="gameButton"
+            id={item.description}
+            onChange={(e)=>{ 
+              this.onRadioSelect(e.currentTarget.name, e.currentTarget.value)
+            }} 
+            
+      >
+      </input> 
+      <label htmlFor={item.description}>{item.description}</label>
+      {/* for {item.points} points. */}
   </li>
  )
 
@@ -193,24 +195,25 @@ render(){
   return (
 
     <div className='postFocusWindow subcard'>
-      <br/>
       <h2>Post a Score</h2> 
       <form>
-        <label>Select a score option:</label>
         <ul>{scoreOpps}</ul>
       </form>
       <form>
-        <label>Add a comment:</label>
+        <label></label>
         <input onChange={(e) => this.onComment(e.currentTarget.value)}
               type='text'
-              placeholder=''
+              placeholder='Add a Comment'
               >
         </input>
         
         
       </form>
       <br/>
-      {showPhotoProcess}
+      <div className="addphotobtn">
+        {showPhotoProcess}  
+      </div>
+     
       <br/>
       {showSubmit} 
     </div>

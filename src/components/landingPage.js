@@ -23,16 +23,17 @@ export function LandingPage(props) {
             <h1>Welcome</h1>
             <p>Use this app to easily create or join games.</p>
             <p>Compete against other players to achieve Vicory!</p>
-            <p>Just want to spectate?
-                <span> </span>  
-                <span className='slink' onClick={()=>onSubmit()}>Click Here</span>
+            <p>
+                Just want to spectate? <span 
+                className='submit-link' 
+                onClick={()=>onSubmit()}>Click Here</span>  
             </p>
             <p>And Remember...</p>
             <h2>You Can't Win if You Don't Play</h2>
-            <span>
+            <p>
                 <Link className='link' to="/register">Create a New Account</Link> or login below.
-            </span>
-            <div className='logIn'>
+            </p>
+            <div className='logIn subcard'>
                 <LoginForm />
             </div>
         </div>

@@ -197,7 +197,7 @@ export class SideBar extends React.Component {
 
         {this.state.showMyGames && 
           <section className="sidebar-myGames subcard">
-            <hr />
+           
             {displayMyGames}
           </section>
         }
@@ -209,7 +209,6 @@ export class SideBar extends React.Component {
 }
 
 const mapStateToProps = state =>{
-   
   return { 
     currentUser: state.auth,
     currentUserId: state.auth.currentUser.id,
