@@ -1,17 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {API_BASE_URL} from '../config';
+import {Link, Redirect} from 'react-router-dom';
 import {confirmEmail} from '../actions/email';
 
 export class ConfirmEmail extends React.Component {
+  state = {confirming: true};
   componentDidMount() {
-    this.props.dispatch(confirmEmail(this.props.userId))
+    const id = this.props.match.params.id;
+    // console.log(id);
+    this.props.dispatch(confirmEmail(id))
+    this.setState({confirming: false});
   }
 
   render() {
+    if (!this.state.confirming) return <Redirect to='/'/>
     return (
       <div className='confirmEmail'>
-        <p>{this.props.message}</p>
+        <p>Processing ... If you are not automatically redirected, please click <Link className='link' to='/'>this link</Link></p>
       </div>
     );
   }
@@ -19,6 +24,6 @@ export class ConfirmEmail extends React.Component {
 
 const mapStateToProps = state => ({
   message: state.email.message,
-  userId: state.auth.currentUser.id
+  // error: state.email.error
 });
 export default connect(mapStateToProps)(ConfirmEmail);
