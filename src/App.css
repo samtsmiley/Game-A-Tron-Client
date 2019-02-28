@@ -174,7 +174,28 @@ input:-webkit-autofill {
   }
 }
 
+@media screen and (min-width: 413px) and (min-height: 811px) and (max-height: 813px) {
+  .side-bar button {
+    
+    background-color:red;
+  }
+}
 
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) {
+      .side-bar button {
+        width: 25%;
+        height: 50px;
+      }
+
+      .card{
+        min-height: 79vh;
+        max-height: 79vh;
+        margin-top: 0;
+      }
+     }
 
 
 @media screen and (min-width: 600px) {
