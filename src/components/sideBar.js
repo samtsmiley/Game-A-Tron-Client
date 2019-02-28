@@ -188,16 +188,11 @@ export class SideBar extends React.Component {
           <button onClick={this.profileClicked}>My Profile</button>
           <button onClick={this.createGameClicked}>Create Game</button>
           <button onClick={this.findGameClicked}>Find Games</button>
-          <button onClick={this.showMyGames}> My Games </button>
-        
-
-        {/* <button onClick={this.showAllGamesClicked}>Timeline</button> */}
-        
+          <button onClick={this.showMyGames}> My Games </button>        
         </section>
 
         {this.state.showMyGames && 
           <section className="sidebar-myGames subcard">
-            <hr />
             {displayMyGames}
           </section>
         }
@@ -209,7 +204,6 @@ export class SideBar extends React.Component {
 }
 
 const mapStateToProps = state =>{
-   
   return { 
     currentUser: state.auth,
     currentUserId: state.auth.currentUser.id,

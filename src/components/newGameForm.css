@@ -4,7 +4,12 @@
     margin-bottom: 5px;
 }
 
-
+.item-label {
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    /* border: solid red 1px; */
+} 
 
 
 
@@ -13,7 +18,7 @@
 
     .rules p {
         margin-top: 0;
-        border: solid red;
+        /* border: solid red; */
     }
 
     .rules-fields {
@@ -54,7 +59,7 @@
     }
 
     .item-label {
-        display: block;
+        display: none;
         margin-top: 10px;
         margin-bottom: 2px;
         /* border: solid red 1px; */

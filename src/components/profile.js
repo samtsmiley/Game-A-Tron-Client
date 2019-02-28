@@ -16,11 +16,11 @@ export class Profile extends React.Component {
      
       
     return (
-      <div>
+      <div className="card">
         <h2>My Score History</h2>
       {this.props.userName === 'spectator'
         ? <p>Make an account to post scores and see your history.</p>
-        : <div className="container card">
+        : <div className="container">
             <ul>
               {posts}
             </ul>

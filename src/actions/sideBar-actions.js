@@ -64,11 +64,11 @@ export const fetchMyGamesRequest = (userId) => {
 
     })
     .then((response)=>{
-
       return response.json();
 
     })
-    .then(data => dispatch(fetchMyGamesSuccess(data)))
+    .then(data => {
+      dispatch(fetchMyGamesSuccess(data))})
     .catch(error => console.log(error))
  
   }
