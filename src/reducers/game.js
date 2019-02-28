@@ -13,9 +13,7 @@ import {
     UPDATE_SCORE_ERROR,
     POST_GAME_ERROR,
     POST_GAME_SUCCESS,
-    POST_GAME_REQUEST,
-    JOIN_GAME_SUCCESS_SET_STATE,
-    
+    POST_GAME_REQUEST,    
 } from '../actions/game';
 
 import {
@@ -48,8 +46,6 @@ export default function reducer(state = initialState, action) {
             loading: true,
         });
     } else if (action.type === JOIN_GAME_SUCCESS) {
-        // return {...state.data.participants, datap }
-        // console.log('in reducer',action.data)
         return Object.assign({}, state, {
             data: action.data,
             error: null,
@@ -65,7 +61,6 @@ export default function reducer(state = initialState, action) {
             loading: true,
         });
     } else if (action.type === FETCH_All_GAMES_SUCCESS) {
-        // console.log('game is ', action.data)
         return Object.assign({}, state, {
             allGames: action.allGames,
             error: null,
@@ -76,18 +71,11 @@ export default function reducer(state = initialState, action) {
             error: action.error,
             loading: false,
         });
-    }
-    else if (action.type === FETCH_All_GAMES_REQUEST) {
+    } else if (action.type === FETCH_All_GAMES_REQUEST) {
         return Object.assign({}, state, {
             loading: true,
         });
-    }
-    else if (action.type === JOIN_GAME_SUCCESS_SET_STATE) {
-        return Object.assign({}, state, {
-            data: action.data.participants,
-        });
     } else if (action.type === POST_GAME_SUCCESS) {
-        // console.log('game is ', action.data)
         return Object.assign({}, state, {
             data: action.data,
             error: null,
@@ -98,19 +86,17 @@ export default function reducer(state = initialState, action) {
             error: action.error,
             loading: false,
         });
-    }
-    else if (action.type === POST_GAME_REQUEST) {
+    } else if (action.type === POST_GAME_REQUEST) {
         return Object.assign({}, state, {
             loading: true,
         });
     } else if (action.type === POST_POST_SUCCESS) {
-        // console.log('game is ', action.data)
         return Object.assign({}, state, {
             data: action.data,
             error: null,
             loading: false,
         });
-    }else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
+    } else if (action.type === UPDATE_SCORE_REQUEST) return {...state, loading: true};
     else if (action.type === UPDATE_SCORE_SUCCESS) return {...state, data: action.data, error: null, loading: false};
     else if (action.type === UPDATE_SCORE_ERROR) return {...state, error: action.error, loading: false };
 
