@@ -27,7 +27,9 @@ body{
   width: 0px;  /* remove scrollbar space */
 }
 
-
+.gamebtn {
+  width: 50%;
+}
 
 ul, ol {
   list-style: none;
@@ -42,8 +44,6 @@ ul, ol {
   margin-bottom: 75px;
   margin-top: 10px;
   background-color: #fafafae2;
-  
-
   min-height: 72vh;
   max-height: 72vh;
   overflow-y: scroll;
@@ -161,16 +161,18 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 100px white inset;
 }
 
+@media screen and (min-width: 374px) {
+  .side-bar button {
+    width: 25%;
+    height: 30px;
+  }
 
-
-
-
-
-
-
-
-
-
+  
+  .card {
+    min-height: 76vh;
+    max-height: 76vh;
+  }
+}
 
 
 

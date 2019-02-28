@@ -11,7 +11,7 @@
   justify-content: space-evenly;
   align-items: center;
   font-size: .75rem;
-  border-bottom: solid lightgrey 1px;
+  /* border-bottom: solid lightgrey 1px; */
   margin-top: 5px;
 }
 
