@@ -98,12 +98,6 @@ export const joinGameRequest = () => ({
     type: JOIN_GAME_REQUEST,
 });
 
-export const JOIN_GAME_SUCCESS_SET_STATE = 'JOIN_GAME_SUCCESS_SET_STATE';
-export const joinGameSuccessSetState = participant => ({
-    type: JOIN_GAME_SUCCESS_SET_STATE,
-    participant
-});
-
 export const joinGame = (id, userName) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(joinGameRequest());
@@ -155,7 +149,8 @@ export const fetchAllGames = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(data => dispatch(fetchAllGamesSuccess(data)))
+        .then(data => {
+            dispatch(fetchAllGamesSuccess(data))})
         .catch(err => {
             dispatch(fetchAllGamesError(err));
         });
