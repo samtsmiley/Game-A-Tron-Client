@@ -17,8 +17,9 @@
 
 
 .header-bar img {
-    width: 60vw;
+    width: 200px;
     height: 100%;
+    margin-left: -10px;
 }
 
 .header-bar button {
