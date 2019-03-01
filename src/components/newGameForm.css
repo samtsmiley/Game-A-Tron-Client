@@ -18,6 +18,9 @@
     /* border: solid red 1px; */
 }
 
+.scores button {
+    margin-top: 5px;
+}
 
 
 @media screen and (min-width: 600px) {
