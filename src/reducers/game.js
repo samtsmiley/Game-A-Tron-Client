@@ -25,7 +25,7 @@ const initialState = {
     error: null,
     loading: false,
     data: {participants: []},
-    allGames: null
+    allGames: []
 };
 
 export default function reducer(state = initialState, action) {
